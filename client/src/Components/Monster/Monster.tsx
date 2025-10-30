@@ -9,6 +9,7 @@ export const Monster = ({health}: MonsterProps) => {
   const [maxHealth, setMaxHealth] = useState(health);
   const [monsterHealth, setMonsterHealth] = useState(health);
   
+  // Рандомный цвет
   const getRandomColor = () => {
     const r = Math.floor(Math.random() * 256);
     const g = Math.floor(Math.random() * 256);
@@ -22,16 +23,19 @@ export const Monster = ({health}: MonsterProps) => {
     setColor(getRandomColor());
   }
   
+  // Ударить моба
   const handleClick = () => {
     setMonsterHealth(prev => Math.max(prev - (Math.floor(Math.random() * 10) + 1), 0));
   };
 
+  // Обноавить игру
   const handleRestart = () => {
     const newHealth = Math.floor(Math.random() * 10000) + 1;
     setMonsterHealth(newHealth);
     setMaxHealth(newHealth);
   }
 
+  // оставить 1хп
   const handleKill = () => {
     setMonsterHealth(1);
   }
@@ -50,7 +54,7 @@ export const Monster = ({health}: MonsterProps) => {
           handleRestart();
           handleChangeColor();
         }}>Начать с начала</button>
-        {/* оставить 1хп */}
+        {/* Оставить 1хп */}
         <button className='btn' onClick={handleKill}>1хп</button>
         {/* Победное окно */}
         <div className={`monster-enemy-box ${monsterHealth === 0 ? "monster-enemy-winner" : ""}`}>Вы победили!</div>
