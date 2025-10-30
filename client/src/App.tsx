@@ -1,4 +1,5 @@
 import { Monster } from "./Components/Monster/Monster"
+import "./Styles/style.scss";
 
 function App() {
 
