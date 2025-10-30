@@ -23,26 +23,3 @@ button {
   cursor: pointer;
   transition: all .2s linear;
 }
-
-// .active {
-//   background-color: green;
-//   box-shadow: 0 0 10px green;
-// }
-
-// .active:hover {
-//   background-color: rgb(17, 103, 17);
-// }
-
-.wrapper {
-  background-color: aliceblue;
-  padding: 10px 30px;
-  border-radius: 15px;
-  transition: all .2s linear;
-}
-
-.active-bg {
-  padding: 20px 60px;
-  background-color: lightgreen;
-  box-shadow: 0 0 15px lightgreen;
-  transition: all .2s linear;
-}
