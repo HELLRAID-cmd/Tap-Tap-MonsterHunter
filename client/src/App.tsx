@@ -1,11 +1,11 @@
 import { Monster } from "./Components/Monster/Monster"
+import getNewHealth from "./Components/Monster/newHealthMonster";
 import "./Styles/style.scss";
 
 function App() {
-
   return (
     <>
-      <Monster health={Math.floor(Math.random() * 10000) + 1} />
+      <Monster health={getNewHealth()} />
     </>
   )
 }
