@@ -14,4 +14,5 @@ export type handleChangeColorType = {
 
 export type hitMonsterType = {
   setMonsterHealth: React.Dispatch<React.SetStateAction<number>>;
+  setAnimation: React.Dispatch<React.SetStateAction<string>>;
 }
