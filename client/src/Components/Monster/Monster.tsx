@@ -1,10 +1,10 @@
 import { useState } from "react";
-import "./Monster.scss";
-import handleKill from "../Admin/Admin";
-import { getRandomColor, handleChangeColor, handleRestart } from "./HandleRestart";
 import type { MonsterProps } from "./MonsterProps";
+import { getRandomColor, handleChangeColor, handleRestart } from "./HandleRestart";
 import getNewHealth from "./getNewHealth";
+import handleKill from "../Admin/Admin";
 import hitMonster from "./hitMonster";
+import "./Monster.scss";
 
 export const Monster = ({health}: MonsterProps) => {
   const [maxHealth, setMaxHealth] = useState(health);
