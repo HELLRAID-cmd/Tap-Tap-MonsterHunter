@@ -3,18 +3,13 @@ import "./Monster.scss";
 import handleKill from "../Admin/Admin";
 import { getRandomColor, handleChangeColor, handleRestart } from "./HandleRestart";
 import type { MonsterProps } from "./MonsterProps";
+import hitMonster from "./hitMonster";
+import getNewHealth from "./getNewHealth";
 
 export const Monster = ({health}: MonsterProps) => {
   const [maxHealth, setMaxHealth] = useState(health);
   const [monsterHealth, setMonsterHealth] = useState(health);
   const [color, setColor] = useState<string>(getRandomColor);
-
-  const newHealth = Math.floor(Math.random() * 10000) + 1;
-  
-  // Ударить моба
-  const handleClick = () => {
-    setMonsterHealth(prev => Math.max(prev - (Math.floor(Math.random() * 10) + 1), 0));
-  };
   
   return (
     <div className="monster">
@@ -25,10 +20,11 @@ export const Monster = ({health}: MonsterProps) => {
         <div className={`monster-enemy ${monsterHealth === 0 ? "monster-enemy-dead" : ""}`} style={{backgroundColor: color}}></div>
 
         {/* Ударить моба */}
-        <button className={`btn ${monsterHealth === 0 ? "btn-hidden" : ""}`} onClick={handleClick}>Ударить</button>
+        <button className={`btn ${monsterHealth === 0 ? "btn-hidden" : ""}`} onClick={() => hitMonster({setMonsterHealth})}>Ударить</button>
 
         {/* Обновить игру */}
         <button className={`btn-hidden ${monsterHealth === 0 ? "btn-restart btn" : ""}`} onClick={() => {
+          const newHealth = getNewHealth();
           handleRestart({setMonsterHealth, setMaxHealth, newHealth});
           handleChangeColor({setColor});
         }}>Начать с начала</button>

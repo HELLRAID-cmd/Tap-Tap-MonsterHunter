@@ -11,3 +11,7 @@ export type handleRestartType = {
 export type handleChangeColorType = {
   setColor: (value: string) => void;
 }
+
+export type hitMonsterType = {
+  setMonsterHealth: React.Dispatch<React.SetStateAction<number>>;
+}
