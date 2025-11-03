@@ -34,7 +34,7 @@ export const Monster = ({health}: MonsterProps) => {
         <button className='btn' onClick={() => handleKill({setMonsterHealth})}>1хп</button>
 
         {/* Победное окно */}
-        <div className={`monster-enemy-box ${monsterHealth === 0 ? "monster-enemy-winner" : ""}`}>Вы победили!</div>
+        <div className={`monster-enemy-box ${monsterHealth === 0 ? "monster-enemy-winner" : ""}`}>WINNER</div>
     </div>
   );
 };
