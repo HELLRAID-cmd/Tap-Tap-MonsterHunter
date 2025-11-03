@@ -18,6 +18,7 @@ export const Monster = ({health}: MonsterProps) => {
         <div className="health-bar__fill" style={{width: `${(monsterHealth / maxHealth) * 300}px`}}></div>
         <span className="health-bar__number">{monsterHealth}хп</span>
       </div>
+        {/* Монстр */}
         <div className={`monster-enemy ${monsterHealth === 0 ? "monster-enemy-dead" : ""} ${animation}`} style={{backgroundColor: color}}></div>
 
         {/* Ударить моба */}
