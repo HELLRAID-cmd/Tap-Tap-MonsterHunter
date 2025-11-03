@@ -4,7 +4,7 @@ import handleKill from "../Admin/Admin";
 import { getRandomColor, handleChangeColor, handleRestart } from "./HandleRestart";
 import type { MonsterProps } from "./MonsterProps";
 import hitMonster from "./hitMonster";
-import getNewHealth from "./newHealthMonster";
+import getNewHealth from "./getNewHealth";
 
 export const Monster = ({health}: MonsterProps) => {
   const [maxHealth, setMaxHealth] = useState(health);

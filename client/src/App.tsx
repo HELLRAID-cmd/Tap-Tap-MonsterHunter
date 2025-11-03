@@ -1,5 +1,5 @@
 import { Monster } from "./Components/Monster/Monster"
-import getNewHealth from "./Components/Monster/newHealthMonster";
+import getNewHealth from "./Components/Monster/getNewHealth";
 import "./Styles/style.scss";
 
 function App() {
