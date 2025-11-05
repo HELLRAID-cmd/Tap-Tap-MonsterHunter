@@ -5,6 +5,7 @@ import getNewHealth from "./getNewHealth";
 import handleKill from "../Admin/Admin";
 import hitMonster from "./hitMonster";
 import "./Monster.scss";
+import HealthBar from "./components/HealthBar";
 
 export const Monster = ({health}: MonsterProps) => {
   const [maxHealth, setMaxHealth] = useState(health);
@@ -14,28 +15,28 @@ export const Monster = ({health}: MonsterProps) => {
   
   return (
     <div className="monster">
-      <div className="health-bar">
-        <div className="health-bar__fill" style={{width: `${(monsterHealth / maxHealth) * 300}px`}}></div>
-        <span className="health-bar__number">{monsterHealth}хп</span>
-      </div>
-        {/* Монстр */}
-        <div className={`monster-enemy ${monsterHealth === 0 ? "monster-enemy-dead" : ""} ${animation}`} style={{backgroundColor: color}}></div>
 
-        {/* Ударить моба */}
-        <button className={`btn ${monsterHealth === 0 ? "btn-hidden" : ""}`} onClick={() => hitMonster({setMonsterHealth, setAnimation})}>Ударить</button>
+      {/* Здоровье моба */}
+      <HealthBar monsterHealth={monsterHealth} maxHealth={maxHealth}/>
 
-        {/* Обновить игру */}
-        <button className={`btn-hidden ${monsterHealth === 0 ? "btn-restart btn" : ""}`} onClick={() => {
-          const newHealth = getNewHealth();
-          handleRestart({setMonsterHealth, setMaxHealth, newHealth});
-          handleChangeColor({setColor});
-        }}>Начать с начала</button>
+      {/* Монстр */}
+      <div className={`monster-enemy ${monsterHealth === 0 ? "monster-enemy-dead" : ""} ${animation}`} style={{backgroundColor: color}}></div>
 
-        {/* Оставить 1хп */}
-        <button className='btn' onClick={() => handleKill({setMonsterHealth})}>1хп</button>
+      {/* Ударить моба */}
+      <button className={`btn ${monsterHealth === 0 ? "btn-hidden" : ""}`} onClick={() => hitMonster({setMonsterHealth, setAnimation})}>Ударить</button>
 
-        {/* Победное окно */}
-        <div className={`monster-enemy-box ${monsterHealth === 0 ? "monster-enemy-winner" : ""}`}>WINNER</div>
+      {/* Обновить игру */}
+      <button className={`btn-hidden ${monsterHealth === 0 ? "btn-restart btn" : ""}`} onClick={() => {
+        const newHealth = getNewHealth();
+        handleRestart({setMonsterHealth, setMaxHealth, newHealth});
+        handleChangeColor({setColor});
+      }}>Начать с начала</button>
+
+      {/* Оставить 1хп */}
+      <button className='btn' onClick={() => handleKill({setMonsterHealth})}>1хп</button>
+
+      {/* Победное окно */}
+      <div className={`monster-enemy-box ${monsterHealth === 0 ? "monster-enemy-winner" : ""}`}>WINNER</div>
     </div>
   );
 };
