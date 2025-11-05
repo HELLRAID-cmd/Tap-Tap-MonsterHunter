@@ -1,7 +1,7 @@
-import type { handleChangeColorType, handleRestartType } from "./MonsterProps";
+import type { HandleChangeColorType, HandleRestartType } from "./MonsterProps";
 
 // Обновить игру
-export const handleRestart = ({setMonsterHealth, setMaxHealth, newHealth}: handleRestartType) => {
+export const handleRestart = ({setMonsterHealth, setMaxHealth, newHealth}: HandleRestartType) => {
   setMonsterHealth(newHealth);
   setMaxHealth(newHealth);
 }
@@ -14,6 +14,6 @@ export const getRandomColor = () => {
   return `rgba(${r}, ${g}, ${b})`;
 };
 
-export const handleChangeColor = ({setColor}: handleChangeColorType) => {
+export const handleChangeColor = ({setColor}: HandleChangeColorType) => {
   setColor(getRandomColor());
 }
