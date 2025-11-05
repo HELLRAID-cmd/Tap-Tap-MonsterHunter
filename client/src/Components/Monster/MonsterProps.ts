@@ -15,6 +15,7 @@ export type HandleChangeColorType = {
 export type HitMonsterType = {
   setMonsterHealth: React.Dispatch<React.SetStateAction<number>>;
   setAnimation: React.Dispatch<React.SetStateAction<string>>;
+  monsterHealth?: number;
 }
 
 export type HealthBar = {
