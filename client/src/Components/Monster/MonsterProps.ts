@@ -6,6 +6,7 @@ export type HandleRestartType = {
   setMonsterHealth: (value: number) => void;
   setMaxHealth: (value: number) => void;
   newHealth: number;
+  monsterHealth?: number;
 }
 
 export type HandleChangeColorType = {
