@@ -7,9 +7,12 @@
 
   &-damage {
     position: absolute;
-    top: -20%;
-    left: 50%;
-    transform: translateX(-50%);
+    top: -10%;
+    opacity: 0;
+    animation: damage 0.9s;
+    font-size: 24px;
+    font-weight: 600;
+    color: coral;
   }
 }
 
@@ -88,4 +91,23 @@
   50% { transform: rotate(3deg); }
   75% { transform: rotate(-3deg); }
   100% { transform: rotate(0deg); }
+}
+
+@keyframes damage {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  } 
+  50% {
+    opacity: 1;
+    transform: translateY(-30px);
+  }
+  85% {
+    opacity: 1;
+    transform: translateY(-40px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
 }
