@@ -25,6 +25,8 @@ export const Monster = ({health}: MonsterProps) => {
   
   return (
     <div className="monster">
+
+      {/* Цифры урона */}
       {lastDamage?.map((dmg, index) => (
         <p className="monster-damage" key={index}>-{dmg}хп</p>
       ))}
