@@ -9,13 +9,18 @@ import BtnRestart from "./components/BtnRestart";
 
 export const Monster = ({health}: MonsterProps) => {
   const { getRandomColor } = useMonsterActions();
+  // Максимальное здоровье
   const [maxHealth, setMaxHealth] = useState(health);
+
+  // Здоровье монстра
   const [monsterHealth, setMonsterHealth] = useState(health);
 
   // Последний урон
   const [lastDamage, setLastDamage] = useState<number | null>(null);
 
+  // Рандомный цвет
   const [color, setColor] = useState<string>(getRandomColor);
+
   const [animation, setAnimation] = useState<string>("");
   
   return (
