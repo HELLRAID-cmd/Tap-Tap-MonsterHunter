@@ -7,6 +7,7 @@ const hitMonster = ({setMonsterHealth, setAnimation, setLastDamage, monsterHealt
   setMonsterHealth(newHealth <= 0 ? 0 : newHealth);
 
   setLastDamage(damage);
+  // Через 800мс убирать дамаг
   setTimeout(() => setLastDamage(null), 800);
 
   setAnimation("hit");

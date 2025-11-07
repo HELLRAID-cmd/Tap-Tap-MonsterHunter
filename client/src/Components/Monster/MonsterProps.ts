@@ -1,7 +1,9 @@
+// Монстр
 export type MonsterProps = {
   health: number;
 }
 
+// Рестарт
 export type HandleRestartType = {
   setMonsterHealth: (value: number) => void;
   setMaxHealth: (value: number) => void;
@@ -9,10 +11,12 @@ export type HandleRestartType = {
   monsterHealth?: number;
 }
 
+// Поменять цвет
 export type HandleChangeColorType = {
   setColor: (value: string) => void;
 }
 
+// Ударить монстра
 export type HitMonsterType = {
   setMonsterHealth: React.Dispatch<React.SetStateAction<number>>;
   setAnimation: React.Dispatch<React.SetStateAction<string>>;
@@ -20,6 +24,7 @@ export type HitMonsterType = {
   setLastDamage: React.Dispatch<React.SetStateAction<number | null>>;
 }
 
+// Хп бар
 export type HealthBar = {
   monsterHealth: number;
   maxHealth: number;
