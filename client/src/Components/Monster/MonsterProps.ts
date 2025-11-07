@@ -21,7 +21,7 @@ export type HitMonsterType = {
   setMonsterHealth: React.Dispatch<React.SetStateAction<number>>;
   setAnimation: React.Dispatch<React.SetStateAction<string>>;
   monsterHealth: number;
-  setLastDamage: React.Dispatch<React.SetStateAction<number | null>>;
+  setLastDamage: React.Dispatch<React.SetStateAction<number[]>>;
 }
 
 // Хп бар
