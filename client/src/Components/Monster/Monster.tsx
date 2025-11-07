@@ -16,7 +16,7 @@ export const Monster = ({health}: MonsterProps) => {
   const [monsterHealth, setMonsterHealth] = useState(health);
 
   // Последний урон
-  const [lastDamage, setLastDamage] = useState<number | null>(null);
+  const [lastDamage, setLastDamage] = useState<number[]>([]);
 
   // Рандомный цвет
   const [color, setColor] = useState<string>(getRandomColor);
@@ -25,9 +25,9 @@ export const Monster = ({health}: MonsterProps) => {
   
   return (
     <div className="monster">
-      {lastDamage !== null && 
-        <p className="monster-damage">-{lastDamage}хп</p>
-      }
+      {lastDamage?.map((dmg, index) => (
+        <p className="monster-damage" key={index}>-{dmg}хп</p>
+      ))}
 
       {/* Здоровье моба */}
       <HealthBar monsterHealth={monsterHealth} maxHealth={maxHealth}/>
