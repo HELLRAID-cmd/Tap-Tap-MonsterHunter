@@ -8,6 +8,7 @@ import BtnAdmin from "../Admin/BtnAdmin";
 import BtnRestart from "./components/BtnRestart";
 
 export const Monster = ({health}: MonsterProps) => {
+  // Рандомный цвет
   const { getRandomColor } = useMonsterActions();
   // Максимальное здоровье
   const [maxHealth, setMaxHealth] = useState(health);
@@ -21,6 +22,7 @@ export const Monster = ({health}: MonsterProps) => {
   // Рандомный цвет
   const [color, setColor] = useState<string>(getRandomColor);
 
+  // Анимация удара
   const [animation, setAnimation] = useState<string>("");
   
   return (
