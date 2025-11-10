@@ -1,4 +1,4 @@
-import getNewHealth from "../getNewHealth";
+import { NEW_HEALTH } from "../../Config/Config";
 import type { HandleChangeColorType, HandleRestartType } from "../MonsterProps";
 import { useMonsterActions } from "../useMonsterActions ";
 
@@ -9,7 +9,7 @@ const BtnRestart = ({ setMonsterHealth, setMaxHealth, monsterHealth, setColor }:
     <button
       className={`btn-hidden ${monsterHealth === 0 ? "btn-restart btn" : ""}`}
       onClick={() => {
-        const newHealth = getNewHealth();
+        const newHealth = NEW_HEALTH * 2;
         handleRestart({ setMonsterHealth, setMaxHealth, newHealth });
         handleChangeColor({ setColor });
       }}
