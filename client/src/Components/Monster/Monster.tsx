@@ -22,15 +22,18 @@ export const Monster = ({health}: MonsterProps) => {
   // Рандомный цвет
   const [color, setColor] = useState<string>(getRandomColor);
 
-  // Анимация удара
+  // Анимация удара крита
   const [animation, setAnimation] = useState<string>("");
+
+  // Анимация цифр урона
+  const [animationDamage, setAnimationDamage] = useState<string>("");
   
   return (
     <div className="monster">
 
       {/* Цифры урона */}
       {lastDamage?.map((dmg, index) => (
-        <p className="monster-damage" key={index}>-{dmg}хп</p>
+        <p className={`monster-damage ${animationDamage}`} key={index}>-{dmg}хп</p>
       ))}
 
       {/* Здоровье моба */}
@@ -40,7 +43,7 @@ export const Monster = ({health}: MonsterProps) => {
       <div className={`monster-enemy ${monsterHealth === 0 ? "monster-enemy-dead" : ""} ${animation}`} style={{backgroundColor: color}}></div>
 
       {/* Ударить моба */}
-      <HitMonsterBtn monsterHealth={monsterHealth} setMonsterHealth={setMonsterHealth} setAnimation={setAnimation} setLastDamage={setLastDamage}/>
+      <HitMonsterBtn monsterHealth={monsterHealth} setAnimationDamage={setAnimationDamage} setMonsterHealth={setMonsterHealth} setAnimation={setAnimation} setLastDamage={setLastDamage}/>
 
       {/* Обновить игру */}
       <BtnRestart newHealth={health} setMonsterHealth={setMonsterHealth} setMaxHealth={setMaxHealth} setColor={setColor} monsterHealth={monsterHealth}/>
