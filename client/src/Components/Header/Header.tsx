@@ -1,9 +1,9 @@
 import Coins from "../Coins/Coins";
 
-const Header = () => {
+const Header = ({ coins }: { coins: number }) => {
   return (
     <header className="header">
-      <Coins/>
+      <Coins coins={coins}/>
     </header>
   )
 }
