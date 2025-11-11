@@ -1,3 +1,5 @@
+import "./coins.scss";
+
 const Coins = () => {
   return (
     <div className="coins">
