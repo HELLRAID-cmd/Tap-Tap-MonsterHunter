@@ -7,7 +7,7 @@ import HitMonsterBtn from "./components/HitMonster/HitMonsterBtn";
 import BtnAdmin from "../Admin/BtnAdmin";
 import BtnRestart from "./components/BtnRestart";
 
-export const Monster = ({health}: MonsterProps) => {
+export const Monster = ({health, addCoins}: MonsterProps) => {
   // Рандомный цвет
   const { getRandomColor } = useMonsterActions();
   // Максимальное здоровье
@@ -27,9 +27,11 @@ export const Monster = ({health}: MonsterProps) => {
 
   // Анимация цифр урона
   const [animationDamage, setAnimationDamage] = useState<string>("");
-  
+
   return (
     <div className="monster">
+      {/* Победное окно */}
+      <div className={`monster-enemy-box ${monsterHealth === 0 ? "monster-enemy-winner" : ""}`}>WINNER</div>
 
       {/* Цифры урона */}
       {lastDamage?.map((dmg, index) => (
@@ -43,7 +45,7 @@ export const Monster = ({health}: MonsterProps) => {
       <div className={`monster-enemy ${monsterHealth === 0 ? "monster-enemy-dead" : ""} ${animation}`} style={{backgroundColor: color}}></div>
 
       {/* Ударить моба */}
-      <HitMonsterBtn monsterHealth={monsterHealth} setAnimationDamage={setAnimationDamage} setMonsterHealth={setMonsterHealth} setAnimation={setAnimation} setLastDamage={setLastDamage}/>
+      <HitMonsterBtn addCoins={addCoins} monsterHealth={monsterHealth} setAnimationDamage={setAnimationDamage} setMonsterHealth={setMonsterHealth} setAnimation={setAnimation} setLastDamage={setLastDamage}/>
 
       {/* Обновить игру */}
       <BtnRestart newHealth={health} setMonsterHealth={setMonsterHealth} setMaxHealth={setMaxHealth} setColor={setColor} monsterHealth={monsterHealth}/>
@@ -51,8 +53,6 @@ export const Monster = ({health}: MonsterProps) => {
       {/* Оставить 1хп */}
       <BtnAdmin setMonsterHealth={setMonsterHealth}/>
 
-      {/* Победное окно */}
-      <div className={`monster-enemy-box ${monsterHealth === 0 ? "monster-enemy-winner" : ""}`}>WINNER</div>
     </div>
   );
 };
