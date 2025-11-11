@@ -15,13 +15,13 @@
 
     &.damage {
       color: coral;
-      animation: damage 0.3s ease;
+      animation: damage 0.5s ease;
     }
 
     &.crit-damage {
-      font-size: 28px;
+      font-size: 32px;
       color: red;
-      animation: damage 0.3s ease;
+      animation: damage 0.5s ease;
     }
   }
 }
@@ -113,12 +113,8 @@
     opacity: 0;
     transform: translateY(0);
   }
-  50% {
-    opacity: 1;
-    transform: translateY(-35px);
-  }
   100% {
-    opacity: 0;
+    opacity: 1;
     transform: translateY(-50px);
   }
 }
