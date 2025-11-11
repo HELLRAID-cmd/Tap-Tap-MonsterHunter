@@ -1,7 +1,7 @@
 import { CRIT_CHANCE, CRIT_MULTIPLIER, PLAYER_DAMAGE } from "../../../Config/Config";
 import type { HitMonsterType } from "../../MonsterProps";
 
-const hitMonster = ({setMonsterHealth, setAnimation, setAnimationDamage, setLastDamage, monsterHealth, addCoins, onMonsterDeath}: HitMonsterType) => {
+const hitMonster = ({setMonsterHealth, setAnimation, setAnimationDamage, setLastDamage, monsterHealth, addCoins}: HitMonsterType) => {
   const baseDamage = PLAYER_DAMAGE;
   
   // Проверка крита
@@ -14,7 +14,6 @@ const hitMonster = ({setMonsterHealth, setAnimation, setAnimationDamage, setLast
   // Проверка на то что монстр погиб
   if(newHealth <= 0) {
     setMonsterHealth(0);
-    onMonsterDeath();
     addCoins();
     return;
   }
