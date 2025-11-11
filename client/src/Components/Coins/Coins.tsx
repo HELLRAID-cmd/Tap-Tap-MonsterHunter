@@ -1,6 +1,6 @@
 import "./coins.scss";
 
-const Coins = ({coins}: {coins: number}) => {
+const Coins = ({ coins }: { coins: number }) => {
   return (
     <div className="coins">
       <span className="coins-icon"></span>
