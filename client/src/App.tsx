@@ -3,6 +3,9 @@ import { NEW_HEALTH } from "./Components/Config/Config";
 import Header from "./Components/Header/Header";
 import { Monster } from "./Components/Monster/Monster"
 import "./Styles/style.scss";
+import "./Styles/_reset.scss"
+import "./Styles/_container.scss"
+import Footer from "./Components/Footer/Footer";
 
 function App() {
   const [coins, setCoins] = useState(0);
@@ -13,10 +16,13 @@ function App() {
   };
 
   return (
-    <main>
-      <Header coins={coins}/>
-      <Monster health={NEW_HEALTH} addCoins={addCoins}/>
-    </main>
+    <>
+      <main>
+        <Header coins={coins}/>
+        <Monster health={NEW_HEALTH} addCoins={addCoins}/>
+      </main>
+      <Footer/>
+    </>
   )
 }
 
