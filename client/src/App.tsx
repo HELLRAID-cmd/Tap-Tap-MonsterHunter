@@ -13,10 +13,10 @@ function App() {
   };
 
   return (
-    <div className="game">
+    <main>
       <Header coins={coins}/>
       <Monster health={NEW_HEALTH} addCoins={addCoins}/>
-    </div>
+    </main>
   )
 }
 
