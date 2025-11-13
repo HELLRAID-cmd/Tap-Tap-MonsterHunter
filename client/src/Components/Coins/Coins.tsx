@@ -1,6 +1,9 @@
+import { useGame } from "../context/Context";
 import "./coins.scss";
 
-const Coins = ({ coins }: { coins: number }) => {
+const Coins = () => {
+  const {coins} = useGame()
+  
   return (
     <div className="coins">
       <span className="coins-icon"></span>

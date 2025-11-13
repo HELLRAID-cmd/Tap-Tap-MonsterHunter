@@ -6,8 +6,11 @@ import HealthBar from "./components/HealthBar";
 import HitMonsterBtn from "./components/HitMonster/HitMonsterBtn";
 import BtnAdmin from "../Admin/BtnAdmin";
 import BtnRestart from "./components/BtnRestart";
+import { useGame } from "../context/Context";
 
-export const Monster = ({health, addCoins, attack}: MonsterProps) => {
+export const Monster = ({ health }: MonsterProps) => {
+  const { addCoins, attack } = useGame();
+
   // Рандомный цвет
   const { getRandomColor } = useMonsterActions();
   // Максимальное здоровье
@@ -31,28 +34,54 @@ export const Monster = ({health, addCoins, attack}: MonsterProps) => {
   return (
     <div className="monster">
       {/* Победное окно */}
-      <div className={`monster-enemy-box ${monsterHealth === 0 ? "monster-enemy-winner" : ""}`}>WINNER</div>
+      <div
+        className={`monster-enemy-box ${
+          monsterHealth === 0 ? "monster-enemy-winner" : ""
+        }`}
+      >
+        WINNER
+      </div>
 
       {/* Цифры урона */}
       {lastDamage?.map((dmg, index) => (
-        <p className={`monster-damage ${animationDamage}`} key={index}>-{dmg}хп</p>
+        <p className={`monster-damage ${animationDamage}`} key={index}>
+          -{dmg}хп
+        </p>
       ))}
 
       {/* Здоровье моба */}
-      <HealthBar monsterHealth={monsterHealth} maxHealth={maxHealth}/>
+      <HealthBar monsterHealth={monsterHealth} maxHealth={maxHealth} />
 
       {/* Монстр */}
-      <div className={`monster-enemy ${monsterHealth === 0 ? "monster-enemy-dead" : ""} ${animation}`} style={{backgroundColor: color}}></div>
+      <div
+        className={`monster-enemy ${
+          monsterHealth === 0 ? "monster-enemy-dead" : ""
+        } ${animation}`}
+        style={{ backgroundColor: color }}
+      ></div>
 
       {/* Ударить моба */}
-      <HitMonsterBtn attack={attack} addCoins={addCoins} monsterHealth={monsterHealth} setAnimationDamage={setAnimationDamage} setMonsterHealth={setMonsterHealth} setAnimation={setAnimation} setLastDamage={setLastDamage}/>
+      <HitMonsterBtn
+        attack={attack}
+        addCoins={addCoins}
+        monsterHealth={monsterHealth}
+        setAnimationDamage={setAnimationDamage}
+        setMonsterHealth={setMonsterHealth}
+        setAnimation={setAnimation}
+        setLastDamage={setLastDamage}
+      />
 
       {/* Обновить игру */}
-      <BtnRestart newHealth={health} setMonsterHealth={setMonsterHealth} setMaxHealth={setMaxHealth} setColor={setColor} monsterHealth={monsterHealth}/>
+      <BtnRestart
+        newHealth={health}
+        setMonsterHealth={setMonsterHealth}
+        setMaxHealth={setMaxHealth}
+        setColor={setColor}
+        monsterHealth={monsterHealth}
+      />
 
       {/* Оставить 1хп */}
-      <BtnAdmin setMonsterHealth={setMonsterHealth}/>
-
+      <BtnAdmin setMonsterHealth={setMonsterHealth} />
     </div>
   );
 };

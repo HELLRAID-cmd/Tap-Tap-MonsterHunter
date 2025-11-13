@@ -6,6 +6,7 @@ import "./Styles/style.scss";
 import "./Styles/_reset.scss"
 import "./Styles/_container.scss"
 import Footer from "./Components/Footer/Footer";
+import { GameProvider } from "./Components/context/Context";
 
 function App() {
   // Монеты
@@ -20,13 +21,13 @@ function App() {
   };
 
   return (
-    <>
+    <GameProvider>
       <main>
         <Header coins={coins}/>
         <Monster health={NEW_HEALTH} addCoins={addCoins} attack={attack}/>
       </main>
       <Footer setAttack={setAttack}/>
-    </>
+    </GameProvider>
   )
 }
 
