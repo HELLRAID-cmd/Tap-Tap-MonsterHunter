@@ -1,8 +1,8 @@
-import { CRIT_CHANCE, CRIT_MULTIPLIER, PLAYER_DAMAGE } from "../../../Config/Config";
+import { CRIT_CHANCE, CRIT_MULTIPLIER } from "../../../Config/Config";
 import type { HitMonsterType } from "../../MonsterProps";
 
-const hitMonster = ({setMonsterHealth, setAnimation, setAnimationDamage, setLastDamage, monsterHealth, addCoins}: HitMonsterType) => {
-  const baseDamage = PLAYER_DAMAGE;
+const hitMonster = ({setMonsterHealth, attack, setAnimation, setAnimationDamage, setLastDamage, monsterHealth, addCoins}: HitMonsterType) => {
+  const baseDamage = attack;
   
   // Проверка крита
   const isCrit = Math.random() < CRIT_CHANCE;

@@ -7,7 +7,7 @@ import HitMonsterBtn from "./components/HitMonster/HitMonsterBtn";
 import BtnAdmin from "../Admin/BtnAdmin";
 import BtnRestart from "./components/BtnRestart";
 
-export const Monster = ({health, addCoins}: MonsterProps) => {
+export const Monster = ({health, addCoins, attack}: MonsterProps) => {
   // Рандомный цвет
   const { getRandomColor } = useMonsterActions();
   // Максимальное здоровье
@@ -45,7 +45,7 @@ export const Monster = ({health, addCoins}: MonsterProps) => {
       <div className={`monster-enemy ${monsterHealth === 0 ? "monster-enemy-dead" : ""} ${animation}`} style={{backgroundColor: color}}></div>
 
       {/* Ударить моба */}
-      <HitMonsterBtn addCoins={addCoins} monsterHealth={monsterHealth} setAnimationDamage={setAnimationDamage} setMonsterHealth={setMonsterHealth} setAnimation={setAnimation} setLastDamage={setLastDamage}/>
+      <HitMonsterBtn attack={attack} addCoins={addCoins} monsterHealth={monsterHealth} setAnimationDamage={setAnimationDamage} setMonsterHealth={setMonsterHealth} setAnimation={setAnimation} setLastDamage={setLastDamage}/>
 
       {/* Обновить игру */}
       <BtnRestart newHealth={health} setMonsterHealth={setMonsterHealth} setMaxHealth={setMaxHealth} setColor={setColor} monsterHealth={monsterHealth}/>

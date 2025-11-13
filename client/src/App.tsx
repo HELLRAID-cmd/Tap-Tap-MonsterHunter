@@ -8,7 +8,11 @@ import "./Styles/_container.scss"
 import Footer from "./Components/Footer/Footer";
 
 function App() {
+  // Монеты
   const [coins, setCoins] = useState(0);
+
+  // Улучшение атаки
+  const [attack, setAttack] = useState(1);
 
   const addCoins = () => {
     const randomNumber = Math.floor(Math.random() * 5) + 1;
@@ -19,9 +23,9 @@ function App() {
     <>
       <main>
         <Header coins={coins}/>
-        <Monster health={NEW_HEALTH} addCoins={addCoins}/>
+        <Monster health={NEW_HEALTH} addCoins={addCoins} attack={attack}/>
       </main>
-      <Footer/>
+      <Footer setAttack={setAttack}/>
     </>
   )
 }
