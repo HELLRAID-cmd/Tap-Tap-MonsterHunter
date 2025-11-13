@@ -2,6 +2,7 @@
 export type MonsterProps = {
   health: number;
   addCoins: () => void;
+  attack?: number;
 }
 
 // Рестарт
@@ -25,6 +26,7 @@ export type HitMonsterType = {
   setLastDamage: React.Dispatch<React.SetStateAction<number[]>>;
   monsterHealth: number;
   addCoins: () => void;
+  attack: number;
 }
 
 // Хп бар
