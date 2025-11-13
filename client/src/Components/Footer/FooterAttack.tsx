@@ -1,10 +1,8 @@
-import { PLAYER_DAMAGE } from "../Config/Config";
 import type { FooterAttackProps } from "./FooterProps";
 
 const FooterAttack = ({setAttack}: FooterAttackProps) => {
   const upgradeAttack = () => {
-    const attack = PLAYER_DAMAGE + 2
-    setAttack(prev => prev + attack);
+    setAttack(prev => prev + 2);
   }
 
   return (
