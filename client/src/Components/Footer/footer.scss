@@ -9,9 +9,9 @@
     gap: 20px;
 
     &-list {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
       border: 1px solid black;
       padding: 20px;
       border-radius: 10px;
@@ -19,7 +19,7 @@
 
     &-btn {
       font-size: 24px;
-      padding: 60px;
+      padding: 30px;
 
       &.attack {
         background-color: rgba(225, 127, 80, 0.2);
