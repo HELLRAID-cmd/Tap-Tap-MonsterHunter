@@ -1,4 +1,5 @@
 import Coins from "../Coins/Coins";
+import "./Header.scss";
 
 const Header = ({ coins }: { coins: number }) => {
   return (
