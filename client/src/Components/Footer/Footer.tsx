@@ -1,8 +1,7 @@
 import "./footer.scss";
 import FooterAttack from "./FooterAttack";
-import type { FooterAttackProps } from "./FooterProps";
 
-const Footer = ({setAttack}: FooterAttackProps) => {
+const Footer = () => {
   return (
     <footer className="footer">
       <div className="container">
@@ -10,7 +9,7 @@ const Footer = ({setAttack}: FooterAttackProps) => {
           <h1 className="footer__title">Улучшения</h1>
           <ul className="footer__skill-list">
             <li className="footer__skill-item">
-              <FooterAttack setAttack={setAttack}/>
+              <FooterAttack/>
             </li>
             <li className="footer__skill-item">
               <button className="footer__skill-btn crit">Крит шанс</button>
