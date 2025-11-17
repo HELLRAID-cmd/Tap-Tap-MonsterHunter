@@ -1,8 +1,13 @@
-import type { FooterAttackProps } from "./FooterProps";
+import { useGame } from "../context/Context";
 
-const FooterAttack = ({setAttack}: FooterAttackProps) => {
+const FooterAttack = () => {
+  const {setAttack} = useGame();
+  
   const upgradeAttack = () => {
-    setAttack(prev => prev + 2);
+    setAttack(prev => {
+      const updated = prev + 2;
+      return updated;
+    });
   }
 
   return (

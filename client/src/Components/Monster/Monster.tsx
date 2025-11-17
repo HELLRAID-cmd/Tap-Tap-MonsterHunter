@@ -6,11 +6,8 @@ import HealthBar from "./components/HealthBar";
 import HitMonsterBtn from "./components/HitMonster/HitMonsterBtn";
 import BtnAdmin from "../Admin/BtnAdmin";
 import BtnRestart from "./components/BtnRestart";
-import { useGame } from "../context/Context";
 
 export const Monster = ({ health }: MonsterProps) => {
-  const { addCoins, attack } = useGame();
-
   // Рандомный цвет
   const { getRandomColor } = useMonsterActions();
   // Максимальное здоровье
@@ -62,8 +59,6 @@ export const Monster = ({ health }: MonsterProps) => {
 
       {/* Ударить моба */}
       <HitMonsterBtn
-        attack={attack}
-        addCoins={addCoins}
         monsterHealth={monsterHealth}
         setAnimationDamage={setAnimationDamage}
         setMonsterHealth={setMonsterHealth}
