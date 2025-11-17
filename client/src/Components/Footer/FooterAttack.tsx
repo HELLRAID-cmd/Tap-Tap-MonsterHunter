@@ -6,7 +6,6 @@ const FooterAttack = () => {
   const upgradeAttack = () => {
     setAttack(prev => {
       const updated = prev + 2;
-      console.log('Атака', updated);
       return updated;
     });
   }
