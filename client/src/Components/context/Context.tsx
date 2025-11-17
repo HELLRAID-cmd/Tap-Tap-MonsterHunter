@@ -5,6 +5,8 @@ type GameContextType = {
   setCoins: React.Dispatch<React.SetStateAction<number>>;
   attack: number;
   setAttack: React.Dispatch<React.SetStateAction<number>>;
+  attackCrit: number;
+  setAttackCrit: React.Dispatch<React.SetStateAction<number>>;
   addCoins: () => void;
 };
 
@@ -13,6 +15,7 @@ const GameContext = createContext<GameContextType | null>(null);
 export const GameProvider = ({ children }: { children: React.ReactNode }) => {
   const [coins, setCoins] = useState(0);
   const [attack, setAttack] = useState(1);
+  const [attackCrit, setAttackCrit] = useState(2);
 
   const addCoins = () => {
     const randomNumber = Math.floor(Math.random() * 5) + 1;
@@ -20,7 +23,7 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <GameContext.Provider value={{ coins, setCoins, attack, setAttack, addCoins }}>
+    <GameContext.Provider value={{ coins, setCoins, attack, setAttack, attackCrit, setAttackCrit, addCoins }}>
       {children}
     </GameContext.Provider>
   );
