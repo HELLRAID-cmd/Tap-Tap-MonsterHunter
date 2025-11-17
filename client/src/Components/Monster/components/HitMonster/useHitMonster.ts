@@ -1,4 +1,4 @@
-import { CRIT_CHANCE, CRIT_MULTIPLIER } from "../../../Config/Config";
+import { CRIT_MULTIPLIER } from "../../../Config/Config";
 import { useGame } from "../../../context/Context";
 import type { HitMonsterType } from "../../MonsterProps";
 
