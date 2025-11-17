@@ -1,5 +1,6 @@
 import "./footer.scss";
 import FooterAttack from "./FooterAttack";
+import FooterCrit from "./FooterCrit";
 
 const Footer = () => {
   return (
@@ -12,7 +13,7 @@ const Footer = () => {
               <FooterAttack/>
             </li>
             <li className="footer__skill-item">
-              <button className="footer__skill-btn crit">Крит шанс</button>
+              <FooterCrit/>
             </li>
             <li className="footer__skill-item">
               <button className="footer__skill-btn money">Монеты</button>
