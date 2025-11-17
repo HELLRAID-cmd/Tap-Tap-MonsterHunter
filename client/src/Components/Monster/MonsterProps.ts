@@ -1,8 +1,6 @@
 // Монстр
 export type MonsterProps = {
   health: number;
-  addCoins: () => void;
-  attack?: number;
 }
 
 // Рестарт
