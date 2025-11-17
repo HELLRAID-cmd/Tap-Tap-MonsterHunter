@@ -3,7 +3,7 @@ import { useGame } from "../../../context/Context";
 import type { HitMonsterType } from "../../MonsterProps";
 
 export const useHitMonster = () => {
-  const {attack, addCoins} = useGame();
+  const {attack, addCoins, attackCrit} = useGame();
 
   const hitMonster = ({
     setMonsterHealth, 
@@ -13,7 +13,7 @@ export const useHitMonster = () => {
     monsterHealth 
   }: HitMonsterType) => {
     // Проверка крита
-  const isCrit = Math.random() < CRIT_CHANCE;
+  const isCrit = Math.random() < attackCrit;
   const critDamage = isCrit ? Math.round(attack * CRIT_MULTIPLIER) : attack;
   
   const newHealth = monsterHealth - critDamage;
