@@ -1,12 +1,20 @@
 import { CRIT_CHANCE, CRIT_MULTIPLIER } from "../../../Config/Config";
+import { useGame } from "../../../context/Context";
 import type { HitMonsterType } from "../../MonsterProps";
 
-const hitMonster = ({setMonsterHealth, attack, setAnimation, setAnimationDamage, setLastDamage, monsterHealth, addCoins}: HitMonsterType) => {
-  const baseDamage = attack;
-  
-  // Проверка крита
+export const useHitMonster = () => {
+  const {attack, addCoins} = useGame();
+
+  const hitMonster = ({
+    setMonsterHealth, 
+    setAnimation, 
+    setAnimationDamage, 
+    setLastDamage, 
+    monsterHealth 
+  }: HitMonsterType) => {
+    // Проверка крита
   const isCrit = Math.random() < CRIT_CHANCE;
-  const critDamage = isCrit ? Math.round(baseDamage * CRIT_MULTIPLIER) : baseDamage;
+  const critDamage = isCrit ? Math.round(attack * CRIT_MULTIPLIER) : attack;
   
   const newHealth = monsterHealth - critDamage;
   setMonsterHealth(newHealth <= 0 ? 0 : newHealth);
@@ -24,6 +32,7 @@ const hitMonster = ({setMonsterHealth, attack, setAnimation, setAnimationDamage,
 
   setAnimation(isCrit ? "crit-hit" : "hit");
   setAnimationDamage(isCrit ? "crit-damage" : "damage");
-};
+  }
 
-export default hitMonster;
+  return {hitMonster};
+}
