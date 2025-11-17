@@ -1,10 +1,12 @@
 import type { HitMonsterType } from "../../MonsterProps";
-import hitMonster from "./HitMonster";
+import { useHitMonster } from "./useHitMonster";
 
-const HitMonsterBtn = ({attack, addCoins, monsterHealth, setMonsterHealth, setAnimation, setAnimationDamage, setLastDamage}: HitMonsterType ) => {
+const HitMonsterBtn = ({monsterHealth, setMonsterHealth, setAnimation, setAnimationDamage, setLastDamage}: HitMonsterType ) => {
+  const {hitMonster} = useHitMonster();
+  
   return (
     // Бить монстра (Не рестарт)
-    <button className={`btn ${monsterHealth === 0 ? "btn-hidden" : ""}`} onClick={() => hitMonster({attack, addCoins, setMonsterHealth, setAnimation, setAnimationDamage, setLastDamage, monsterHealth})}>Ударить</button>
+    <button className={`btn ${monsterHealth === 0 ? "btn-hidden" : ""}`} onClick={() => hitMonster({setMonsterHealth, setAnimation, setAnimationDamage, setLastDamage, monsterHealth})}>Ударить</button>
   )
 }
 
