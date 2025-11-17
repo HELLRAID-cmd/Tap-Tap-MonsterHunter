@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import { CRIT_CHANCE } from "../Config/Config";
 
 type GameContextType = {
   coins: number;
@@ -15,7 +16,7 @@ const GameContext = createContext<GameContextType | null>(null);
 export const GameProvider = ({ children }: { children: React.ReactNode }) => {
   const [coins, setCoins] = useState(0);
   const [attack, setAttack] = useState(1);
-  const [attackCrit, setAttackCrit] = useState(2);
+  const [attackCrit, setAttackCrit] = useState(CRIT_CHANCE);
 
   const addCoins = () => {
     const randomNumber = Math.floor(Math.random() * 5) + 1;
