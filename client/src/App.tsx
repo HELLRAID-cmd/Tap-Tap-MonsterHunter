@@ -11,8 +11,8 @@ import { GameProvider } from "./Components/context/Context";
 function App() {
   return (
     <GameProvider>
+      <Header />
       <main>
-        <Header />
         <Monster health={NEW_HEALTH} />
       </main>
       <Footer />
