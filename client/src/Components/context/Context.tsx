@@ -3,10 +3,10 @@ import { CRIT_CHANCE } from "../Config/Config";
 
 type GameContextType = {
   coins: number;
-  setCoins: React.Dispatch<React.SetStateAction<number>>;
   attack: number;
-  setAttack: React.Dispatch<React.SetStateAction<number>>;
   attackCrit: number;
+  setCoins: React.Dispatch<React.SetStateAction<number>>;
+  setAttack: React.Dispatch<React.SetStateAction<number>>;
   setAttackCrit: React.Dispatch<React.SetStateAction<number>>;
   addCoins: () => void;
 };
