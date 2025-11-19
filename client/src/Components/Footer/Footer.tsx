@@ -20,10 +20,10 @@ const Footer = () => {
               <FooterCrit/>
             </li>
             <li className="footer__skill-item">
-              <button className="footer__skill-btn money">Монеты</button>
+              <button className="footer__skill-btn none">Урон крита</button>
             </li>
             <li className="footer__skill-item">
-              <button className="footer__skill-btn none">Что-то еще</button>
+              <button className="footer__skill-btn money">Монеты</button>
             </li>
           </ul>
         </div>
