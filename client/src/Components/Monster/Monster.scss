@@ -4,12 +4,11 @@
   align-items: center;
   gap: 10px;
   position: relative;
-  margin: 0 0 50px 0;
-  padding: 200px 0 0 0;
+  margin: 0 0 100px 0;
+  padding: 150px 0 0 0;
 
   &-damage {
     position: absolute;
-    top: -10%;
     opacity: 0;
     animation: hit-shake 0.9s;
     font-size: 24px;
