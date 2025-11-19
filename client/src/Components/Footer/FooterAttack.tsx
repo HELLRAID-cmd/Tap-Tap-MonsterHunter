@@ -1,10 +1,13 @@
-import { PLAYER_DAMAGE } from "../Config/Config";
-import type { FooterAttackProps } from "./FooterProps";
+import { useGame } from "../context/Context";
 
-const FooterAttack = ({setAttack}: FooterAttackProps) => {
+const FooterAttack = () => {
+  const {setAttack} = useGame();
+  
   const upgradeAttack = () => {
-    const attack = PLAYER_DAMAGE + 2
-    setAttack(prev => prev + attack);
+    setAttack(prev => {
+      const updated = prev + 2;
+      return updated;
+    });
   }
 
   return (

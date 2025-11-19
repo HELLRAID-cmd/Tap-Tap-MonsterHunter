@@ -1,12 +1,12 @@
 import Coins from "../Coins/Coins";
 import "./Header.scss";
 
-const Header = ({ coins }: { coins: number }) => {
+const Header = () => {
   return (
     <header className="header">
-      <Coins coins={coins}/>
+      <Coins />
     </header>
-  )
-}
+  );
+};
 
 export default Header;
