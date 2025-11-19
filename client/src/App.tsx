@@ -9,10 +9,13 @@ import { GameProvider } from "./Components/context/Context";
 
 function App() {
   return (
-    <>
-      <Monster health={NEW_HEALTH} />
-    </>
-  )
+    <GameProvider>
+      <main>
+        <Monster health={NEW_HEALTH} />
+      </main>
+      <Footer />
+    </GameProvider>
+  );
 }
 
 export default App;
