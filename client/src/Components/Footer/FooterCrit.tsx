@@ -3,16 +3,22 @@ import { useGame } from "../context/Context";
 const FooterCrit = () => {
   const {setAttackCrit} = useGame();
 
+  const nextUpgrade = 0.02;
+
   const upgradeCrit = () => {
     setAttackCrit(prev => {
-      const upgrade = prev + 0.05;
-      console.log("Улучшено", upgrade.toFixed(2))
-      return upgrade > 1 ? 1 : upgrade;
+      const upgrade = prev + nextUpgrade;
+      console.log("Улучшено", (upgrade * 100).toFixed(0) + "%");
+      return upgrade >= 0.67 ? 0.67 : upgrade;
     })
   }
 
   return (
-    <button className="footer__skill-btn crit" onClick={upgradeCrit}>Крит шанс</button>
+    <button className="footer__skill-btn crit" onClick={upgradeCrit}>
+      Крит шанс
+      <span>+{(nextUpgrade * 100).toFixed(0)}%</span>
+      <span>Уровень: </span>
+    </button>
   )
 }
 
