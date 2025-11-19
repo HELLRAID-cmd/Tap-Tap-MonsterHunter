@@ -25,12 +25,12 @@
     }
 
     &-btn {
+      display: flex;
+      flex-direction: column;
       font-size: 24px;
       padding: 30px;
 
       &.attack {
-        display: flex;
-        flex-direction: column;
         background-color: rgba(225, 127, 80, 0.2);
         border: 2px solid coral;
 
