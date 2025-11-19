@@ -42,7 +42,7 @@ export const Monster = ({ health }: MonsterProps) => {
       {/* Цифры урона */}
       {lastDamage?.map((dmg, index) => (
         <p className={`monster-damage ${animationDamage}`} key={index}>
-          -{dmg}хп
+          -{dmg.toFixed(2)}хп
         </p>
       ))}
 
