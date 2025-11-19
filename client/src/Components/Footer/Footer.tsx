@@ -8,8 +8,10 @@ const Footer = () => {
     <footer className="footer">
       <div className="container">
         <div className="footer__skill">
-          <h1 className="footer__title">Улучшения</h1>
-          <Coins />
+          <div className="footer__skill-title">
+            <h1 className="footer__title">Улучшения</h1>
+            <Coins />
+          </div>
           <ul className="footer__skill-list">
             <li className="footer__skill-item">
               <FooterAttack/>
