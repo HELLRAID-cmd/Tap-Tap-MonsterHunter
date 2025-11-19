@@ -9,7 +9,8 @@ const BtnRestart = ({ setMonsterHealth, setMaxHealth, monsterHealth, setColor }:
     <button
       className={`btn-hidden ${monsterHealth === 0 ? "btn-restart btn" : ""}`}
       onClick={() => {
-        const newHealth = NEW_HEALTH * 2;
+        // Эта часть кода увеличивает хп после рестарта
+        const newHealth = NEW_HEALTH * 1.2;
         handleRestart({ setMonsterHealth, setMaxHealth, newHealth });
         handleChangeColor({ setColor });
       }}
