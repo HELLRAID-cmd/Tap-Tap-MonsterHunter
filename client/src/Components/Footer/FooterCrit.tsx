@@ -44,10 +44,6 @@ const FooterCrit = () => {
       return upgrade >= 0.67 ? 0.67 : upgrade;
     });
     }
-
-    if(nextLevel === 50) {
-      setCritPrice((prev) => +(prev * 1.5).toFixed(1));
-    }
   };
 
   return (
