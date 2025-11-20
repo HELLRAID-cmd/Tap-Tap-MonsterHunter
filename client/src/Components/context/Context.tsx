@@ -7,11 +7,15 @@ type GameContextType = {
   attackCrit: number;
   level: number;
   price: number;
+  critLevel: number;
+  critPrice: number;
   setCoins: React.Dispatch<React.SetStateAction<number>>;
   setAttack: React.Dispatch<React.SetStateAction<number>>;
   setAttackCrit: React.Dispatch<React.SetStateAction<number>>;
   setLevel: React.Dispatch<React.SetStateAction<number>>;
   setPrice: React.Dispatch<React.SetStateAction<number>>;
+  setCritLevel: React.Dispatch<React.SetStateAction<number>>;
+  setCritPrice: React.Dispatch<React.SetStateAction<number>>;
   addCoins: () => void;
 };
 
@@ -22,6 +26,8 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
   const [attack, setAttack] = useState(1);
   const [level, setLevel] = useState(1);
   const [price, setPrice] = useState(1); 
+  const [critLevel, setCritLevel] = useState(1); 
+  const [critPrice, setCritPrice] = useState(30); 
   const [attackCrit, setAttackCrit] = useState(CRIT_CHANCE);
 
   const addCoins = () => {
@@ -30,7 +36,7 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <GameContext.Provider value={{ coins, level, setLevel, price, setPrice, setCoins, attack, setAttack, attackCrit, setAttackCrit, addCoins }}>
+    <GameContext.Provider value={{ coins, critLevel, setCritLevel, critPrice, setCritPrice, level, setLevel, price, setPrice, setCoins, attack, setAttack, attackCrit, setAttackCrit, addCoins }}>
       {children}
     </GameContext.Provider>
   );
