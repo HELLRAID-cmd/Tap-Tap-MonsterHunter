@@ -7,3 +7,6 @@ export const CRIT_MULTIPLIER = 2;
 
 // PLAYER
 export const PLAYER_DAMAGE = 1;
+
+// COINS
+export const MAX_COINS = 5;
