@@ -8,7 +8,6 @@ export type HandleRestartType = {
   setMonsterHealth: (value: number) => void;
   setMaxHealth: (value: number) => void;
   newHealth: number;
-  monsterHealth?: number;
 }
 
 // Поменять цвет
@@ -23,6 +22,7 @@ export type HitMonsterType = {
   setAnimationDamage: React.Dispatch<React.SetStateAction<string>>;
   setLastDamage: React.Dispatch<React.SetStateAction<number[]>>;
   monsterHealth: number;
+  setMaxHealth: (value: number) => void;
 }
 
 // Хп бар
