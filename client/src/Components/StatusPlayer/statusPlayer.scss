@@ -1,0 +1,11 @@
+.status {
+  position: absolute;
+  top: 20%;
+  right: 200px;
+  transform: translateY(-50%);
+
+  &__item {
+    display: flex;
+    gap: 5px;
+  }
+}
