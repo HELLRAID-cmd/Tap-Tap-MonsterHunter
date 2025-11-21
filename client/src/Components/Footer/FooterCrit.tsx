@@ -1,7 +1,7 @@
 import { useGame } from "../context/Context";
 
 const FooterCrit = () => {
-  const { setAttackCrit, setNotEnoughCoins, critLevel, setCritLevel, critPrice, setCritPrice, coins } = useGame();
+  const { setAttackCrit, setNotEnoughCoins, critLevel, setCritLevel, critPrice, setCritPrice, coins, setCoins } = useGame();
 
   const nextUpgrade = 0.02;
   const nextLevel = critLevel + 1;
@@ -13,6 +13,8 @@ const FooterCrit = () => {
 
       setTimeout(() => {setNotEnoughCoins(false)}, 600);
       return;
+    } else {
+      setCoins(prev => prev - critPrice);
     }
 
     if(critLevel === 25) {
@@ -55,7 +57,7 @@ const FooterCrit = () => {
       {critLevel !== 25 && (
         <>
           <span>+{(nextUpgrade * 100).toFixed(0)}%</span>
-          <span>Цена: {critPrice}</span>
+          <span>Цена: {critPrice.toFixed(0)}</span>
         </>
       )}
       <span>Уровень: {critLevel === 25 ? "Макс": critLevel}</span>

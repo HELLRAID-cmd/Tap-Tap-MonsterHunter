@@ -7,7 +7,7 @@ const Coins = () => {
   return (
     <div className={`coins ${notEnoughCoins ? "not-enough" : ""}`}>
       <span className="coins-icon"></span>
-      <span className="coins-number">{!coins ? 0 : coins}</span>
+      <span className="coins-number">{!coins ? 0 : coins.toFixed(0)}</span>
     </div>
   );
 };
