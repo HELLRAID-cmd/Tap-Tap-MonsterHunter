@@ -6,7 +6,7 @@ const BtnAdmin = ({setMonsterHealth}: AdminBtn) => {
   
   // Добавить монеты
   const handleMoney = () => {
-    setCoins(prev => prev + 50000)
+    setCoins(prev => prev + 1000000000000000)
   }
 
   // оставить 1хп
