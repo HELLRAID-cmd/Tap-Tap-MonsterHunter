@@ -1,5 +1,5 @@
 // import { useState } from "react";
-import { NEW_HEALTH } from "./Components/Config/Config";
+import { HEALTH } from "./Components/Config/Config";
 import { Monster } from "./Components/Monster/Monster"
 import "./Styles/style.scss";
 import "./Styles/_reset.scss";
@@ -12,7 +12,7 @@ function App() {
   return (
     <GameProvider>
       <main>
-        <Monster health={NEW_HEALTH} />
+        <Monster health={HEALTH} />
         <StatusPlayer />
       </main>
       <Footer />

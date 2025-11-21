@@ -5,9 +5,12 @@ import "./Monster.scss";
 import HealthBar from "./components/HealthBar";
 import HitMonsterBtn from "./components/HitMonster/HitMonsterBtn";
 import BtnAdmin from "../Admin/BtnAdmin";
-import BtnRestart from "./components/BtnRestart";
+import { useGame } from "../context/Context";
 
 export const Monster = ({ health }: MonsterProps) => {
+
+  const {levelMonster} = useGame();
+  
   // Рандомный цвет
   const { getRandomColor } = useMonsterActions();
   // Максимальное здоровье
@@ -30,6 +33,7 @@ export const Monster = ({ health }: MonsterProps) => {
 
   return (
     <div className="monster">
+      <p className="monster-lvl">Уровень: {levelMonster}</p>
       <div className="monster-wrapper">
         {/* Цифры урона */}
         {lastDamage?.map((dmg, index) => (
@@ -56,15 +60,8 @@ export const Monster = ({ health }: MonsterProps) => {
           setMonsterHealth={setMonsterHealth}
           setAnimation={setAnimation}
           setLastDamage={setLastDamage}
-        />
-
-        {/* Обновить игру */}
-        <BtnRestart
-          newHealth={health}
-          setMonsterHealth={setMonsterHealth}
           setMaxHealth={setMaxHealth}
           setColor={setColor}
-          monsterHealth={monsterHealth}
         />
 
       </div>

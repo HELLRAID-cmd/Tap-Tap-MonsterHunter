@@ -1,5 +1,5 @@
 // MONSTER
-export const NEW_HEALTH = 10;
+export const HEALTH = 100;
 
 // DAMAGE
 export const CRIT_CHANCE = 0.15; // 15%
