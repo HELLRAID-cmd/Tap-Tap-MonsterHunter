@@ -6,12 +6,14 @@ import "./Styles/_reset.scss";
 import "./Styles/_container.scss";
 import Footer from "./Components/Footer/Footer";
 import { GameProvider } from "./Components/context/Context";
+import StatusPlayer from "./Components/StatusPlayer/StatusPlayer";
 
 function App() {
   return (
     <GameProvider>
       <main>
         <Monster health={NEW_HEALTH} />
+        <StatusPlayer />
       </main>
       <Footer />
     </GameProvider>

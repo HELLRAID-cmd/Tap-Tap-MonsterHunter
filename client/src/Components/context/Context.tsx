@@ -10,6 +10,9 @@ type GameContextType = {
   critLevel: number;
   critPrice: number;
   notEnoughCoins: boolean;
+  totalDamage: number;
+  totalCoins: number;
+  totalCoinsSpent: number;
   setCoins: React.Dispatch<React.SetStateAction<number>>;
   setAttack: React.Dispatch<React.SetStateAction<number>>;
   setAttackCrit: React.Dispatch<React.SetStateAction<number>>;
@@ -18,6 +21,9 @@ type GameContextType = {
   setCritLevel: React.Dispatch<React.SetStateAction<number>>;
   setCritPrice: React.Dispatch<React.SetStateAction<number>>;
   setNotEnoughCoins: React.Dispatch<React.SetStateAction<boolean>>;
+  setTotalDamage: React.Dispatch<React.SetStateAction<number>>;
+  setTotalCoins: React.Dispatch<React.SetStateAction<number>>;
+  setTotalCoinsSpent: React.Dispatch<React.SetStateAction<number>>;
   addCoins: () => void;
 };
 
@@ -32,10 +38,14 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
   const [critPrice, setCritPrice] = useState(30);
   const [attackCrit, setAttackCrit] = useState(CRIT_CHANCE);
   const [notEnoughCoins, setNotEnoughCoins] = useState(false);
+  const [totalDamage, setTotalDamage] = useState(0);
+  const [totalCoins, setTotalCoins] = useState(0);
+  const [totalCoinsSpent, setTotalCoinsSpent] = useState(0);
 
   const addCoins = () => {
     const randomNumber = Math.floor(Math.random() * MAX_COINS) + 1;
     setCoins((prev) => prev + randomNumber);
+    setTotalCoins((prev) => prev + randomNumber);
   };
 
   return (
@@ -57,7 +67,13 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
         setAttackCrit,
         addCoins,
         notEnoughCoins,
-        setNotEnoughCoins
+        setNotEnoughCoins,
+        totalDamage,
+        setTotalDamage,
+        totalCoins,
+        setTotalCoins,
+        totalCoinsSpent,
+        setTotalCoinsSpent,
       }}
     >
       {children}
