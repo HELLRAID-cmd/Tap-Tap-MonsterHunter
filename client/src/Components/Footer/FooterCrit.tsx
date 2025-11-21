@@ -52,7 +52,7 @@ const FooterCrit = () => {
   return (
     <button className={`footer__skill-btn crit ${critLevel === 25 ? "crit--max": ""}`} onClick={upgradeCrit}>
       Крит шанс
-      {critLevel != 25 && (
+      {critLevel !== 25 && (
         <>
           <span>+{(nextUpgrade * 100).toFixed(0)}%</span>
           <span>Цена: {critPrice}</span>
