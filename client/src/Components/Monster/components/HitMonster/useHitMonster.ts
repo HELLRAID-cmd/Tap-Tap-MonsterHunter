@@ -1,10 +1,11 @@
-import { useState } from "react";
-import { CRIT_MULTIPLIER } from "../../../Config/Config";
+import { CRIT_MULTIPLIER, HEALTH } from "../../../Config/Config";
 import { useGame } from "../../../context/Context";
-import type { HitMonsterType } from "../../MonsterProps";
+import type { HandleChangeColorType, HitMonsterType } from "../../MonsterProps";
+import { useMonsterActions } from "../../useMonsterActions ";
 
 export const useHitMonster = () => {
-  const { attack, addCoins, attackCrit, setTotalDamage, setStatusClick } = useGame();
+  const { attack, addCoins, attackCrit, setTotalDamage, setStatusClick, setLevelMonster } = useGame();
+  const { handleRestart, handleChangeColor } = useMonsterActions();
 
   const hitMonster = ({
     setMonsterHealth,
@@ -12,13 +13,15 @@ export const useHitMonster = () => {
     setAnimationDamage,
     setLastDamage,
     monsterHealth,
-  }: HitMonsterType) => {
+    setColor,
+    setMaxHealth,
+  }: HitMonsterType & HandleChangeColorType) => {
     // Проверка крита
     const isCrit = Math.random() < attackCrit;
     const critDamage = isCrit ? Math.round(attack * CRIT_MULTIPLIER) : attack;
 
-    const newHealth = monsterHealth - critDamage;
-    setMonsterHealth(newHealth <= 0 ? 0 : newHealth);
+    const newHealthMonster = monsterHealth - critDamage;
+    setMonsterHealth(newHealthMonster <= 0 ? 0 : newHealthMonster);
 
     // Общий дамаг
     setTotalDamage(prev => +(prev + attack).toFixed(0));
@@ -27,10 +30,18 @@ export const useHitMonster = () => {
     setStatusClick(prev => prev + 1);
 
     // Проверка на то что монстр погиб, добовляет монеты
-    if (newHealth <= 0) {
-      setMonsterHealth(0);
-      addCoins();
-      return;
+    if (newHealthMonster <= 0) {
+      const baseHealth = HEALTH;
+      setLevelMonster(prev => {
+        const nextLevel = prev + 1;
+        const nextHealth = Math.floor(baseHealth * Math.pow(1.2, nextLevel - 1));
+
+        handleRestart({ setMonsterHealth, setMaxHealth, newHealth: nextHealth });
+        handleChangeColor({ setColor });
+        addCoins();
+        
+        return nextLevel;
+      });
     }
 
     setLastDamage((prev) => [...prev, critDamage]);
