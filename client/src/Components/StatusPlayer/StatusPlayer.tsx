@@ -2,7 +2,7 @@ import { useGame } from "../context/Context";
 import "./statusPlayer.scss";
 
 const StatusPlayer = () => {
-  const {attack, attackCrit, totalDamage, totalCoins, totalCoinsSpent} = useGame();
+  const {attack, attackCrit, totalDamage, totalCoins, totalCoinsSpent, statusClick} = useGame();
 
   return (
     <div className="status">
@@ -12,7 +12,7 @@ const StatusPlayer = () => {
           <span className="status__item-info">{attack}</span>
         </li>
         <li className="status__item">
-          <p className="status__item-name">Крит: </p>
+          <p className="status__item-name">Шанс крит: </p>
           <span className="status__item-info">{(attackCrit * 100).toFixed(0)}%</span>
         </li>
         <li className="status__item">
@@ -26,6 +26,10 @@ const StatusPlayer = () => {
         <li className="status__item">
           <p className="status__item-name">Потрачено монет: </p>
           <span className="status__item-info">{(totalCoinsSpent).toFixed(0)}</span>
+        </li>
+        <li className="status__item">
+          <p className="status__item-name">Всего ударов: </p>
+          <span className="status__item-info">{statusClick}</span>
         </li>
       </ul>
     </div>
