@@ -7,6 +7,17 @@
   margin: 0 0 100px 0;
   padding: 150px 0 0 0;
 
+  &-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 350px;
+    gap: 20px;
+    border: 1px solid black;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
   &-damage {
     position: absolute;
     opacity: 0;
@@ -33,27 +44,8 @@
   border-radius: 20px;
 }
 
-.monster-enemy-dead {
-  background-color: gray;
-}
-
-.monster-enemy-box {
-  display: none;
-}
-
-.monster-enemy-winner {
-  display: block;
-  font-size: 32px;
-  font-weight: 800;
-  color: #f2fe05;
-  position: absolute;
-  top: -20%;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
 .health-bar {
-  width: 300px;
+  width: 100%;
   height: 30px;
   border-radius: 5px;
   background-color: #fff;
@@ -69,7 +61,7 @@
 }
 
 .health-bar__fill {
-  max-width: 300px;
+  width: 100%;
   height: 100%;
   background-color: red;
   border-radius: 5px 0 0 5px;
@@ -81,9 +73,16 @@
 }
 
 .btn {
-  margin-top: 30px;
-  width: 220px;
+  width: 100%;
   background-color: red;
+
+  &--admin-kill {
+    background-color: #000;
+  }
+
+  &--admin-money {
+    background-color: yellow;
+  }
 }
 
 .btn-restart {
