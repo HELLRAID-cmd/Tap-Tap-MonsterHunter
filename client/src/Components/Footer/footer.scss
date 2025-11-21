@@ -27,8 +27,10 @@
     &-btn {
       display: flex;
       flex-direction: column;
+      justify-content: center;
       font-size: 24px;
       padding: 30px;
+      height: 100%;
 
       &.attack {
         background-color: rgba(225, 127, 80, 0.2);
@@ -37,6 +39,14 @@
         &:hover,
         &:focus-visible {
           background-color: coral;
+        }
+
+        &--max {
+          background-color: rgb(148, 72, 45);
+          border: 2px solid rgb(148, 72, 45);
+          pointer-events: none;
+          user-select: none;
+          color: gray;
         }
       }
 
@@ -48,15 +58,13 @@
         &:focus-visible {
           background-color: red;
         }
-      }
 
-      &.money {
-        background-color: rgba(225, 215, 0, 0.2);
-        border: 2px solid gold;
-
-        &:hover,
-        &:focus-visible {
-          background-color: gold;
+        &--max {
+          background-color: rgb(68, 17, 17);
+          border: 2px solid rgb(68, 17, 17);
+          pointer-events: none;
+          user-select: none;
+          color: gray;
         }
       }
 
@@ -68,7 +76,34 @@
         &:focus-visible {
           background-color: green;
         }
+
+        &--max {
+          background-color: forestgreen;
+          border: 2px solid forestgreen;
+          pointer-events: none;
+          user-select: none;
+          color: gray;
+        }
       }
+
+      &.money {
+        background-color: rgba(225, 215, 0, 0.2);
+        border: 2px solid gold;
+
+        &:hover,
+        &:focus-visible {
+          background-color: gold;
+        }
+
+        &--max {
+          background-color: goldenrod;
+          border: 2px solid goldenrod;
+          pointer-events: none;
+          user-select: none;
+          color: gray;
+        }
+      }
+
     }
   }
 }
