@@ -4,7 +4,7 @@ import { useGame } from "../../../context/Context";
 import type { HitMonsterType } from "../../MonsterProps";
 
 export const useHitMonster = () => {
-  const { attack, addCoins, attackCrit, setTotalDamage } = useGame();
+  const { attack, addCoins, attackCrit, setTotalDamage, setStatusClick } = useGame();
 
   const hitMonster = ({
     setMonsterHealth,
@@ -22,6 +22,9 @@ export const useHitMonster = () => {
 
     // Общий дамаг
     setTotalDamage(prev => +(prev + attack).toFixed(0));
+
+    // Общие нажатия
+    setStatusClick(prev => prev + 1);
 
     // Проверка на то что монстр погиб, добовляет монеты
     if (newHealth <= 0) {
