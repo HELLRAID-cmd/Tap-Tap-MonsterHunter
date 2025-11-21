@@ -4,11 +4,44 @@
   gap: 5px;
   padding: 5px 0 5px 0;
 
+  &.not-enough {
+    color: red;
+    font-weight: 700;
+    transform: scale(1.2);
+    animation: notEnough 1.5s;
+  }
+
   &-icon {
     display: inline-block;
     width: 20px;
     height: 20px;
     border-radius: 50%;
     background-color: yellow;
+  }
+}
+
+@keyframes notEnough {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.2);
+    color: red;
+    font-weight: 700;
+  }
+  50% {
+    transform: scale(1);
+    color: red;
+    font-weight: 700;
+  }
+  75% {
+    transform: scale(1.2);
+    color: red;
+    font-weight: 700;
+  }
+  100% {
+    transform: scale(1);
+    color: red;
+    font-weight: 700;
   }
 }
