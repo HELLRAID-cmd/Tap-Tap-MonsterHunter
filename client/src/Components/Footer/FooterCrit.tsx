@@ -1,7 +1,7 @@
 import { useGame } from "../context/Context";
 
 const FooterCrit = () => {
-  const { setAttackCrit, critLevel, setCritLevel, critPrice, setCritPrice, coins } = useGame();
+  const { setAttackCrit, setNotEnoughCoins, critLevel, setCritLevel, critPrice, setCritPrice, coins } = useGame();
 
   const nextUpgrade = 0.02;
   const nextLevel = critLevel + 1;
@@ -9,6 +9,9 @@ const FooterCrit = () => {
   const upgradeCrit = () => {
     // Проверка на то есть ли монеты
     if (coins < critPrice) {
+      setNotEnoughCoins(true);
+
+      setTimeout(() => {setNotEnoughCoins(false)}, 600);
       return;
     }
 
