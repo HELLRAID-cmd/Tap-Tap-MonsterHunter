@@ -1,7 +1,7 @@
 import { useGame } from "../context/Context";
 
 const FooterAttack = () => {
-  const { setAttack, attack, level, setLevel, price, setPrice, coins } = useGame();
+  const { setAttack, setNotEnoughCoins, attack, level, setLevel, price, setPrice, coins } = useGame();
 
   const nextUpgrade = +(attack * 0.03).toFixed(2);
   const nextLevel = level + 1;
@@ -10,6 +10,9 @@ const FooterAttack = () => {
 
     // Проверка на то есть ли монеты
     if(coins < price) {
+      setNotEnoughCoins(true);
+
+      setTimeout(() => {setNotEnoughCoins(false)}, 600);
       return;
     }
 

@@ -9,6 +9,7 @@ type GameContextType = {
   price: number;
   critLevel: number;
   critPrice: number;
+  notEnoughCoins: boolean;
   setCoins: React.Dispatch<React.SetStateAction<number>>;
   setAttack: React.Dispatch<React.SetStateAction<number>>;
   setAttackCrit: React.Dispatch<React.SetStateAction<number>>;
@@ -16,6 +17,7 @@ type GameContextType = {
   setPrice: React.Dispatch<React.SetStateAction<number>>;
   setCritLevel: React.Dispatch<React.SetStateAction<number>>;
   setCritPrice: React.Dispatch<React.SetStateAction<number>>;
+  setNotEnoughCoins: React.Dispatch<React.SetStateAction<boolean>>;
   addCoins: () => void;
 };
 
@@ -25,10 +27,11 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
   const [coins, setCoins] = useState(0);
   const [attack, setAttack] = useState(1);
   const [level, setLevel] = useState(1);
-  const [price, setPrice] = useState(1); 
-  const [critLevel, setCritLevel] = useState(1); 
-  const [critPrice, setCritPrice] = useState(30); 
+  const [price, setPrice] = useState(1);
+  const [critLevel, setCritLevel] = useState(1);
+  const [critPrice, setCritPrice] = useState(30);
   const [attackCrit, setAttackCrit] = useState(CRIT_CHANCE);
+  const [notEnoughCoins, setNotEnoughCoins] = useState(false);
 
   const addCoins = () => {
     const randomNumber = Math.floor(Math.random() * 5) + 1;
@@ -36,7 +39,27 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <GameContext.Provider value={{ coins, critLevel, setCritLevel, critPrice, setCritPrice, level, setLevel, price, setPrice, setCoins, attack, setAttack, attackCrit, setAttackCrit, addCoins }}>
+    <GameContext.Provider
+      value={{
+        coins,
+        critLevel,
+        setCritLevel,
+        critPrice,
+        setCritPrice,
+        level,
+        setLevel,
+        price,
+        setPrice,
+        setCoins,
+        attack,
+        setAttack,
+        attackCrit,
+        setAttackCrit,
+        addCoins,
+        notEnoughCoins,
+        setNotEnoughCoins
+      }}
+    >
       {children}
     </GameContext.Provider>
   );
