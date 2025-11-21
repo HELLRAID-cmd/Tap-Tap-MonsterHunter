@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { CRIT_CHANCE } from "../Config/Config";
+import { CRIT_CHANCE, MAX_COINS } from "../Config/Config";
 
 type GameContextType = {
   coins: number;
@@ -34,7 +34,7 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
   const [notEnoughCoins, setNotEnoughCoins] = useState(false);
 
   const addCoins = () => {
-    const randomNumber = Math.floor(Math.random() * 5) + 1;
+    const randomNumber = Math.floor(Math.random() * MAX_COINS) + 1;
     setCoins((prev) => prev + randomNumber);
   };
 
