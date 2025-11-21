@@ -14,6 +14,7 @@ type GameContextType = {
   totalCoins: number;
   totalCoinsSpent: number;
   statusClick: number;
+  levelMonster: number;
   setCoins: React.Dispatch<React.SetStateAction<number>>;
   setAttack: React.Dispatch<React.SetStateAction<number>>;
   setAttackCrit: React.Dispatch<React.SetStateAction<number>>;
@@ -26,6 +27,7 @@ type GameContextType = {
   setTotalCoins: React.Dispatch<React.SetStateAction<number>>;
   setTotalCoinsSpent: React.Dispatch<React.SetStateAction<number>>;
   setStatusClick: React.Dispatch<React.SetStateAction<number>>;
+  setLevelMonster: React.Dispatch<React.SetStateAction<number>>;
   addCoins: () => void;
 };
 
@@ -44,6 +46,7 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
   const [totalCoins, setTotalCoins] = useState(0);
   const [totalCoinsSpent, setTotalCoinsSpent] = useState(0);
   const [statusClick, setStatusClick] = useState(0);
+  const [levelMonster, setLevelMonster] = useState(1);
 
   const addCoins = () => {
     const randomNumber = Math.floor(Math.random() * MAX_COINS) + 1;
@@ -78,7 +81,9 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
         totalCoinsSpent,
         setTotalCoinsSpent,
         statusClick,
-        setStatusClick
+        setStatusClick,
+        levelMonster,
+        setLevelMonster,
       }}
     >
       {children}
