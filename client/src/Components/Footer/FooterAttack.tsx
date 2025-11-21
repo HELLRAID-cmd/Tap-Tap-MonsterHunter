@@ -1,9 +1,9 @@
 import { useGame } from "../context/Context";
 
 const FooterAttack = () => {
-  const { setAttack, setNotEnoughCoins, attack, level, setLevel, price, setTotalCoinsSpent, setPrice, coins, setCoins } = useGame();
+  const { setAttack, setNotEnoughCoins, level, setLevel, price, setTotalCoinsSpent, setPrice, coins, setCoins } = useGame();
 
-  const nextUpgrade = +(level + 1.40).toFixed(2);
+  const nextUpgrade = +(level + 0.20).toFixed(2);
   const nextLevel = level + 1;
 
   const upgradeAttack = () => {
@@ -30,17 +30,17 @@ const FooterAttack = () => {
 
     if (nextLevel === 10) {
       setAttack((prev) => +(prev + nextUpgrade * 1.10).toFixed(2));
-      setPrice((prev) => +(prev * 2).toFixed(1));
+      setPrice((prev) => +(prev * 1.02).toFixed(1));
     }
 
     if (nextLevel === 20) {
       setAttack((prev) => +(prev + nextUpgrade * 0.90).toFixed(2));
-      setPrice((prev) => +(prev * 1.70).toFixed(1));
+      setPrice((prev) => +(prev * 0.70).toFixed(1));
     }
 
     if (nextLevel === 50) {
       setAttack((prev) => +(prev + nextUpgrade * 0.25).toFixed(2));
-      setPrice((prev) => +(prev * 1.40).toFixed(1));
+      setPrice((prev) => +(prev * 0.05).toFixed(1));
     }
   };
 
@@ -50,7 +50,6 @@ const FooterAttack = () => {
       {level !== 100 && (
         <>
         <span>+{nextUpgrade}</span>
-        <span>+{attack}</span>
         <span>Цена: {price.toFixed(0)}</span>
         </>
       )}
