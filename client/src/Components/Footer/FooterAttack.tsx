@@ -3,7 +3,7 @@ import { useGame } from "../context/Context";
 const FooterAttack = () => {
   const { setAttack, setNotEnoughCoins, attack, level, setLevel, price, setPrice, coins } = useGame();
 
-  const nextUpgrade = +(attack * 0.03).toFixed(2);
+  const nextUpgrade = +(level + 1.40).toFixed(2);
   const nextLevel = level + 1;
 
   const upgradeAttack = () => {
@@ -17,7 +17,7 @@ const FooterAttack = () => {
     }
 
     // Повышение атаки
-    setAttack((prev) => +(prev + prev * 0.03).toFixed(2));
+    setAttack((prev) => +(prev + nextUpgrade).toFixed(2));
 
     // Повышение уровня
     setLevel(nextLevel);
@@ -26,30 +26,32 @@ const FooterAttack = () => {
     setPrice((prev) => +(prev * 1.15).toFixed(1));
 
     if (nextLevel === 10) {
-      setAttack((prev) => +(prev + prev * 0.05).toFixed(2));
+      setAttack((prev) => +(prev + nextUpgrade * 1.10).toFixed(2));
       setPrice((prev) => +(prev * 2).toFixed(1));
-      console.log("Уровень: ", nextLevel);
     }
 
     if (nextLevel === 20) {
-      setAttack((prev) => +(prev + prev * 0.1).toFixed(2));
-      setPrice((prev) => +(prev * 2.30).toFixed(1));
-      console.log("Уровень: ", nextLevel);
+      setAttack((prev) => +(prev + nextUpgrade * 0.90).toFixed(2));
+      setPrice((prev) => +(prev * 1.70).toFixed(1));
     }
 
     if (nextLevel === 50) {
-      setAttack((prev) => +(prev + prev * 0.15).toFixed(2));
-      setPrice((prev) => +(prev * 3).toFixed(1));
-      console.log("Уровень: ", nextLevel);
+      setAttack((prev) => +(prev + nextUpgrade * 0.25).toFixed(2));
+      setPrice((prev) => +(prev * 1.40).toFixed(1));
     }
   };
 
   return (
-    <button className="footer__skill-btn attack" onClick={upgradeAttack}>
+    <button className={`footer__skill-btn attack ${level === 100 ? "attack--max": ""}`} onClick={upgradeAttack}>
       Атака
-      <span>+{nextUpgrade}</span>
-      <span>Цена: {price}</span>
-      <span>Уровень: {level}</span>
+      {level !== 100 && (
+        <>
+        <span>+{nextUpgrade}</span>
+        <span>+{attack}</span>
+        <span>Цена: {price}</span>
+        </>
+      )}
+      <span>Уровень: {level === 100 ? "Макс" : level}</span>
     </button>
   );
 };
