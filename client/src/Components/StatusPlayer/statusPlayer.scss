@@ -1,11 +1,22 @@
 .status {
   position: absolute;
-  top: 20%;
+  top: 30%;
   right: 200px;
   transform: translateY(-50%);
+
+  &__list {
+    border: 1px solid black;
+    border-radius: 10px;
+    overflow: hidden;
+  }
 
   &__item {
     display: flex;
     gap: 5px;
+    padding: 10px;
+    
+    &:not(:last-child) {
+      border-bottom: 1px solid black;
+    }
   }
 }
