@@ -1,14 +1,15 @@
+import { useAttackDamage } from "../context/AttackContext";
 import { useGame } from "../context/Context";
 
 const FooterAttack = () => {
-  const { setAttack, setNotEnoughCoins, level, setLevel, price, setTotalCoinsSpent, setPrice, coins, setCoins } = useGame();
+  const { setNotEnoughCoins, setTotalCoinsSpent, coins, setCoins } = useGame();
+  const { setAttack, level, setLevel, price, setPrice } = useAttackDamage();
 
-  const nextUpgrade = +(level + 0.20).toFixed(2);
+  const nextUpgrade = +(level * 0.20).toFixed(2);
   const nextLevel = level + 1;
 
   const upgradeAttack = () => {
-
-    // Проверка на то есть ли монеты
+    // Проверка на монеты
     if(coins < price) {
       setNotEnoughCoins(true);
 
