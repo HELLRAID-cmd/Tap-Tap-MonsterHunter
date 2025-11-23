@@ -1,0 +1,48 @@
+import { createContext, useContext, useState } from "react";
+import {
+  CRIT_CHANCE,
+  CRIT_LEVEL,
+  CRIT_PRICE,
+} from "../Config/Config";
+
+type CritType = {
+  attackCrit: number;
+  critLevel: number;
+  critPrice: number;
+  setAttackCrit: React.Dispatch<React.SetStateAction<number>>;
+  setCritLevel: React.Dispatch<React.SetStateAction<number>>;
+  setCritPrice: React.Dispatch<React.SetStateAction<number>>;
+};
+
+const CritContext = createContext<CritType | null>(null);
+
+export const CritProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
+  const [critLevel, setCritLevel] = useState(CRIT_LEVEL);
+  const [critPrice, setCritPrice] = useState(CRIT_PRICE);
+  const [attackCrit, setAttackCrit] = useState(CRIT_CHANCE);
+
+  return (
+    <CritContext.Provider
+      value={{
+        critLevel,
+        setCritLevel,
+        critPrice,
+        setCritPrice,
+        attackCrit,
+        setAttackCrit,
+      }}
+    >
+      {children}
+    </CritContext.Provider>
+  );
+};
+
+export const useCrit = () => {
+  const context = useContext(CritContext);
+  if (!context) throw new Error("useGame must be used inside GameProvider");
+  return context;
+};
