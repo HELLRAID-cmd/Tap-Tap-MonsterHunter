@@ -1,3 +1,5 @@
+@use "../../Styles/variables";
+
 .footer {
   &__title {
     font-size: 32px;
@@ -19,7 +21,7 @@
       display: flex;
       justify-content: center;
       gap: 40px;
-      border: 1px solid black;
+      border: 1px solid var(--c-black);
       padding: 20px;
       border-radius: 10px;
     }
@@ -33,74 +35,74 @@
       height: 100%;
 
       &.attack {
-        background-color: rgba(225, 127, 80, 0.2);
-        border: 2px solid coral;
+        background-color: var(--c-coral-black);
+        border: 2px solid var(--c-coral);
 
         &:hover,
         &:focus-visible {
-          background-color: coral;
+          background-color: var(--c-coral);
         }
 
         &--max {
-          background-color: rgb(148, 72, 45);
-          border: 2px solid rgb(148, 72, 45);
+          background-color: var(--c-coral-max);
+          border: 2px solid var(--c-coral-max);
           pointer-events: none;
           user-select: none;
-          color: gray;
+          color: var(--c-gray);
         }
       }
 
       &.crit {
-        background-color: rgb(225, 0, 0, 0.2);
-        border: 2px solid red;
+        background-color: var(--c-red-black);
+        border: 2px solid var(--c-red);
 
         &:hover,
         &:focus-visible {
-          background-color: red;
+          background-color: var(--c-red);
         }
 
         &--max {
-          background-color: rgb(68, 17, 17);
-          border: 2px solid rgb(68, 17, 17);
+          background-color: var(--c-red-max);
+          border: 2px solid var(--c-red-max);
           pointer-events: none;
           user-select: none;
-          color: gray;
+          color: var(--c-gray);
         }
       }
 
       &.none {
-        background-color: rgba(0, 128, 0, 0.2);
-        border: 2px solid green;
+        background-color: var(--c-green-black);
+        border: 2px solid var(--c-green);
 
         &:hover,
         &:focus-visible {
-          background-color: green;
+          background-color: var(--c-green);
         }
 
         &--max {
-          background-color: forestgreen;
-          border: 2px solid forestgreen;
+          background-color: var(--c-green-max);
+          border: 2px solid var(--c-green-max);
           pointer-events: none;
           user-select: none;
-          color: gray;
+          color: var(--c-gray);
         }
       }
 
       &.money {
-        background-color: rgba(225, 215, 0, 0.2);
-        border: 2px solid gold;
+        background-color: var(--c-gold-black);
+        border: 2px solid var(--c-gold);
 
         &:hover,
         &:focus-visible {
-          background-color: gold;
+          background-color: var(--c-gold);
         }
 
         &--max {
-          background-color: goldenrod;
-          border: 2px solid goldenrod;
+          background-color: var(--c-gold-max);
+          border: 2px solid var(--c-gold-max);
           pointer-events: none;
           user-select: none;
-          color: gray;
+          color: var(--c-gray);
         }
       }
 
