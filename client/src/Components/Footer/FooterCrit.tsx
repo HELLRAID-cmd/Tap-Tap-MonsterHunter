@@ -1,7 +1,10 @@
 import { useGame } from "../context/Context";
+import { useCrit } from "../context/CritContext";
 
 const FooterCrit = () => {
-  const { setAttackCrit, setNotEnoughCoins, critLevel, setCritLevel, critPrice, setCritPrice, coins, setCoins } = useGame();
+  const { setNotEnoughCoins, coins, setCoins } = useGame();
+
+  const { setAttackCrit, critLevel, setCritLevel, critPrice, setCritPrice } = useCrit();
 
   const nextUpgrade = 0.02;
   const nextLevel = critLevel + 1;
