@@ -1,6 +1,6 @@
 import type { HealthBar } from "../MonsterProps";
 
-const HealthBar = ({monsterHealth, maxHealth}: HealthBar) => {
+const HealthBarMonster = ({monsterHealth, maxHealth}: HealthBar) => {
   return (
     <div className="health-bar">
       <div className="health-bar__fill" style={{width: `${(monsterHealth / maxHealth) * 100}%`}}></div>
@@ -9,4 +9,4 @@ const HealthBar = ({monsterHealth, maxHealth}: HealthBar) => {
   )
 }
 
-export default HealthBar;
+export default HealthBarMonster;

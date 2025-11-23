@@ -1,11 +1,15 @@
-import { CRIT_MULTIPLIER, HEALTH } from "../../../Config/Config";
+import { CRIT_DAMAGE_MULTIPLIER, MONSTER_HEALTH} from "../../../Config/Config";
+import { useAttackDamage } from "../../../context/AttackContext";
 import { useGame } from "../../../context/Context";
+import { useCrit } from "../../../context/CritContext";
 import type { HandleChangeColorType, HitMonsterType } from "../../MonsterProps";
 import { useMonsterActions } from "../../useMonsterActions ";
 
 export const useHitMonster = () => {
-  const { attack, addCoins, attackCrit, setTotalDamage, setStatusClick, setLevelMonster } = useGame();
+  const { addCoins, setTotalDamage, setStatusClick, setLevelMonster } = useGame();
   const { handleRestart, handleChangeColor } = useMonsterActions();
+  const {attack} = useAttackDamage();
+  const {attackCrit} = useCrit();
 
   const hitMonster = ({
     setMonsterHealth,
@@ -18,7 +22,7 @@ export const useHitMonster = () => {
   }: HitMonsterType & HandleChangeColorType) => {
     // Проверка крита
     const isCrit = Math.random() < attackCrit;
-    const critDamage = isCrit ? Math.round(attack * CRIT_MULTIPLIER) : attack;
+    const critDamage = isCrit ? Math.round(attack * CRIT_DAMAGE_MULTIPLIER) : attack;
 
     const newHealthMonster = monsterHealth - critDamage;
     setMonsterHealth(newHealthMonster <= 0 ? 0 : newHealthMonster);
@@ -31,7 +35,7 @@ export const useHitMonster = () => {
 
     // Проверка на то что монстр погиб, добовляет монеты
     if (newHealthMonster <= 0) {
-      const baseHealth = HEALTH;
+      const baseHealth = MONSTER_HEALTH;
       setLevelMonster(prev => {
         const nextLevel = prev + 1;
         const nextHealth = Math.floor(baseHealth * Math.pow(1.2, nextLevel - 1));

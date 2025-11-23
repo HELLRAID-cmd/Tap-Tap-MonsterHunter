@@ -2,7 +2,7 @@ import { useState } from "react";
 import type { MonsterProps } from "./MonsterProps";
 import { useMonsterActions } from "./useMonsterActions ";
 import "./Monster.scss";
-import HealthBar from "./components/HealthBar";
+import HealthBarMonster from "./components/HealthBarMonster";
 import HitMonsterBtn from "./components/HitMonster/HitMonsterBtn";
 import BtnAdmin from "../Admin/BtnAdmin";
 import { useGame } from "../context/Context";
@@ -43,7 +43,7 @@ export const Monster = ({ health }: MonsterProps) => {
         ))}
 
         {/* Здоровье моба */}
-        <HealthBar monsterHealth={monsterHealth} maxHealth={maxHealth} />
+        <HealthBarMonster monsterHealth={monsterHealth} maxHealth={maxHealth} />
 
         {/* Монстр */}
         <div
