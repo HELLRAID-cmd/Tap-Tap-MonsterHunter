@@ -24,7 +24,6 @@ const FooterCrit = () => {
     // Повышение крита
     setAttackCrit((prev) => {
       const upgrade = prev + nextUpgrade;
-      console.log("Улучшено", (upgrade * 100).toFixed(0) + "%");
       return upgrade >= 0.67 ? 0.67 : upgrade;
     });
 
@@ -45,7 +44,6 @@ const FooterCrit = () => {
 
       setAttackCrit((prev) => {
       const upgrade = prev + nextUpgrade;
-      console.log("Улучшено", (upgrade * 100).toFixed(0) + "%");
       return upgrade >= 0.67 ? 0.67 : upgrade;
     });
     }
