@@ -1,8 +1,13 @@
+import { useAttackDamage } from "../context/AttackContext";
 import { useGame } from "../context/Context";
+import { useCrit } from "../context/CritContext";
 import "./statusPlayer.scss";
 
 const StatusPlayer = () => {
-  const {attack, attackCrit, totalDamage, totalCoins, totalCoinsSpent, statusClick} = useGame();
+  const {totalDamage, totalCoins, totalCoinsSpent, statusClick} = useGame();
+
+  const {attack} = useAttackDamage();
+  const {attackCrit} = useCrit();
 
   return (
     <div className="status">
