@@ -1,3 +1,5 @@
+@use "../../Styles/variables";
+
 .monster {
   display: flex;
   flex-direction: column;
@@ -5,7 +7,7 @@
   gap: 10px;
   position: relative;
   margin: 0 0 100px 0;
-  padding: 150px 0 0 0;
+  padding: 50px 0 0 0;
 
   &-wrapper {
     display: flex;
@@ -13,7 +15,7 @@
     align-items: center;
     width: 350px;
     gap: 20px;
-    border: 1px solid black;
+    border: 1px solid var(--c-black);
     padding: 20px;
     border-radius: 10px;
   }
@@ -26,13 +28,13 @@
     font-weight: 600;
 
     &.damage {
-      color: coral;
+      color: var(--c-coral);
       animation: damage 0.5s ease;
     }
 
     &.crit-damage {
       font-size: 32px;
-      color: red;
+      color: var(--c-red);
       animation: damage 0.5s ease;
     }
   }
@@ -48,8 +50,8 @@
   width: 100%;
   height: 30px;
   border-radius: 5px;
-  background-color: #fff;
-  border: 1px solid #000;
+  background-color: var(--c-white);
+  border: 1px solid var(--c-black);
   position: relative;
 }
 
@@ -63,7 +65,7 @@
 .health-bar__fill {
   width: 100%;
   height: 100%;
-  background-color: red;
+  background-color: var(--c-red);
   border-radius: 5px 0 0 5px;
   transition: width 0.3s ease;
 }
@@ -74,20 +76,20 @@
 
 .btn {
   width: 100%;
-  background-color: red;
+  background-color: var(--c-red);
 
   &--admin-kill {
-    background-color: #000;
+    background-color: var(--c-black);
   }
 
   &--admin-money {
-    background-color: yellow;
+    background-color: var(--c-yellow);
   }
 }
 
 .btn-restart {
   display: block;
-  background-color: green;
+  background-color: var(--c-green);
 }
 
 @keyframes hit-shake {

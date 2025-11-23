@@ -1,68 +1,30 @@
 :root {
   // Colors
   --c-white: #ffffff;
-  --c-white-50: rgb(255, 255, 255, 0.5);
-  --c-white-20: rgba(255, 255, 255, 0.2);
   --c-black: #000000;
-  --c-jaguar-dark: #2c2a41;
-  --c-sun-yellow: #FFF200;
-  --c-light-gray: #e6e6e6;
+  --c-gray: gray;
+  --c-yellow: yellow;
+
+  --c-coral: coral;
+  --c-coral-black: rgba(225, 127, 80, 0.2);
+  --c-coral-max: rgb(148, 72, 45);
+
   --c-red: #ff0000;
-  --c-gray: #c4c4c4;
-  --c-purple: #9143a5;
+  --c-red-black: rgb(225, 0, 0, 0.2);
+  --c-red-max: rgb(68, 17, 17);
+
+  --c-green: green;
+  --c-green-black: rgba(0, 128, 0, 0.2);
+  --c-green-max: forestgreen;
+
+  --c-gold: gold;
+  --c-gold-black: rgba(225, 215, 0, 0.2);
+  --c-gold-max: goldenrod;
 
   // Typography
   --ff-main: "PTSans", "Arial", sans-serif;
   --ff-secondary: "Arsenal", "Arial", sans-serif;
-
-  // Animation
-  --transition-200: ease-in 0.2s;
-
-  // border radius
-  --border-radius-14: 14px;
-  --border-radius-16: 16px;
-  --border-radius-20: 20px;
-  --border-radius-50: 50%;
-
-  --padding-0: 0;
-  --padding-5-10: 5px 10px;
-  --padding-15-0: 15px 0;
-
-  --width-100: 100%;
-
-  // Font size
-  --f-size-14: 14px;
-  --f-size-16: 16px;
-  --f-size-18: 18px;
-  --f-size-20: 20px;
-  --f-size-24: 24px;
-
-  --f-size-h1: 60px;
-  --f-size-h1-mobile: 42px;
-
-  --f-size-h2: 46px;
-  --f-size-h2-mobile: 40px;
-
-  --f-size-h3: 34px;
-  --f-size-h3-mobile: 28px;
-
-  --f-size-h4: 30px;
-
-  // Line height
-  --lh-54: 54px;
-
-  // Font weight
-  --fw-regular: 400;
-  --fw-medium: 500;
-  --fw-bold: 700;
-
-  //Margin
-  --m-btm-110: 110px;
-
 }
-
-// Dealy
-$delay-02: 0.2s;
 
 // Viewport
 $vp-tablet: 1023px;
