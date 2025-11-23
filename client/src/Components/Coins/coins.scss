@@ -1,3 +1,5 @@
+@use "../../Styles/variables";
+
 .coins {
   display: flex;
   align-items: center;
@@ -5,7 +7,7 @@
   padding: 5px 0 5px 0;
 
   &.not-enough {
-    color: red;
+    color: var(--c-red);
     font-weight: 700;
     transform: scale(1.2);
     animation: notEnough 1.5s;
@@ -16,7 +18,7 @@
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background-color: yellow;
+    background-color: var(--c-yellow);
   }
 }
 
@@ -26,22 +28,22 @@
   }
   25% {
     transform: scale(1.2);
-    color: red;
+    color: var(--c-red);
     font-weight: 700;
   }
   50% {
     transform: scale(1);
-    color: red;
+    color: var(--c-red);
     font-weight: 700;
   }
   75% {
     transform: scale(1.2);
-    color: red;
+    color: var(--c-red);
     font-weight: 700;
   }
   100% {
     transform: scale(1);
-    color: red;
+    color: var(--c-red);
     font-weight: 700;
   }
 }
