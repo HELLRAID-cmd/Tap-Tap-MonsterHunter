@@ -38,7 +38,7 @@ export const CritDamageProvider = ({
 };
 
 
-export const useGameCritDamage = () => {
+export const useCritDamage = () => {
   const context = useContext(CritDamageContext);
   if (!context) throw new Error("useGame must be used inside GameProvider");
   return context;

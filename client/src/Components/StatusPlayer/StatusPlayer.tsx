@@ -1,6 +1,7 @@
 import { useAttackDamage } from "../context/AttackContext";
 import { useGame } from "../context/Context";
 import { useCrit } from "../context/CritContext";
+import { useCritDamage } from "../context/CritDamageContext";
 import "./statusPlayer.scss";
 
 const StatusPlayer = () => {
@@ -8,6 +9,7 @@ const StatusPlayer = () => {
 
   const {attack} = useAttackDamage();
   const {attackCrit} = useCrit();
+  const {critDamage} = useCritDamage();
 
   return (
     <div className="status">
@@ -19,6 +21,10 @@ const StatusPlayer = () => {
         <li className="status__item">
           <p className="status__item-name">Шанс крит: </p>
           <span className="status__item-info">{(attackCrit * 100).toFixed(0)}%</span>
+        </li>
+        <li className="status__item">
+          <p className="status__item-name">Множитель крита: </p>
+          <span className="status__item-info">{(critDamage).toFixed(1)}x</span>
         </li>
         <li className="status__item">
           <p className="status__item-name">Нанесено урона: </p>
