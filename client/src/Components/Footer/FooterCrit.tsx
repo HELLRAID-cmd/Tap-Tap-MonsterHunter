@@ -12,6 +12,7 @@ const FooterCrit = () => {
   const upgradeCrit = () => {
     // Проверка на то есть ли монеты
     if (coins < critPrice) {
+      // Уведомление монет
       setNotEnoughCoins(true);
 
       setTimeout(() => {setNotEnoughCoins(false)}, 600);
