@@ -16,6 +16,7 @@ export const CRIT_LEVEL = 1;
 export const CRIT_DAMAGE_MULTIPLIER = 2;
 export const CRIT_DAMAGE_PRICE = 100;
 export const CRIT_DAMAGE_LEVEL = 1;
+export const CRIT_DAMAGE_COINS = 400;
 
 // STATUS
 export const STATUS_CLICK = 0;
