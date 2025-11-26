@@ -1,4 +1,4 @@
-import { CRIT_DAMAGE_MULTIPLIER, MONSTER_HEALTH} from "../../../Config/Config";
+import { MONSTER_HEALTH} from "../../../Config/Config";
 import { useAttackDamage } from "../../../context/AttackContext";
 import { useGame } from "../../../context/Context";
 import { useCrit } from "../../../context/CritContext";

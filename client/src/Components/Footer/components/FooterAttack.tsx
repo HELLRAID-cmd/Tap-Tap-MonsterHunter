@@ -1,5 +1,5 @@
-import { useAttackDamage } from "../context/AttackContext";
-import { useGame } from "../context/Context";
+import { useAttackDamage } from "../../context/AttackContext";
+import { useGame } from "../../context/Context";
 
 const FooterAttack = () => {
   const { setNotEnoughCoins, setTotalCoinsSpent, coins, setCoins } = useGame();
@@ -47,7 +47,7 @@ const FooterAttack = () => {
 
   return (
     <button className={`footer__skill-btn attack ${level === 100 ? "attack--max": ""}`} onClick={upgradeAttack}>
-      Атака
+      <span>Атака</span>
       {level !== 100 && (
         <>
         <span>+{nextUpgrade}</span>

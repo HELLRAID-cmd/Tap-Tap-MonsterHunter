@@ -1,13 +1,13 @@
 import { createContext, useContext, useState } from "react";
 import {
   COINS,
-  MAX_COINS,
   MONSTER_LEVEL,
   STATUS_CLICK,
   TOTAL_COINS,
   TOTAL_COINS_SPENT,
   TOTAL_DAMAGE,
 } from "../Config/Config";
+import { useCoinsFooter } from "./CoinsContext";
 
 type GameContextType = {
   coins: number;
@@ -38,8 +38,10 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
   const [statusClick, setStatusClick] = useState(STATUS_CLICK);
   const [levelMonster, setLevelMonster] = useState(MONSTER_LEVEL);
 
+  const {coinsFooter} = useCoinsFooter();
+  
   const addCoins = () => {
-    const randomNumber = Math.floor(Math.random() * MAX_COINS) + 1;
+    const randomNumber = Math.floor(Math.random() * coinsFooter) + 1;
     setCoins((prev) => prev + randomNumber);
     setTotalCoins((prev) => prev + randomNumber);
   };

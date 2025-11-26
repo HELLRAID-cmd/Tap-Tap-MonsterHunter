@@ -25,6 +25,12 @@ export const TOTAL_DAMAGE = 0;
 export const TOTAL_COINS = 0;
 export const TOTAL_COINS_SPENT = 0;
 
+// COINS FOOTER
+export const COINS_FOOTER = 5;
+export const COINS_FOOTER_PRICE = 1500;
+export const COINS_FOOTER_LEVEL = 1;
+export const COINS_FOOTER_MULTIPLIER = 1;
+
 // COINS
 export const COINS = 0;
 export const MAX_COINS = 5;

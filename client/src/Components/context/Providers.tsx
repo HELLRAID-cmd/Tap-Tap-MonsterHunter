@@ -1,9 +1,10 @@
 import { AttackProvider } from "./AttackContext";
+import { CoinsProvider } from "./CoinsContext";
 import { GameProvider } from "./Context";
 import { CritProvider } from "./CritContext";
 import { CritDamageProvider } from "./CritDamageContext";
 
-const providersArr = [GameProvider, AttackProvider, CritProvider,CritDamageProvider];
+const providersArr = [GameProvider, AttackProvider, CritProvider,CritDamageProvider, CoinsProvider];
 
 export const Provider = ({ children }: { children: React.ReactNode }) => {
   return providersArr.reduce(

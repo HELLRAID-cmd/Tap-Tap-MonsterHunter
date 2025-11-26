@@ -1,5 +1,5 @@
-import { useGame } from "../context/Context";
-import { useCrit } from "../context/CritContext";
+import { useGame } from "../../context/Context";
+import { useCrit } from "../../context/CritContext";
 
 const FooterCrit = () => {
   const { setNotEnoughCoins, coins, setCoins } = useGame();
@@ -28,7 +28,7 @@ const FooterCrit = () => {
     // Повышение крита
     setAttackCrit((prev) => {
       const upgrade = prev + nextUpgrade;
-      return upgrade >= 0.67 ? 0.67 : upgrade;
+      return upgrade;
     });
 
     // Повышение уровня
@@ -55,7 +55,7 @@ const FooterCrit = () => {
 
   return (
     <button className={`footer__skill-btn crit ${critLevel === 25 ? "crit--max": ""}`} onClick={upgradeCrit}>
-      Крит шанс
+      <span>Крит шанс</span>
       {critLevel !== 25 && (
         <>
           <span>+{(nextUpgrade * 100).toFixed(0)}%</span>
