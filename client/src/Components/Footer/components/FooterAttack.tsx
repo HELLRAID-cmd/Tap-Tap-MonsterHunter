@@ -1,5 +1,5 @@
-import { useAttackDamage } from "../context/AttackContext";
-import { useGame } from "../context/Context";
+import { useAttackDamage } from "../../context/AttackContext";
+import { useGame } from "../../context/Context";
 
 const FooterAttack = () => {
   const { setNotEnoughCoins, setTotalCoinsSpent, coins, setCoins } = useGame();

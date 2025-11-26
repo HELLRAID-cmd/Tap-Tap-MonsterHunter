@@ -1,5 +1,5 @@
-import { useGame } from "../context/Context";
-import { useCritDamage } from "../context/CritDamageContext";
+import { useGame } from "../../context/Context";
+import { useCritDamage } from "../../context/CritDamageContext";
 
 const FooterCritDamage = () => {
   const { setNotEnoughCoins, coins, setCoins } = useGame();
@@ -11,7 +11,7 @@ const FooterCritDamage = () => {
     setLevelCritDamage,
   } = useCritDamage();
 
-  const nextUpgrade = 0.5;
+  const nextUpgrade = 1.2;
   const nextLevel = levelCritDamage + 1;
 
   const upgradeCritDamage = () => {
@@ -42,18 +42,18 @@ const FooterCritDamage = () => {
     setLevelCritDamage(nextLevel);
 
     // Повышение цены
-    setCritDamagePrice((prev) => +(prev * nextUpgrade).toFixed(1));
+    setCritDamagePrice((prev) => +(prev * 1.4).toFixed(1));
 
     if (nextLevel === 10) {
-      setCritDamagePrice((prev) => +(prev * nextUpgrade * 0.8).toFixed(1));
+      setCritDamagePrice((prev) => +(prev * 0.8).toFixed(1));
     }
 
     if (nextLevel === 20) {
-      setCritDamagePrice((prev) => +(prev * nextUpgrade * 0.4).toFixed(1));
+      setCritDamagePrice((prev) => +(prev * 0.4).toFixed(1));
     }
 
     if (nextLevel === 30) {
-      setCritDamagePrice((prev) => +(prev * nextUpgrade * 0.2).toFixed(1));
+      setCritDamagePrice((prev) => +(prev * 0.2).toFixed(1));
     }
   };
 
@@ -71,7 +71,7 @@ const FooterCritDamage = () => {
           <span>Цена: {critDamagePrice.toFixed(0)}</span>
         </>
       )}
-      <span>Уровень: {levelCritDamage === 25 ? "Макс" : levelCritDamage}</span>
+      <span>Уровень: {levelCritDamage === 30 ? "Макс" : levelCritDamage}</span>
     </button>
   );
 };

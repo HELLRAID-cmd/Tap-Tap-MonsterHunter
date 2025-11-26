@@ -1,8 +1,8 @@
 import Coins from "../Coins/Coins";
 import "./footer.scss";
-import FooterAttack from "./FooterAttack";
-import FooterCrit from "./FooterCrit";
-import FooterCritDamage from "./FooterCritDamage";
+import FooterAttack from "./components/FooterAttack";
+import FooterCrit from "./components/FooterCrit";
+import FooterCritDamage from "./components/FooterCritDamage";
 
 const Footer = () => {
   return (
