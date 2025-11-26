@@ -5,7 +5,7 @@ const FooterAttack = () => {
   const { setNotEnoughCoins, setTotalCoinsSpent, coins, setCoins } = useGame();
   const { setAttack, level, setLevel, price, setPrice } = useAttackDamage();
 
-  const nextUpgrade = +(level * 0.20).toFixed(2);
+  const nextUpgrade = +(level * 0.40).toFixed(2);
   const nextLevel = level + 1;
 
   const upgradeAttack = () => {
@@ -30,18 +30,18 @@ const FooterAttack = () => {
     setPrice((prev) => +(prev * 1.15).toFixed(1));
 
     if (nextLevel === 10) {
-      setAttack((prev) => +(prev + nextUpgrade * 1.10).toFixed(2));
-      setPrice((prev) => +(prev * 1.02).toFixed(1));
+      setAttack((prev) => +(prev + nextUpgrade * 1.80).toFixed(2));
+      // setPrice((prev) => +(prev * 0.90).toFixed(1));
     }
 
     if (nextLevel === 20) {
-      setAttack((prev) => +(prev + nextUpgrade * 0.90).toFixed(2));
-      setPrice((prev) => +(prev * 0.70).toFixed(1));
+      setAttack((prev) => +(prev + nextUpgrade * 1.50).toFixed(2));
+      // setPrice((prev) => +(prev * 0.20).toFixed(1));
     }
 
     if (nextLevel === 50) {
-      setAttack((prev) => +(prev + nextUpgrade * 0.25).toFixed(2));
-      setPrice((prev) => +(prev * 0.05).toFixed(1));
+      setAttack((prev) => +(prev + nextUpgrade * 0.55).toFixed(2));
+      // setPrice((prev) => +(prev * 0.10).toFixed(1));
     }
   };
 
