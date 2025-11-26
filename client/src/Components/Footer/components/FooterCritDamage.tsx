@@ -64,7 +64,7 @@ const FooterCritDamage = () => {
       }`}
       onClick={upgradeCritDamage}
     >
-      <span>Урон крита</span>
+      <span>Множитель крита</span>
       {levelCritDamage !== 30 && (
         <>
           <span>+{nextUpgrade.toFixed(1)}x</span>
