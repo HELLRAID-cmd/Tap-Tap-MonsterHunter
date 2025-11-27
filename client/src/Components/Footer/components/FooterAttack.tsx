@@ -27,34 +27,27 @@ const FooterAttack = () => {
     setLevel(nextLevel);
 
     // Повышение цены
-    setPrice((prev) => +(prev * 1.15).toFixed(1));
+    setPrice((prev) => +(prev * 1.10).toFixed(1));
 
     if (nextLevel === 10) {
       setAttack((prev) => +(prev + nextUpgrade * 1.80).toFixed(2));
-      // setPrice((prev) => +(prev * 0.90).toFixed(1));
     }
 
     if (nextLevel === 20) {
       setAttack((prev) => +(prev + nextUpgrade * 1.50).toFixed(2));
-      // setPrice((prev) => +(prev * 0.20).toFixed(1));
     }
 
     if (nextLevel === 50) {
       setAttack((prev) => +(prev + nextUpgrade * 0.55).toFixed(2));
-      // setPrice((prev) => +(prev * 0.10).toFixed(1));
     }
   };
 
   return (
-    <button className={`footer__skill-btn attack ${level === 100 ? "attack--max": ""}`} onClick={upgradeAttack}>
+    <button className="footer__skill-btn attack" onClick={upgradeAttack}>
       <span>Атака</span>
-      {level !== 100 && (
-        <>
-        <span>+{nextUpgrade}</span>
-        <span>Цена: {price.toFixed(0)}</span>
-        </>
-      )}
-      <span>Уровень: {level === 100 ? "Макс" : level}</span>
+      <span>+{nextUpgrade}</span>
+      <span>Цена: {price.toFixed(0)}</span>
+      <span>Уровень: {level}</span>
     </button>
   );
 };
