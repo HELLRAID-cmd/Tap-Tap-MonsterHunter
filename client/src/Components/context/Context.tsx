@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import {
   COINS,
   MONSTER_LEVEL,
@@ -17,6 +17,7 @@ type GameContextType = {
   totalCoinsSpent: number;
   statusClick: number;
   levelMonster: number;
+  timerValue: number;
   setCoins: React.Dispatch<React.SetStateAction<number>>;
   setNotEnoughCoins: React.Dispatch<React.SetStateAction<boolean>>;
   setTotalDamage: React.Dispatch<React.SetStateAction<number>>;
@@ -24,6 +25,8 @@ type GameContextType = {
   setTotalCoinsSpent: React.Dispatch<React.SetStateAction<number>>;
   setStatusClick: React.Dispatch<React.SetStateAction<number>>;
   setLevelMonster: React.Dispatch<React.SetStateAction<number>>;
+  startTimer: () => void;
+  stopTimer: () => void;
   addCoins: () => void;
 };
 
@@ -38,13 +41,37 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
   const [statusClick, setStatusClick] = useState(STATUS_CLICK);
   const [levelMonster, setLevelMonster] = useState(MONSTER_LEVEL);
 
-  const {coinsFooter} = useCoinsFooter();
-  
+  const [timerValue, setTimerValue] = useState(0);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  const { coinsFooter } = useCoinsFooter();
+
   const addCoins = () => {
     const randomNumber = Math.floor(Math.random() * coinsFooter) + 1;
     setCoins((prev) => prev + randomNumber);
     setTotalCoins((prev) => prev + randomNumber);
   };
+
+  const startTimer = () => {
+    if (intervalRef.current) return;
+
+    intervalRef.current = setInterval(() => {
+      setTimerValue((prev) => prev + 1);
+    }, 1000);
+  };
+
+  const stopTimer = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, []);
 
   return (
     <GameContext.Provider
@@ -64,6 +91,9 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
         setStatusClick,
         levelMonster,
         setLevelMonster,
+        startTimer,
+        stopTimer,
+        timerValue,
       }}
     >
       {children}
