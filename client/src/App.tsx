@@ -6,6 +6,7 @@ import "./Styles/_container.scss";
 import Footer from "./Components/Footer/Footer";
 import StatusPlayer from "./Components/StatusPlayer/StatusPlayer";
 import { Provider } from "./Components/context/Providers";
+import Info from "./Components/Info/Info";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <main>
         <Monster health={MONSTER_HEALTH} />
         <StatusPlayer />
+        <Info />
       </main>
       <Footer />
     </Provider>
