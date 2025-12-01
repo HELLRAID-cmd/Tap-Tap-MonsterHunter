@@ -11,7 +11,7 @@ const Info = () => {
   return (
     <div className={`info ${startGame ? "hidden" : "" }`}>
       <div className="info__text">
-        <h1 className="info__text-title">Добро пожаловать!</h1>
+        <h1 className="info__text-title">Добро&nbsp;пожаловать!</h1>
         <h2 className="info__text-subtitle">
           Здесь тебя ждёт мини-игра, где ты&nbsp;будешь сражаться
           с&nbsp;монстрами, усиливать свою мощь и&nbsp;за&nbsp;счет монет
