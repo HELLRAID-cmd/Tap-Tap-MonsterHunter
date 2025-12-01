@@ -1,18 +1,15 @@
-import { useState } from "react";
 import { useGame } from "../context/Context";
 import "./info.scss";
 
 const Info = () => {
-  const {startTimer} = useGame();
-
-  const [hiddenBtn, setHiddenBtn] = useState(false);
+  const {startTimer, setStartGame, startGame} = useGame();
 
   const handleBtn = () => {
-    setHiddenBtn(true);
+    setStartGame(true);
   }
 
   return (
-    <div className={`info ${hiddenBtn ? "hidden" : "" }`}>
+    <div className={`info ${startGame ? "hidden" : "" }`}>
       <div className="info__text">
         <h1 className="info__text-title">Добро пожаловать!</h1>
         <h2 className="info__text-subtitle">
