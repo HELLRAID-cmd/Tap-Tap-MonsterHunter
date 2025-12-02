@@ -36,7 +36,7 @@ const StatusPlayer = () => {
           <p className="status__item-name">Нанесено урона: </p>
           <span className="status__item-info">{totalDamage}</span>
         </li>
-        <li className="status__item">
+        {/* <li className="status__item">
           <p className="status__item-name">Накоплено монет: </p>
           <span className="status__item-info">{totalCoins}</span>
         </li>
@@ -47,7 +47,7 @@ const StatusPlayer = () => {
         <li className="status__item">
           <p className="status__item-name">Всего ударов: </p>
           <span className="status__item-info">{statusClick}</span>
-        </li>
+        </li> */}
       </ul>
     </div>
   )
