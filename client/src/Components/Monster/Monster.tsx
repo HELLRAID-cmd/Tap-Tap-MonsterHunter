@@ -44,7 +44,7 @@ export const Monster = ({ health }: MonsterProps) => {
 
   return (
     <div className="monster">
-      <p>timer: {formatTime(timerValue)}</p>
+      <span>{formatTime(timerValue)}</span>
       <p className="monster-lvl">Уровень: {levelMonster}</p>
       <div className="monster-wrapper">
         {/* Цифры урона */}
