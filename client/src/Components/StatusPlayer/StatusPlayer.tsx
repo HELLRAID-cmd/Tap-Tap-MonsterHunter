@@ -1,13 +1,10 @@
 import { useAttackDamage } from "../context/AttackContext";
 import { useCoinsFooter } from "../context/CoinsContext";
-import { useGame } from "../context/Context";
 import { useCrit } from "../context/CritContext";
 import { useCritDamage } from "../context/CritDamageContext";
 import "./statusPlayer.scss";
 
 const StatusPlayer = () => {
-  const {totalDamage, totalCoins, totalCoinsSpent, statusClick} = useGame();
-
   const {attack} = useAttackDamage();
   const {attackCrit} = useCrit();
   const {critDamage} = useCritDamage();
@@ -32,10 +29,10 @@ const StatusPlayer = () => {
           <p className="status__item-name">Множитель монет: </p>
           <span className="status__item-info">{(coinsMultiplier).toFixed(1)}x</span>
         </li>
-        <li className="status__item">
+        {/* <li className="status__item">
           <p className="status__item-name">Нанесено урона: </p>
           <span className="status__item-info">{totalDamage}</span>
-        </li>
+        </li> */}
         {/* <li className="status__item">
           <p className="status__item-name">Накоплено монет: </p>
           <span className="status__item-info">{totalCoins}</span>
