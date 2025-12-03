@@ -6,11 +6,18 @@ import HealthBarMonster from "./components/HealthBarMonster";
 import HitMonsterBtn from "./components/HitMonster/HitMonsterBtn";
 import BtnAdmin from "../Admin/BtnAdmin";
 import { useGame } from "../context/Context";
+import FinalBossBtn from "../FinalBoss/FinalBossBtn";
+import { useAttackDamage } from "../context/AttackContext";
+import { useCrit } from "../context/CritContext";
+import { useCritDamage } from "../context/CritDamageContext";
 
 export const Monster = ({ health }: MonsterProps) => {
+  const { levelMonster, timerValue } = useGame();
 
-  const {levelMonster, timerValue} = useGame();
-  
+  const { level } = useAttackDamage();
+  const { critLevel } = useCrit();
+  const { critLevelDamage } = useCritDamage();
+
   // Рандомный цвет
   const { getRandomColor } = useMonsterActions();
   // Максимальное здоровье
@@ -75,10 +82,14 @@ export const Monster = ({ health }: MonsterProps) => {
           setMaxHealth={setMaxHealth}
           setColor={setColor}
         />
-
       </div>
-        {/* Админ кнопки */}
-        <BtnAdmin setMonsterHealth={setMonsterHealth} />
+
+      {level >= 130 && critLevel >= 20 && critLevelDamage >= 25 && (
+        <FinalBossBtn />
+      )}
+
+      {/* Админ кнопки */}
+      <BtnAdmin setMonsterHealth={setMonsterHealth} />
     </div>
   );
 };
