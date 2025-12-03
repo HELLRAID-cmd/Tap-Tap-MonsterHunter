@@ -1,6 +1,5 @@
 import { useAttackDamage } from "../context/AttackContext";
 import { useCoinsFooter } from "../context/CoinsContext";
-import { useGame } from "../context/Context";
 import { useCrit } from "../context/CritContext";
 import { useCritDamage } from "../context/CritDamageContext";
 import "./statusPlayer.scss";
