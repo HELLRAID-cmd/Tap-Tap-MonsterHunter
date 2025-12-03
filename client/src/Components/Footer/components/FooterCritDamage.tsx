@@ -5,14 +5,14 @@ const FooterCritDamage = () => {
   const { setNotEnoughCoins, coins, setCoins } = useGame();
   const {
     critDamagePrice,
-    levelCritDamage,
+    critLevelDamage,
     setCritDamage,
     setCritDamagePrice,
-    setLevelCritDamage,
+    setcritLevelDamage,
   } = useCritDamage();
 
   const nextUpgrade = 1.2;
-  const nextLevel = levelCritDamage + 1;
+  const nextLevel = critLevelDamage + 1;
 
   const upgradeCritDamage = () => {
     // Проверка на то есть ли монеты
@@ -28,7 +28,7 @@ const FooterCritDamage = () => {
       setCoins((prev) => prev - critDamagePrice);
     }
 
-    if (levelCritDamage === 30) {
+    if (critLevelDamage === 30) {
       return;
     }
 
@@ -39,7 +39,7 @@ const FooterCritDamage = () => {
     });
 
     // Повышение уровня
-    setLevelCritDamage(nextLevel);
+    setcritLevelDamage(nextLevel);
 
     // Повышение цены
     setCritDamagePrice((prev) => +(prev * 1.4).toFixed(1));
@@ -60,18 +60,18 @@ const FooterCritDamage = () => {
   return (
     <button
       className={`footer__skill-btn crit-damage ${
-        levelCritDamage === 30 ? "crit-damage--max" : ""
+        critLevelDamage === 30 ? "crit-damage--max" : ""
       }`}
       onClick={upgradeCritDamage}
     >
       <span>Множитель крита</span>
-      {levelCritDamage !== 30 && (
+      {critLevelDamage !== 30 && (
         <>
           <span>+{nextUpgrade.toFixed(1)}x</span>
           <span>Цена: {critDamagePrice.toFixed(0)}</span>
         </>
       )}
-      <span>Уровень: {levelCritDamage === 30 ? "Макс" : levelCritDamage}</span>
+      <span>Уровень: {critLevelDamage === 30 ? "Макс" : critLevelDamage}</span>
     </button>
   );
 };
