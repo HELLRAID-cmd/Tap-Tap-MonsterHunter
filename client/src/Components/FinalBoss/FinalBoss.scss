@@ -1,0 +1,12 @@
+.final-boss {
+  &__btn {
+    background-color: red;
+    font-size: 24px;
+
+    &:hover,
+    &:focus-visible {
+      box-shadow: 0 0 10px 1px var(--c-red);
+      transform: scale(1.02);
+    }
+  }
+}
