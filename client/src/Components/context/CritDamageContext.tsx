@@ -4,10 +4,10 @@ import { CRIT_DAMAGE_LEVEL, CRIT_DAMAGE_PRICE, CRIT_DAMAGE_MULTIPLIER } from "..
 type CritDamageType = {
   critDamage: number;
   critDamagePrice: number;
-  levelCritDamage: number;
+  critLevelDamage: number;
   setCritDamage: React.Dispatch<React.SetStateAction<number>>;
   setCritDamagePrice: React.Dispatch<React.SetStateAction<number>>;
-  setLevelCritDamage: React.Dispatch<React.SetStateAction<number>>;
+  setcritLevelDamage: React.Dispatch<React.SetStateAction<number>>;
 };
 
 const CritDamageContext = createContext<CritDamageType | null>(null);
@@ -19,15 +19,15 @@ export const CritDamageProvider = ({
 }) => {
   const [critDamage, setCritDamage] = useState(CRIT_DAMAGE_MULTIPLIER);
   const [critDamagePrice, setCritDamagePrice] = useState(CRIT_DAMAGE_PRICE);
-  const [levelCritDamage, setLevelCritDamage] = useState(CRIT_DAMAGE_LEVEL);
+  const [critLevelDamage, setcritLevelDamage] = useState(CRIT_DAMAGE_LEVEL);
 
   return (
     <CritDamageContext.Provider
       value={{
         critDamage,
         setCritDamage,
-        levelCritDamage,
-        setLevelCritDamage,
+        critLevelDamage,
+        setcritLevelDamage,
         critDamagePrice,
         setCritDamagePrice,
       }}
