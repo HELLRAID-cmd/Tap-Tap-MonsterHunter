@@ -2,14 +2,14 @@ import { useState } from "react";
 import type { MonsterProps } from "./MonsterProps";
 import { useMonsterActions } from "./useMonsterActions ";
 import "./Monster.scss";
-import HealthBar from "./components/HealthBar";
+import HealthBarMonster from "./components/HealthBarMonster";
 import HitMonsterBtn from "./components/HitMonster/HitMonsterBtn";
 import BtnAdmin from "../Admin/BtnAdmin";
 import { useGame } from "../context/Context";
 
 export const Monster = ({ health }: MonsterProps) => {
 
-  const {levelMonster} = useGame();
+  const {levelMonster, timerValue} = useGame();
   
   // Рандомный цвет
   const { getRandomColor } = useMonsterActions();
@@ -31,8 +31,20 @@ export const Monster = ({ health }: MonsterProps) => {
   // Анимация цифр урона
   const [animationDamage, setAnimationDamage] = useState<string>("");
 
+  const formatTime = (seconds: number) => {
+    const h = Math.floor(seconds / 3600);
+    const m = Math.floor((seconds % 3600) / 60);
+    const s = seconds % 60;
+
+    return `${String(h).padStart(2, "0")}:${String(m).padStart(
+      2,
+      "0"
+    )}:${String(s).padStart(2, "0")}`;
+  };
+
   return (
     <div className="monster">
+      <span>{formatTime(timerValue)}</span>
       <p className="monster-lvl">Уровень: {levelMonster}</p>
       <div className="monster-wrapper">
         {/* Цифры урона */}
@@ -43,7 +55,7 @@ export const Monster = ({ health }: MonsterProps) => {
         ))}
 
         {/* Здоровье моба */}
-        <HealthBar monsterHealth={monsterHealth} maxHealth={maxHealth} />
+        <HealthBarMonster monsterHealth={monsterHealth} maxHealth={maxHealth} />
 
         {/* Монстр */}
         <div

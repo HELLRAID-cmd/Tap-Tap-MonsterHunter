@@ -1,11 +1,17 @@
-import { CRIT_MULTIPLIER, HEALTH } from "../../../Config/Config";
+import { MONSTER_HEALTH} from "../../../Config/Config";
+import { useAttackDamage } from "../../../context/AttackContext";
 import { useGame } from "../../../context/Context";
+import { useCrit } from "../../../context/CritContext";
+import { useCritDamage } from "../../../context/CritDamageContext";
 import type { HandleChangeColorType, HitMonsterType } from "../../MonsterProps";
 import { useMonsterActions } from "../../useMonsterActions ";
 
 export const useHitMonster = () => {
-  const { attack, addCoins, attackCrit, setTotalDamage, setStatusClick, setLevelMonster } = useGame();
+  const { addCoins, setTotalDamage, setStatusClick, setLevelMonster } = useGame();
   const { handleRestart, handleChangeColor } = useMonsterActions();
+  const {attack} = useAttackDamage();
+  const {attackCrit} = useCrit();
+  const {critDamage} = useCritDamage();
 
   const hitMonster = ({
     setMonsterHealth,
@@ -18,9 +24,9 @@ export const useHitMonster = () => {
   }: HitMonsterType & HandleChangeColorType) => {
     // Проверка крита
     const isCrit = Math.random() < attackCrit;
-    const critDamage = isCrit ? Math.round(attack * CRIT_MULTIPLIER) : attack;
+    const critDamageAttack = isCrit ? Math.round(attack * critDamage) : attack;
 
-    const newHealthMonster = monsterHealth - critDamage;
+    const newHealthMonster = monsterHealth - critDamageAttack;
     setMonsterHealth(newHealthMonster <= 0 ? 0 : newHealthMonster);
 
     // Общий дамаг
@@ -31,7 +37,7 @@ export const useHitMonster = () => {
 
     // Проверка на то что монстр погиб, добовляет монеты
     if (newHealthMonster <= 0) {
-      const baseHealth = HEALTH;
+      const baseHealth = MONSTER_HEALTH;
       setLevelMonster(prev => {
         const nextLevel = prev + 1;
         const nextHealth = Math.floor(baseHealth * Math.pow(1.2, nextLevel - 1));
@@ -44,7 +50,7 @@ export const useHitMonster = () => {
       });
     }
 
-    setLastDamage((prev) => [...prev, critDamage]);
+    setLastDamage((prev) => [...prev, critDamageAttack]);
     // Через 1с убирать дамаг
     setTimeout(() => setLastDamage((prev) => prev.slice(1)), 1000);
 
