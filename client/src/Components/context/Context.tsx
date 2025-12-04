@@ -19,6 +19,7 @@ type GameContextType = {
   levelMonster: number;
   timerValue: number;
   startGame: boolean;
+  isFinalBoss: boolean;
   setCoins: React.Dispatch<React.SetStateAction<number>>;
   setNotEnoughCoins: React.Dispatch<React.SetStateAction<boolean>>;
   setTotalDamage: React.Dispatch<React.SetStateAction<number>>;
@@ -27,6 +28,7 @@ type GameContextType = {
   setStatusClick: React.Dispatch<React.SetStateAction<number>>;
   setLevelMonster: React.Dispatch<React.SetStateAction<number>>;
   setStartGame: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsFinalBoss: React.Dispatch<React.SetStateAction<boolean>>;
   startTimer: () => void;
   stopTimer: () => void;
   addCoins: () => void;
@@ -43,6 +45,7 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
   const [statusClick, setStatusClick] = useState(STATUS_CLICK);
   const [levelMonster, setLevelMonster] = useState(MONSTER_LEVEL);
   const [startGame, setStartGame] = useState(false);
+  const [isFinalBoss, setIsFinalBoss] = useState(false);
 
   const [timerValue, setTimerValue] = useState(0);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -99,6 +102,8 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
         timerValue,
         startGame,
         setStartGame,
+        isFinalBoss,
+        setIsFinalBoss,
       }}
     >
       {children}
