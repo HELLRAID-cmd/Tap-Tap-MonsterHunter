@@ -1,7 +1,7 @@
-// const FinalBoss = () => {
-//   return (
+const FinalBoss = () => {
+  return (
+    <p>asdw</p>
+  )
+}
 
-//   )
-// }
-
-// export default FinalBoss;
+export default FinalBoss;
