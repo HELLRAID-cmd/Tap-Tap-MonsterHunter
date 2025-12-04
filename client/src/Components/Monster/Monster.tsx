@@ -84,7 +84,7 @@ export const Monster = ({ health }: MonsterProps) => {
         />
       </div>
 
-      {level >= 130 && critLevel >= 20 && critLevelDamage >= 25 && (
+      {level >= 13 && critLevel >= 5 && critLevelDamage >= 5 && (
         <FinalBossBtn />
       )}
 
