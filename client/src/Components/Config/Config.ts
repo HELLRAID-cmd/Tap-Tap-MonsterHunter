@@ -1,5 +1,6 @@
 // MONSTER
 export const MONSTER_HEALTH = 100;
+export const MONSTER_HEALTH_FINAL = 700000;
 export const MONSTER_LEVEL = 1;
 
 // ATTACK
@@ -21,6 +22,7 @@ export const CRIT_DAMAGE_COINS = 400;
 // STATUS
 export const STATUS_CLICK = 0;
 
+// TOTAL
 export const TOTAL_DAMAGE = 0;
 export const TOTAL_COINS = 0;
 export const TOTAL_COINS_SPENT = 0;
