@@ -1,9 +1,9 @@
 import { useState } from "react";
 import HitMonsterBtn from "../Monster/components/HitMonster/HitMonsterBtn";
-import HealthBarMonster from "../Monster/components/HealthBarMonster";
 import type { MonsterProps } from "../Monster/MonsterProps";
 import { useMonsterActions } from "../Monster/useMonsterActions ";
 import FinalBossRegen from "./FinalBossRegen";
+import FinalBossHealthBar from "./FinalBossHealthBar";
 
 const FinalBoss = ({ health }: MonsterProps) => {
   // Рандомный цвет
@@ -38,10 +38,10 @@ const FinalBoss = ({ health }: MonsterProps) => {
       ))}
 
       {/* Реген здоровья */}
-      <FinalBossRegen/>
+      <FinalBossRegen />
       
       {/* Здоровье моба */}
-      <HealthBarMonster monsterHealth={monsterHealth} maxHealth={maxHealth} />
+      <FinalBossHealthBar/>
 
       <div
         className='monster-enemy final-boss__enemy'
