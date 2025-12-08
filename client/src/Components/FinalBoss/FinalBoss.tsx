@@ -3,6 +3,7 @@ import HitMonsterBtn from "../Monster/components/HitMonster/HitMonsterBtn";
 import HealthBarMonster from "../Monster/components/HealthBarMonster";
 import type { MonsterProps } from "../Monster/MonsterProps";
 import { useMonsterActions } from "../Monster/useMonsterActions ";
+import FinalBossRegen from "./FinalBossRegen";
 
 const FinalBoss = ({ health }: MonsterProps) => {
   // Рандомный цвет
@@ -21,13 +22,14 @@ const FinalBoss = ({ health }: MonsterProps) => {
   const [color, setColor] = useState<string>(getRandomColor);
 
   // Анимация удара крита
-  const [animation, setAnimation] = useState<string>("");
+  const [_animation, setAnimation] = useState<string>("");
 
   // Анимация цифр урона
   const [animationDamage, setAnimationDamage] = useState<string>("");
 
   return (
     <div className="final-boss">
+      <h1 className="final-boss__title">Финальный босс</h1>
       {/* Цифры урона */}
       {lastDamage?.map((dmg, index) => (
         <p className={`monster-damage ${animationDamage}`} key={index}>
@@ -35,13 +37,14 @@ const FinalBoss = ({ health }: MonsterProps) => {
         </p>
       ))}
 
+      {/* Реген здоровья */}
+      <FinalBossRegen/>
+      
       {/* Здоровье моба */}
       <HealthBarMonster monsterHealth={monsterHealth} maxHealth={maxHealth} />
 
       <div
-        className={`monster-enemy ${
-          monsterHealth === 0 ? "monster-enemy-dead" : ""
-        } ${animation}`}
+        className='monster-enemy final-boss__enemy'
         style={{ backgroundColor: color }}
       ></div>
 
