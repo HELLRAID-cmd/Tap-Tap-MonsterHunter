@@ -1,6 +1,5 @@
 // MONSTER
 export const MONSTER_HEALTH = 100;
-export const MONSTER_HEALTH_FINAL = 700000;
 export const MONSTER_LEVEL = 1;
 
 // ATTACK
@@ -38,5 +37,6 @@ export const COINS = 0;
 export const MAX_COINS = 5;
 
 // FINAL BOSS
-// export const FINAL_BOSS_HP = 700000;
+export const FINAL_BOSS_HP = 700000;
 export const FINAL_BOSS_REGEN = 60000;
+export const FINAL_BOSS_TIMER = 7000;
