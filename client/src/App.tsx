@@ -1,4 +1,4 @@
-import { MONSTER_HEALTH, MONSTER_HEALTH_FINAL } from "./Components/Config/Config";
+import { FINAL_BOSS_HP, MONSTER_HEALTH } from "./Components/Config/Config";
 import { Monster } from "./Components/Monster/Monster";
 import "./Styles/style.scss";
 import "./Styles/_reset.scss";
@@ -19,7 +19,7 @@ function App() {
 
   // Если бой с боссом, то показывается только он
   if (isFinalBoss) {
-    return <FinalBoss  health={MONSTER_HEALTH_FINAL}/>;
+    return <FinalBoss  health={FINAL_BOSS_HP}/>;
   }
 
   return (

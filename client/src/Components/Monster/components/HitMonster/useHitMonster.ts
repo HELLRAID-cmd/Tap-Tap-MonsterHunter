@@ -3,6 +3,7 @@ import { useAttackDamage } from "../../../context/AttackContext";
 import { useGame } from "../../../context/Context";
 import { useCrit } from "../../../context/CritContext";
 import { useCritDamage } from "../../../context/CritDamageContext";
+import { useFinalBoss } from "../../../FinalBoss/FinalBossContext";
 import type { HandleChangeColorType, HitMonsterType } from "../../MonsterProps";
 import { useMonsterActions } from "../../useMonsterActions ";
 
@@ -12,6 +13,8 @@ export const useHitMonster = () => {
   const {attack} = useAttackDamage();
   const {attackCrit} = useCrit();
   const {critDamage} = useCritDamage();
+  const {isFinalBoss} = useGame();
+  const { setFinalBossHp } = useFinalBoss();
 
   const hitMonster = ({
     setMonsterHealth,
@@ -22,6 +25,12 @@ export const useHitMonster = () => {
     setColor,
     setMaxHealth,
   }: HitMonsterType & HandleChangeColorType) => {
+    // Удар по финальному боссу
+    if (isFinalBoss) {
+      setFinalBossHp(prev => Math.max(prev - attack, 0));
+      return;
+    }
+    
     // Проверка крита
     const isCrit = Math.random() < attackCrit;
     const critDamageAttack = isCrit ? Math.round(attack * critDamage) : attack;
