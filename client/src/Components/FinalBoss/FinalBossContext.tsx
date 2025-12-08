@@ -2,9 +2,9 @@ import { createContext, useContext, useState } from "react";
 import { FINAL_BOSS_HP, FINAL_BOSS_REGEN } from "../Config/Config";
 
 type FinalBossType = {
-  // finalBossHp: number;
+  finalBossHp: number;
   finalBossRegen: number;
-  // setFinalBossHp: React.Dispatch<React.SetStateAction<number>>;
+  setFinalBossHp: React.Dispatch<React.SetStateAction<number>>;
   setFinalBossRegen: React.Dispatch<React.SetStateAction<number>>;
 };
 
@@ -15,15 +15,15 @@ export const FinalBossProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  // const [finalBossHp, setFinalBossHp] = useState(FINAL_BOSS_HP);
+  const [finalBossHp, setFinalBossHp] = useState(FINAL_BOSS_HP);
   const [finalBossRegen, setFinalBossRegen] = useState(FINAL_BOSS_REGEN);
 
   return (
     <FinalBossContext.Provider
       value={{
-        // finalBossHp,
+        finalBossHp,
         finalBossRegen,
-        // setFinalBossHp,
+        setFinalBossHp,
         setFinalBossRegen,
       }}
     >
