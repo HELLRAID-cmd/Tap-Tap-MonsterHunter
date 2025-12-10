@@ -40,3 +40,4 @@ export const MAX_COINS = 5;
 export const FINAL_BOSS_HP = 700000;
 export const FINAL_BOSS_REGEN = 60000;
 export const FINAL_BOSS_TIMER = 7000;
+export const FINAL_BOSS_DEAD = false;
