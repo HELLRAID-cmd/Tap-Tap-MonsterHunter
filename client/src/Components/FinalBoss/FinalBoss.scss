@@ -36,6 +36,17 @@
     animation: fill 7s linear infinite;
   }
 
+  &__hp-regen {
+    color: var(--c-green);
+    font-size: 22px;
+    font-weight: 600;
+    opacity: 0;
+
+    &.hidden {
+      animation: hidden 1s linear forwards;
+    }
+  }
+
   &__btn {
     background-color: red;
     font-size: 24px;
@@ -54,5 +65,20 @@
   } 
   100% {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+@keyframes hidden {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
   }
 }

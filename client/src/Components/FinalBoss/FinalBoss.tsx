@@ -4,6 +4,7 @@ import type { MonsterProps } from "../Monster/MonsterProps";
 import { useMonsterActions } from "../Monster/useMonsterActions ";
 import FinalBossRegen from "./FinalBossRegen";
 import FinalBossHealthBar from "./FinalBossHealthBar";
+import FinalBossHpRegen from "./FinalBossHpRegen";
 
 const FinalBoss = ({ health }: MonsterProps) => {
   // Рандомный цвет
@@ -36,6 +37,9 @@ const FinalBoss = ({ health }: MonsterProps) => {
           -{dmg.toFixed(2)}хп
         </p>
       ))}
+
+      {/* Хп регена */}
+      <FinalBossHpRegen/>
 
       {/* Реген здоровья */}
       <FinalBossRegen />
