@@ -14,7 +14,7 @@ export const useHitMonster = () => {
   const {attackCrit} = useCrit();
   const {critDamage} = useCritDamage();
   const {isFinalBoss} = useGame();
-  const { setFinalBossHp, finalBossHp, setFinalBossDead } = useFinalBoss();
+  const { setFinalBossHp, setFinalBossDead } = useFinalBoss();
 
   const hitMonster = ({
     setMonsterHealth,
@@ -25,14 +25,20 @@ export const useHitMonster = () => {
     setColor,
     setMaxHealth,
   }: HitMonsterType & HandleChangeColorType) => {
+
     // Удар по финальному боссу
-    if (isFinalBoss) {
-      // Проверка на то что босс погиб
-      if(finalBossHp <= 699900) {
-        setFinalBossDead(true);
-      }
-      
-      setFinalBossHp(prev => Math.max(prev - attack, 0));
+    if(isFinalBoss) {
+      setFinalBossHp(prev => {
+        const newHp = Math.max(prev - attack, 0);
+
+        if (newHp <= 699900) {
+          setFinalBossDead(true);
+          console.log('asd')
+        }
+
+        return newHp;
+      }) 
+
       return;
     }
     
