@@ -1,13 +1,15 @@
 import { createContext, useContext, useState } from "react";
-import { FINAL_BOSS_DEAD, FINAL_BOSS_HP, FINAL_BOSS_REGEN } from "../Config/Config";
+import { FINAL_BOSS_DEAD, FINAL_BOSS_HP, FINAL_BOSS_REGEN, FINAL_BOSS_SHOW_STATUS } from "../Config/Config";
 
 type FinalBossType = {
   finalBossHp: number;
   finalBossRegen: number;
-  finalBossDead: boolean;
+  finalBossWinner: boolean;
+  finalBossShowStatus: boolean;
   setFinalBossHp: React.Dispatch<React.SetStateAction<number>>;
   setFinalBossRegen: React.Dispatch<React.SetStateAction<number>>;
-  setFinalBossDead: React.Dispatch<React.SetStateAction<boolean>>;
+  setFinalBossWinner: React.Dispatch<React.SetStateAction<boolean>>;
+  setFinalBossShowStatus: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const FinalBossContext = createContext<FinalBossType | null>(null);
@@ -19,17 +21,20 @@ export const FinalBossProvider = ({
 }) => {
   const [finalBossHp, setFinalBossHp] = useState(FINAL_BOSS_HP);
   const [finalBossRegen, setFinalBossRegen] = useState(FINAL_BOSS_REGEN);
-  const [finalBossDead, setFinalBossDead] = useState(FINAL_BOSS_DEAD);
+  const [finalBossWinner, setFinalBossWinner] = useState(FINAL_BOSS_DEAD);
+  const [finalBossShowStatus, setFinalBossShowStatus] = useState(FINAL_BOSS_SHOW_STATUS);
 
   return (
     <FinalBossContext.Provider
       value={{
         finalBossHp,
         finalBossRegen,
-        finalBossDead,
+        finalBossWinner,
+        finalBossShowStatus,
         setFinalBossHp,
         setFinalBossRegen,
-        setFinalBossDead
+        setFinalBossWinner,
+        setFinalBossShowStatus,
       }}
     >
       {children}
