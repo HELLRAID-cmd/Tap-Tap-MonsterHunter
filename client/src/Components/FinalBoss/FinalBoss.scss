@@ -1,3 +1,6 @@
+@use "../../Styles/variables" as *;
+@use "../../Styles/mixins" as *;
+
 .final-boss {
   display: flex;
   flex-direction: column;
@@ -57,12 +60,48 @@
       transform: scale(1.02);
     }
   }
+
+  // Status
+  &__status {
+    margin: 100px auto;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+
+    @include vp-767 {
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid var(--c-black);
+    }
+  }
+
+  &__item {
+    display: flex;
+    gap: 5px;
+    padding: 20px;
+    border: 1px solid var(--c-black);
+
+    @include vp-767 {
+      border: none;
+    }
+    
+    &:not(:last-child) {
+      border-bottom: 1px solid var(--c-black);
+    }
+
+    &-name,
+    &-info {
+      font-size: 18px;
+    }
+  }
 }
 
 @keyframes fill {
   0% {
     clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
-  } 
+  }
   100% {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
   }
