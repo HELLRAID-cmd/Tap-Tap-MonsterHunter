@@ -14,7 +14,7 @@ export const useHitMonster = () => {
   const {attackCrit} = useCrit();
   const {critDamage} = useCritDamage();
   const {isFinalBoss} = useGame();
-  const { setFinalBossHp, setFinalBossDead } = useFinalBoss();
+  const { setFinalBossHp, setFinalBossWinner } = useFinalBoss();
 
   const hitMonster = ({
     setMonsterHealth,
@@ -31,8 +31,8 @@ export const useHitMonster = () => {
       setFinalBossHp(prev => {
         const newHp = Math.max(prev - attack, 0);
 
-        if (newHp <= 699900) {
-          setFinalBossDead(true);
+        if (newHp <= 699990) {
+          setFinalBossWinner(true);
           console.log('asd')
         }
 
