@@ -13,9 +13,10 @@ import FinalBossStatus from "./Components/FinalBoss/FinalBossStatus";
 
 function App() {
   const { startGame, isFinalBoss } = useGame();
-  const {finalBossDead} = useFinalBoss();
+  const {finalBossShowStatus} = useFinalBoss();
 
-  if(finalBossDead) {
+  // Победное окно
+  if(finalBossShowStatus) {
     return <FinalBossStatus />
   }
 
@@ -26,7 +27,7 @@ function App() {
 
   // Если бой с боссом, то показывается только он
   if (isFinalBoss) {
-    return <FinalBoss  health={FINAL_BOSS_HP}/>;
+    return <FinalBoss health={FINAL_BOSS_HP}/>;
   }
 
   return (
