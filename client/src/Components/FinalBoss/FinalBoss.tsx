@@ -5,10 +5,14 @@ import { useMonsterActions } from "../Monster/useMonsterActions ";
 import FinalBossRegen from "./FinalBossRegen";
 import FinalBossHealthBar from "./FinalBossHealthBar";
 import FinalBossHpRegen from "./FinalBossHpRegen";
+import FinalBossWinner from "./FinalBossWinner";
+import { useFinalBoss } from "./FinalBossContext";
 
 const FinalBoss = ({ health }: MonsterProps) => {
   // Рандомный цвет
   const { getRandomColor } = useMonsterActions();
+
+  const { finalBossWinner } = useFinalBoss();
 
   // Максимальное здоровье
   const [maxHealth, setMaxHealth] = useState(health);
@@ -39,16 +43,16 @@ const FinalBoss = ({ health }: MonsterProps) => {
       ))}
 
       {/* Хп регена */}
-      <FinalBossHpRegen/>
+      <FinalBossHpRegen />
 
       {/* Реген здоровья */}
       <FinalBossRegen />
-      
+
       {/* Здоровье моба */}
-      <FinalBossHealthBar/>
+      <FinalBossHealthBar />
 
       <div
-        className='monster-enemy final-boss__enemy'
+        className="monster-enemy final-boss__enemy"
         style={{ backgroundColor: color }}
       ></div>
 
@@ -62,6 +66,12 @@ const FinalBoss = ({ health }: MonsterProps) => {
         setMaxHealth={setMaxHealth}
         setColor={setColor}
       />
+
+      {finalBossWinner && (
+        <>
+          <FinalBossWinner />
+        </>
+      )}
     </div>
   );
 };
