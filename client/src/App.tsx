@@ -8,9 +8,16 @@ import StatusPlayer from "./Components/StatusPlayer/StatusPlayer";
 import Info from "./Components/Info/Info";
 import { useGame } from "./Components/context/Context";
 import FinalBoss from "./Components/FinalBoss/FinalBoss";
+import { useFinalBoss } from "./Components/FinalBoss/FinalBossContext";
+import FinalBossStatus from "./Components/FinalBoss/FinalBossStatus";
 
 function App() {
   const { startGame, isFinalBoss } = useGame();
+  const {finalBossDead} = useFinalBoss();
+
+  if(finalBossDead) {
+    return <FinalBossStatus />
+  }
 
   // Если кнопка не нажата показываем инфу
   if (!startGame && !isFinalBoss) {
