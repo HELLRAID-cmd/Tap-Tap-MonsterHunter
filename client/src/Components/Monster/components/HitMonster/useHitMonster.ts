@@ -32,7 +32,10 @@ export const useHitMonster = () => {
         const newHp = Math.max(prev - attack, 0);
 
         if (newHp <= 699990) {
+          // Победное окно
           setFinalBossWinner(true);
+          
+          // Отсюда отключается реген хп
           setFinalBossRegenEnable(false);
         }
 
