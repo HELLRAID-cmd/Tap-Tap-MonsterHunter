@@ -9,22 +9,26 @@ import {
 
 const HealthBarMonster = () => {
   const { isFinalBoss } = useGame();
-  const { setFinalBossHp, finalBossHp } = useFinalBoss();
+  const { setFinalBossHp, finalBossHp, finalBossRegenEnable } = useFinalBoss();
 
   useEffect(() => {
     if (!isFinalBoss) return;
+    if(!finalBossRegenEnable) return;
+
     let alreadyRan = false;
 
     const interval = setInterval(() => {
       if (alreadyRan) return;
       alreadyRan = true;
+
       setFinalBossHp((prev) =>
         Math.min(prev + FINAL_BOSS_REGEN, FINAL_BOSS_HP)
       );
+
     }, FINAL_BOSS_TIMER);
 
     return () => clearInterval(interval);
-  }, [isFinalBoss, setFinalBossHp]);
+  }, [isFinalBoss, setFinalBossHp, finalBossRegenEnable]);
 
   return (
     <div className="health-bar">
