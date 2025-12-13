@@ -83,6 +83,10 @@
         font-size: 24px;
       }
     }
+
+    &-restart {
+      background-color: var(--c-green);
+    }
   }
 
   &__list {
