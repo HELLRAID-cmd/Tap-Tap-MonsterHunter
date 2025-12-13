@@ -56,16 +56,20 @@ const FinalBoss = ({ health }: MonsterProps) => {
         style={{ backgroundColor: color }}
       ></div>
 
-      {/* Ударить моба */}
-      <HitMonsterBtn
-        monsterHealth={monsterHealth}
-        setAnimationDamage={setAnimationDamage}
-        setMonsterHealth={setMonsterHealth}
-        setAnimation={setAnimation}
-        setLastDamage={setLastDamage}
-        setMaxHealth={setMaxHealth}
-        setColor={setColor}
-      />
+      {!finalBossWinner && (
+        <>
+          {/* Ударить моба */}
+          <HitMonsterBtn
+            monsterHealth={monsterHealth}
+            setAnimationDamage={setAnimationDamage}
+            setMonsterHealth={setMonsterHealth}
+            setAnimation={setAnimation}
+            setLastDamage={setLastDamage}
+            setMaxHealth={setMaxHealth}
+            setColor={setColor}
+          />
+        </>
+      )}
 
       {finalBossWinner && (
         <>

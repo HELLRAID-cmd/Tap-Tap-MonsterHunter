@@ -13,6 +13,7 @@ export const FinalBossStatus = () => {
   
   return (
     <div className="final-boss__status">
+      <h1 className="final-boss__status-title">Общая статистика</h1>
       <ul className="final-boss__list">
         <li className="final-boss__item">
           <p className="final-boss__item-name">Атака: </p>

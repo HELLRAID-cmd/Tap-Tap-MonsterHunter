@@ -1,4 +1,4 @@
-import { MONSTER_HEALTH} from "../../../Config/Config";
+import { MONSTER_HEALTH } from "../../../Config/Config";
 import { useAttackDamage } from "../../../context/AttackContext";
 import { useGame } from "../../../context/Context";
 import { useCrit } from "../../../context/CritContext";
@@ -8,13 +8,15 @@ import type { HandleChangeColorType, HitMonsterType } from "../../MonsterProps";
 import { useMonsterActions } from "../../useMonsterActions ";
 
 export const useHitMonster = () => {
-  const { addCoins, setTotalDamage, setStatusClick, setLevelMonster } = useGame();
+  const { addCoins, setTotalDamage, setStatusClick, setLevelMonster } =
+    useGame();
   const { handleRestart, handleChangeColor } = useMonsterActions();
-  const {attack} = useAttackDamage();
-  const {attackCrit} = useCrit();
-  const {critDamage} = useCritDamage();
-  const {isFinalBoss} = useGame();
-  const { setFinalBossHp, setFinalBossWinner, setFinalBossRegenEnable } = useFinalBoss();
+  const { attack } = useAttackDamage();
+  const { attackCrit } = useCrit();
+  const { critDamage } = useCritDamage();
+  const { isFinalBoss } = useGame();
+  const { setFinalBossHp, setFinalBossWinner, setFinalBossRegenEnable } =
+    useFinalBoss();
 
   const hitMonster = ({
     setMonsterHealth,
@@ -25,26 +27,28 @@ export const useHitMonster = () => {
     setColor,
     setMaxHealth,
   }: HitMonsterType & HandleChangeColorType) => {
-
     // Удар по финальному боссу
-    if(isFinalBoss) {
-      setFinalBossHp(prev => {
+    if (isFinalBoss) {
+      // Общие нажатия по боссу
+      setStatusClick((prev) => prev + 1);
+
+      setFinalBossHp((prev) => {
         const newHp = Math.max(prev - attack, 0);
 
         if (newHp <= 699990) {
           // Победное окно
           setFinalBossWinner(true);
-          
+
           // Отсюда отключается реген хп
           setFinalBossRegenEnable(false);
         }
 
         return newHp;
-      }) 
+      });
 
       return;
     }
-    
+
     // Проверка крита
     const isCrit = Math.random() < attackCrit;
     const critDamageAttack = isCrit ? Math.round(attack * critDamage) : attack;
@@ -53,22 +57,28 @@ export const useHitMonster = () => {
     setMonsterHealth(newHealthMonster <= 0 ? 0 : newHealthMonster);
 
     // Общий дамаг
-    setTotalDamage(prev => +(prev + attack).toFixed(0));
+    setTotalDamage((prev) => +(prev + attack).toFixed(0));
 
     // Общие нажатия
-    setStatusClick(prev => prev + 1);
+    setStatusClick((prev) => prev + 1);
 
     // Проверка на то что монстр погиб, добовляет монеты
     if (newHealthMonster <= 0) {
       const baseHealth = MONSTER_HEALTH;
-      setLevelMonster(prev => {
+      setLevelMonster((prev) => {
         const nextLevel = prev + 1;
-        const nextHealth = Math.floor(baseHealth * Math.pow(1.2, nextLevel - 1));
+        const nextHealth = Math.floor(
+          baseHealth * Math.pow(1.2, nextLevel - 1)
+        );
 
-        handleRestart({ setMonsterHealth, setMaxHealth, newHealth: nextHealth });
+        handleRestart({
+          setMonsterHealth,
+          setMaxHealth,
+          newHealth: nextHealth,
+        });
         handleChangeColor({ setColor });
         addCoins();
-        
+
         return nextLevel;
       });
     }
