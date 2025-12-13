@@ -12,6 +12,7 @@ type CritType = {
   setAttackCrit: React.Dispatch<React.SetStateAction<number>>;
   setCritLevel: React.Dispatch<React.SetStateAction<number>>;
   setCritPrice: React.Dispatch<React.SetStateAction<number>>;
+  restartCrit: () => void;
 };
 
 const CritContext = createContext<CritType | null>(null);
@@ -25,15 +26,22 @@ export const CritProvider = ({
   const [critPrice, setCritPrice] = useState(CRIT_PRICE);
   const [attackCrit, setAttackCrit] = useState(CRIT_CHANCE);
 
+  const restartCrit = () => {
+    setAttackCrit(CRIT_CHANCE);
+    setCritLevel(CRIT_LEVEL);
+    setCritPrice(CRIT_PRICE)
+  }
+
   return (
     <CritContext.Provider
       value={{
         critLevel,
-        setCritLevel,
         critPrice,
-        setCritPrice,
         attackCrit,
+        setCritLevel,
+        setCritPrice,
         setAttackCrit,
+        restartCrit,
       }}
     >
       {children}

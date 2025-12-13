@@ -32,6 +32,7 @@ type GameContextType = {
   startTimer: () => void;
   stopTimer: () => void;
   addCoins: () => void;
+  restartGame: () => void;
 };
 
 const GameContext = createContext<GameContextType | null>(null);
@@ -52,12 +53,26 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
 
   const { coinsFooter } = useCoinsFooter();
 
+  // Добавление монет
   const addCoins = () => {
     const randomNumber = Math.floor(Math.random() * coinsFooter) + 1;
     setCoins((prev) => prev + randomNumber);
     setTotalCoins((prev) => prev + randomNumber);
   };
 
+  // Рестарт игры
+  const restartGame = () => {
+    setStartGame(false);
+    setIsFinalBoss(false);
+    setTotalDamage(TOTAL_DAMAGE);
+    setTotalCoins(TOTAL_COINS);
+    setTotalCoinsSpent(TOTAL_COINS_SPENT);
+    setStatusClick(STATUS_CLICK);
+    setLevelMonster(MONSTER_LEVEL);
+    setCoins(COINS);
+  }
+
+  // Запуск таймера
   const startTimer = () => {
     if (intervalRef.current) return;
 
@@ -66,6 +81,7 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
     }, 1000);
   };
 
+  // Остановка таймера
   const stopTimer = () => {
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
@@ -104,6 +120,7 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
         setStartGame,
         isFinalBoss,
         setIsFinalBoss,
+        restartGame,
       }}
     >
       {children}

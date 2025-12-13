@@ -3,13 +3,24 @@ import { useCoinsFooter } from "../context/CoinsContext";
 import { useGame } from "../context/Context";
 import { useCrit } from "../context/CritContext";
 import { useCritDamage } from "../context/CritDamageContext";
+import { useFinalBoss } from "./FinalBossContext";
 
 export const FinalBossStatus = () => {
-  const {attack} = useAttackDamage();
-  const {attackCrit} = useCrit();
-  const {critDamage} = useCritDamage();
-  const {coinsMultiplier} = useCoinsFooter();
-  const {totalDamage, totalCoins, totalCoinsSpent, statusClick} = useGame();
+  const {attack, restartAttack} = useAttackDamage();
+  const {attackCrit, restartCrit} = useCrit();
+  const {critDamage, restartCritDamage} = useCritDamage();
+  const {coinsMultiplier, restartCoins} = useCoinsFooter();
+  const {totalDamage, totalCoins, totalCoinsSpent, statusClick, restartGame} = useGame();
+  const {restartFinalBoss} = useFinalBoss();
+
+  const handleRestart = () => {
+    restartGame();
+    restartFinalBoss();
+    restartCrit();
+    restartAttack();
+    restartCoins();
+    restartCritDamage();
+  }
   
   return (
     <div className="final-boss__status">
@@ -52,6 +63,7 @@ export const FinalBossStatus = () => {
           <span className="final-boss__item-info">{statusClick}</span>
         </li>
       </ul>
+      <button className="final-boss__status-restart" onClick={handleRestart}>Начать с начала</button>
     </div>
   );
 };

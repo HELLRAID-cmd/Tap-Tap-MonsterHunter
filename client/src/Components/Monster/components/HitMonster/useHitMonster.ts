@@ -32,6 +32,9 @@ export const useHitMonster = () => {
       // Общие нажатия по боссу
       setStatusClick((prev) => prev + 1);
 
+      // Общий дамаг по боссу
+      setTotalDamage((prev) => +(prev + attack).toFixed(0));
+
       setFinalBossHp((prev) => {
         const newHp = Math.max(prev - attack, 0);
 
