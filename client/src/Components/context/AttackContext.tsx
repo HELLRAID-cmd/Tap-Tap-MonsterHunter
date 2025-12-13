@@ -12,6 +12,7 @@ type AttackType = {
   setAttack: React.Dispatch<React.SetStateAction<number>>;
   setLevel: React.Dispatch<React.SetStateAction<number>>;
   setPrice: React.Dispatch<React.SetStateAction<number>>;
+  restartAttack: () => void;
 };
 
 const AttackContext = createContext<AttackType | null>(null);
@@ -25,15 +26,22 @@ export const AttackProvider = ({
   const [level, setLevel] = useState(ATTACK_LEVEL);
   const [price, setPrice] = useState(ATTACK_PRICE);
 
+  const restartAttack = () => {
+    setAttack(ATTACK_DAMAGE);
+    setLevel(ATTACK_LEVEL);
+    setPrice(ATTACK_PRICE)
+  }
+
   return (
     <AttackContext.Provider
       value={{
         level,
-        setLevel,
         price,
-        setPrice,
         attack,
+        setLevel,
+        setPrice,
         setAttack,
+        restartAttack,
       }}
     >
       {children}

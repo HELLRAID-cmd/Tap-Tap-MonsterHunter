@@ -15,6 +15,7 @@ type CoinsType = {
   setCoinsFooterPrice: React.Dispatch<React.SetStateAction<number>>;
   setCoinsFooterLevel: React.Dispatch<React.SetStateAction<number>>;
   setCoinsMultiplier: React.Dispatch<React.SetStateAction<number>>;
+  restartCoins: () => void;
 };
 
 const CoinsContext = createContext<CoinsType | null>(null);
@@ -29,6 +30,13 @@ export const CoinsProvider = ({
   const [coinsFooterLevel, setCoinsFooterLevel] = useState(COINS_FOOTER_LEVEL);
   const [coinsMultiplier, setCoinsMultiplier] = useState(COINS_FOOTER_MULTIPLIER);
 
+  const restartCoins = () => {
+    setCoinsFooter(COINS_FOOTER);
+    setCoinsFooterPrice(COINS_FOOTER_PRICE);
+    setCoinsFooterLevel(COINS_FOOTER_LEVEL);
+    setCoinsMultiplier(COINS_FOOTER_MULTIPLIER);
+  }
+
   return (
     <CoinsContext.Provider
       value={{
@@ -39,7 +47,8 @@ export const CoinsProvider = ({
         coinsFooterLevel,
         setCoinsFooterLevel,
         coinsMultiplier,
-        setCoinsMultiplier
+        setCoinsMultiplier,
+        restartCoins
       }}
     >
       {children}

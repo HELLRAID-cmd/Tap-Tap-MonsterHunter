@@ -12,6 +12,7 @@ type FinalBossType = {
   setFinalBossWinner: React.Dispatch<React.SetStateAction<boolean>>;
   setFinalBossShowStatus: React.Dispatch<React.SetStateAction<boolean>>;
   setFinalBossRegenEnable: React.Dispatch<React.SetStateAction<boolean>>;
+  restartFinalBoss: () => void;
 };
 
 const FinalBossContext = createContext<FinalBossType | null>(null);
@@ -27,6 +28,14 @@ export const FinalBossProvider = ({
   const [finalBossShowStatus, setFinalBossShowStatus] = useState(FINAL_BOSS_SHOW_STATUS);
   const [finalBossRegenEnable, setFinalBossRegenEnable] = useState(FINAL_BOSS_REGEN_ENABLE);
 
+  // Рестарт финального босса
+  const restartFinalBoss = () => {
+    setFinalBossHp(FINAL_BOSS_HP);
+    setFinalBossWinner(FINAL_BOSS_DEAD);
+    setFinalBossShowStatus(FINAL_BOSS_SHOW_STATUS);
+    setFinalBossRegenEnable(FINAL_BOSS_REGEN_ENABLE);
+  };
+
   return (
     <FinalBossContext.Provider
       value={{
@@ -40,6 +49,7 @@ export const FinalBossProvider = ({
         setFinalBossWinner,
         setFinalBossShowStatus,
         setFinalBossRegenEnable,
+        restartFinalBoss,
       }}
     >
       {children}
