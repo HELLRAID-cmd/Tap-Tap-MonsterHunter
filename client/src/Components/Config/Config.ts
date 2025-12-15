@@ -38,6 +38,7 @@ export const COINS_FOOTER_MULTIPLIER = 1;
 // COINS
 export const COINS = 0;
 export const MAX_COINS = 5;
+export const COINS_MULTIPLIER = 1.1;
 
 // FINAL BOSS
 export const FINAL_BOSS_HP = 700000;
