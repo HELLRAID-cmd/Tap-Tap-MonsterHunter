@@ -1,6 +1,9 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import {
+  ATTACK_BONUS_MONEY,
   COINS,
+  CRIT_BONUS_MONEY,
+  CRIT_DAMAGE_BONUS_MONEY,
   MONSTER_LEVEL,
   STATUS_CLICK,
   TOTAL_COINS,
@@ -8,6 +11,9 @@ import {
   TOTAL_DAMAGE,
 } from "../Config/Config";
 import { useCoinsFooter } from "./CoinsContext";
+import { useCritDamage } from "./CritDamageContext";
+import { useAttackDamage } from "./AttackContext";
+import { useCrit } from "./CritContext";
 
 type GameContextType = {
   coins: number;
@@ -52,12 +58,29 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const { coinsFooter } = useCoinsFooter();
+  const { critLevelDamage } = useCritDamage();
+  const { attack } = useAttackDamage();
+  const { critLevel } = useCrit();
 
   // Добавление монет
   const addCoins = () => {
-    const randomNumber = Math.floor(Math.random() * coinsFooter) + 1;
-    setCoins((prev) => prev + randomNumber);
-    setTotalCoins((prev) => prev + randomNumber);
+    const baseRandom = Math.floor(Math.random() * coinsFooter) + 1;
+
+    // Бонусные монеты от множителя крита, от уровня
+    const bonusCoinsCritDamage = Math.max(0, critLevelDamage - 1) * CRIT_DAMAGE_BONUS_MONEY;
+
+    // Бонусные монеты от крита, от уровня
+    const bonusCoinsCrit = Math.max(0, critLevel - 1) * CRIT_BONUS_MONEY;
+
+    // Бонусные монеты от урона, от урона на 10 уровне
+    const bonusCoinsAttack = Math.max(0, attack - 10) * ATTACK_BONUS_MONEY;
+
+    // Общая награда
+    const totalReward =
+      baseRandom + bonusCoinsAttack + bonusCoinsCritDamage + bonusCoinsCrit;
+
+    setCoins((prev) => prev + totalReward);
+    setTotalCoins((prev) => prev + totalReward);
   };
 
   // Рестарт игры
@@ -70,7 +93,7 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
     setStatusClick(STATUS_CLICK);
     setLevelMonster(MONSTER_LEVEL);
     setCoins(COINS);
-  }
+  };
 
   // Запуск таймера
   const startTimer = () => {
