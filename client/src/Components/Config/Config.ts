@@ -6,17 +6,20 @@ export const MONSTER_LEVEL = 1;
 export const ATTACK_PRICE = 1;
 export const ATTACK_LEVEL = 1;
 export const ATTACK_DAMAGE = 1;
+export const ATTACK_BONUS_MONEY = 0.2;
 
 // CRIT CHANCE
 export const CRIT_CHANCE = 0.15; // 15%
 export const CRIT_PRICE = 30;
 export const CRIT_LEVEL = 1;
+export const CRIT_BONUS_MONEY = 15;
 
 // CRIT DAMAGE
 export const CRIT_DAMAGE_MULTIPLIER = 2;
 export const CRIT_DAMAGE_PRICE = 100;
 export const CRIT_DAMAGE_LEVEL = 1;
 export const CRIT_DAMAGE_COINS = 400;
+export const CRIT_DAMAGE_BONUS_MONEY = 30;
 
 // STATUS
 export const STATUS_CLICK = 0;
