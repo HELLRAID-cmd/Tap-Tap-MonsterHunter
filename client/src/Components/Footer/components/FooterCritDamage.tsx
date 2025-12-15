@@ -42,19 +42,19 @@ const FooterCritDamage = () => {
     setcritLevelDamage(nextLevel);
 
     // Повышение цены
-    setCritDamagePrice((prev) => +(prev * 1.4).toFixed(1));
+    setCritDamagePrice((prev) => +(prev * 1.3).toFixed(1));
 
     if (nextLevel === 10) {
-      setCritDamagePrice((prev) => +(prev * 0.8).toFixed(1));
+      setCritDamagePrice((prev) => +(prev * 1.5).toFixed(1));
     }
 
     if (nextLevel === 20) {
-      setCritDamagePrice((prev) => +(prev * 0.4).toFixed(1));
+      setCritDamagePrice((prev) => +(prev * 1.02).toFixed(1));
     }
 
-    if (nextLevel === 30) {
-      setCritDamagePrice((prev) => +(prev * 0.2).toFixed(1));
-    }
+    // if (nextLevel === 30) {
+    //   setCritDamagePrice((prev) => +(prev * 0.2).toFixed(1));
+    // }
   };
 
   return (
