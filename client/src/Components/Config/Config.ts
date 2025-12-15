@@ -1,6 +1,7 @@
 // MONSTER
 export const MONSTER_HEALTH = 100;
 export const MONSTER_LEVEL = 1;
+export const MONSTER_MULTIPLIER_HEALTH = 1.1;
 
 // ATTACK
 export const ATTACK_PRICE = 1;
@@ -38,7 +39,6 @@ export const COINS_FOOTER_MULTIPLIER = 1;
 // COINS
 export const COINS = 0;
 export const MAX_COINS = 5;
-export const COINS_MULTIPLIER = 1.1;
 
 // FINAL BOSS
 export const FINAL_BOSS_HP = 700000;
