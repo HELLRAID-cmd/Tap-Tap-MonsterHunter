@@ -1,6 +1,7 @@
 // MONSTER
 export const MONSTER_HEALTH = 100;
 export const MONSTER_LEVEL = 1;
+export const MONSTER_MULTIPLIER_HEALTH = 1.1;
 
 // ATTACK
 export const ATTACK_PRICE = 1;
