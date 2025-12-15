@@ -10,6 +10,7 @@ import FinalBossBtn from "../FinalBoss/FinalBossBtn";
 import { useAttackDamage } from "../context/AttackContext";
 import { useCrit } from "../context/CritContext";
 import { useCritDamage } from "../context/CritDamageContext";
+import formatTime from "../utils/formatTime";
 
 export const Monster = ({ health }: MonsterProps) => {
   const { levelMonster, timerValue } = useGame();
@@ -37,17 +38,6 @@ export const Monster = ({ health }: MonsterProps) => {
 
   // Анимация цифр урона
   const [animationDamage, setAnimationDamage] = useState<string>("");
-
-  const formatTime = (seconds: number) => {
-    const h = Math.floor(seconds / 3600);
-    const m = Math.floor((seconds % 3600) / 60);
-    const s = seconds % 60;
-
-    return `${String(h).padStart(2, "0")}:${String(m).padStart(
-      2,
-      "0"
-    )}:${String(s).padStart(2, "0")}`;
-  };
 
   return (
     <div className="monster">
