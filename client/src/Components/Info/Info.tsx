@@ -2,7 +2,7 @@ import { useGame } from "../context/Context";
 import "./info.scss";
 
 const Info = () => {
-  const {startTimer, setStartGame, startGame} = useGame();
+  const {setStartGame, startGame} = useGame();
 
   const handleBtn = () => {
     setStartGame(true);
@@ -21,7 +21,6 @@ const Info = () => {
         </h2>
       </div>
       <button className="info__btn" onClick={() => {
-        startTimer();
         handleBtn();
       }}>Начать</button>
     </div>
