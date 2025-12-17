@@ -93,10 +93,6 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
     setStatusClick(STATUS_CLICK);
     setLevelMonster(MONSTER_LEVEL);
     setCoins(COINS);
-<<<<<<< HEAD
-=======
-    setTimerValue(0);
->>>>>>> finalboss
   };
 
   // Запуск таймера
