@@ -39,7 +39,7 @@ export const useHitMonster = () => {
         const newHp = Math.max(prev - attack, 0);
 
         // Победа пользователя над боссом
-        if (newHp <= 699990) {
+        if (newHp <= 0) {
           // Победное окно
           setFinalBossWinner(true);
           
