@@ -70,7 +70,8 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
     setStatusClick(STATUS_CLICK);
     setLevelMonster(MONSTER_LEVEL);
     setCoins(COINS);
-  }
+    setTimerValue(0);
+  };
 
   // Запуск таймера
   const startTimer = () => {
@@ -90,10 +91,16 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   useEffect(() => {
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-    };
-  }, []);
+    if (!startGame) {
+      stopTimer();
+      setTimerValue(0);
+      return;
+    }
+
+    startTimer();
+
+    return () => stopTimer();
+  }, [startGame]);
 
   return (
     <GameContext.Provider
