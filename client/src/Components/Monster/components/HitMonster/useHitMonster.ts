@@ -76,9 +76,8 @@ export const useHitMonster = () => {
         const nextLevel = prev + 1;
 
         // Корректировка мультиплайера
-        if (nextLevel > 50) multiplier = 1.06;
-        if (nextLevel > 100) multiplier = 1.03;
-        if (nextLevel > 150) multiplier = 1.04;
+        if (nextLevel > 50) multiplier = 1.04;
+        if (nextLevel > 100) multiplier = 1.02;
 
         // Вычисление здоровья следующего монстра
         const nextHealth = Math.floor(
