@@ -31,7 +31,7 @@ const FinalBoss = ({ health }: MonsterProps) => {
   const [color, setColor] = useState<string>(getRandomColor);
 
   // Анимация удара крита
-  const [_animation, setAnimation] = useState<string>("");
+  const [animation, setAnimation] = useState<string>("");
 
   // Анимация цифр урона
   const [animationDamage, setAnimationDamage] = useState<string>("");

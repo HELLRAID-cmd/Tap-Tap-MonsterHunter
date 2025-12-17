@@ -14,7 +14,7 @@ export const useHitMonster = () => {
   const { attack } = useAttackDamage();
   const { attackCrit } = useCrit();
   const { critDamage } = useCritDamage();
-  const { isFinalBoss } = useGame();
+  const { isFinalBoss, stopTimer } = useGame();
   const { setFinalBossHp, setFinalBossWinner, setFinalBossRegenEnable } =
     useFinalBoss();
 
@@ -38,9 +38,13 @@ export const useHitMonster = () => {
       setFinalBossHp((prev) => {
         const newHp = Math.max(prev - attack, 0);
 
+        // Победа пользователя над боссом
         if (newHp <= 699990) {
           // Победное окно
           setFinalBossWinner(true);
+          
+          // Остановка таймера
+          stopTimer();
 
           // Отсюда отключается реген хп
           setFinalBossRegenEnable(false);
