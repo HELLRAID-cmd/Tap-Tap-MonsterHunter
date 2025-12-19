@@ -19,7 +19,6 @@ const FinalBoss = ({ health }: MonsterProps) => {
   const { finalBossWinner } = useFinalBoss();
 
   // Максимальное здоровье
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [maxHealth, setMaxHealth] = useState(health);
 
   // Здоровье монстра
@@ -32,7 +31,6 @@ const FinalBoss = ({ health }: MonsterProps) => {
   const [color, setColor] = useState<string>(getRandomColor);
 
   // Анимация удара крита
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [animation, setAnimation] = useState<string>("");
 
   // Анимация цифр урона
@@ -83,6 +81,10 @@ const FinalBoss = ({ health }: MonsterProps) => {
           <FinalBossWinner />
         </>
       )}
+
+      <div style={{ display: "none" }}>
+        {maxHealth} {animation}
+      </div>
     </div>
   );
 };
