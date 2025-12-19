@@ -8,7 +8,7 @@ import FinalBossHpRegen from "./FinalBossHpRegen";
 import FinalBossWinner from "./FinalBossWinner";
 import { useFinalBoss } from "./FinalBossContext";
 import { useGame } from "../context/Context";
-import formatTime from "../utils/formatTime";
+import formatTime from "../../utils/formatTime";
 
 const FinalBoss = ({ health }: MonsterProps) => {
   // Рандомный цвет

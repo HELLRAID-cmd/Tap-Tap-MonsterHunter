@@ -3,7 +3,7 @@ import { useCoinsFooter } from "../context/CoinsContext";
 import { useGame } from "../context/Context";
 import { useCrit } from "../context/CritContext";
 import { useCritDamage } from "../context/CritDamageContext";
-import formatTime from "../utils/formatTime";
+import formatTime from "../../utils/formatTime";
 import { useFinalBoss } from "./FinalBossContext";
 
 export const FinalBossStatus = () => {
