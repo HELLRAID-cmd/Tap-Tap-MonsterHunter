@@ -1,4 +1,4 @@
-import { MONSTER_HEALTH, MONSTER_MULTIPLIER_HEALTH } from "../../../Config/Config";
+import getMonsterHealth from "../../../../utils/getMonsterHealth";
 import { useAttackDamage } from "../../../context/AttackContext";
 import { useGame } from "../../../context/Context";
 import { useCrit } from "../../../context/CritContext";
@@ -71,22 +71,12 @@ export const useHitMonster = () => {
 
     // Проверка на то что монстр погиб, добовляет монеты
     if (newHealthMonster <= 0) {
-      const baseHealth = MONSTER_HEALTH;
       setLevelMonster((prev) => {
-        // Мультиплаеер здоровья
-        let multiplier = MONSTER_MULTIPLIER_HEALTH;
-
         // Следующий уровень
         const nextLevel = prev + 1;
 
-        // Корректировка мультиплайера
-        if (nextLevel > 50) multiplier = 1.04;
-        if (nextLevel > 100) multiplier = 1.02;
-
         // Вычисление здоровья следующего монстра
-        const nextHealth = Math.floor(
-          baseHealth * Math.pow(multiplier, nextLevel - 1)
-        );
+        const nextHealth = getMonsterHealth(nextLevel);
 
         setTimeout(() => {
           handleRestart({
