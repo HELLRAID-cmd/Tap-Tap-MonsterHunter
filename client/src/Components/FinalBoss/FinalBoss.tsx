@@ -1,7 +1,7 @@
 import { useState } from "react";
 import HitMonsterBtn from "../Monster/components/HitMonster/HitMonsterBtn";
 import type { MonsterProps } from "../Monster/MonsterProps";
-import { useMonsterActions } from "../Monster/useMonsterActions ";
+import { useMonsterActions } from "../Monster/useMonsterActions";
 import FinalBossRegen from "./FinalBossRegen";
 import FinalBossHealthBar from "./FinalBossHealthBar";
 import FinalBossHpRegen from "./FinalBossHpRegen";

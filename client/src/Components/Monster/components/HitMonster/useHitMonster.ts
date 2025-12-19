@@ -5,7 +5,7 @@ import { useCrit } from "../../../context/CritContext";
 import { useCritDamage } from "../../../context/CritDamageContext";
 import { useFinalBoss } from "../../../FinalBoss/FinalBossContext";
 import type { HandleChangeColorType, HitMonsterType } from "../../MonsterProps";
-import { useMonsterActions } from "../../useMonsterActions ";
+import { useMonsterActions } from "../../useMonsterActions";
 
 export const useHitMonster = () => {
   const { addCoins, setTotalDamage, setStatusClick, setLevelMonster } =

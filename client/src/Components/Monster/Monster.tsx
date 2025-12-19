@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { MonsterProps } from "./MonsterProps";
-import { useMonsterActions } from "./useMonsterActions ";
+import { useMonsterActions } from "./useMonsterActions";
 import "./Monster.scss";
 import HealthBarMonster from "./components/HealthBarMonster";
 import HitMonsterBtn from "./components/HitMonster/HitMonsterBtn";
