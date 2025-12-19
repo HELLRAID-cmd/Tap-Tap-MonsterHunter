@@ -55,7 +55,7 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
   const [isFinalBoss, setIsFinalBoss] = useState(false);
 
   const [timerValue, setTimerValue] = useState(0);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const intervalRef = useRef<number | null>(null);
 
   const { coinsFooter } = useCoinsFooter();
   const { critLevelDamage } = useCritDamage();
