@@ -70,7 +70,7 @@ export const useHitMonster = () => {
     setStatusClick((prev) => prev + 1);
 
     // Проверка на то что монстр погиб, добовляет монеты
-    if (newHealthMonster <= 0) {
+    if (newHealthMonster <= 699990) {
       setLevelMonster((prev) => {
         // Следующий уровень
         const nextLevel = prev + 1;
