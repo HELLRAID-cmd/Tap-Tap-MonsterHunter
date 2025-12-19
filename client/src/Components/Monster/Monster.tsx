@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type { MonsterProps } from "./MonsterProps";
-import { useMonsterActions } from "./useMonsterActions";
 import "./Monster.scss";
+import { useMonsterActions } from "./useMonsterActions";
 import HealthBarMonster from "./components/HealthBarMonster";
 import HitMonsterBtn from "./components/HitMonster/HitMonsterBtn";
 import BtnAdmin from "../Admin/BtnAdmin";
@@ -74,7 +74,7 @@ export const Monster = ({ health }: MonsterProps) => {
         />
       </div>
 
-      {level >= 1 && critLevel >= 2 && critLevelDamage >= 2 && (
+      {level >= 120 && critLevel >= 25 && critLevelDamage >= 25 && (
         <FinalBossBtn />
       )}
 
