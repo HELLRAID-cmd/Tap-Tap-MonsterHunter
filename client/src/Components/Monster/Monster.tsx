@@ -10,7 +10,7 @@ import FinalBossBtn from "../FinalBoss/FinalBossBtn";
 import { useAttackDamage } from "../context/AttackContext";
 import { useCrit } from "../context/CritContext";
 import { useCritDamage } from "../context/CritDamageContext";
-import formatTime from "../utils/formatTime";
+import formatTime from "../../utils/formatTime";
 
 export const Monster = ({ health }: MonsterProps) => {
   const { levelMonster, timerValue } = useGame();
