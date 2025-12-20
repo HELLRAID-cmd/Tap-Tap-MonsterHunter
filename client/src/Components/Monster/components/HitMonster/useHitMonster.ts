@@ -27,16 +27,28 @@ export const useHitMonster = () => {
     setColor,
     setMaxHealth,
   }: HitMonsterType & HandleChangeColorType) => {
+    // Проверка крита
+    const isCrit = Math.random() < attackCrit;
+    const critDamageAttack = isCrit ? Math.round(attack * critDamage) : attack;
+
+    // Показываем урон
+    setLastDamage((prev) => [...prev, critDamageAttack]);
+
+    // Через 1с убирать урон
+    setTimeout(() => setLastDamage((prev) => prev.slice(1)), 1000);
+
     // Удар по финальному боссу
     if (isFinalBoss) {
       // Общие нажатия по боссу
       setStatusClick((prev) => prev + 1);
 
+      setAnimationDamage(isCrit ? "crit-damage" : "damage");
+
       // Общий дамаг по боссу
-      setTotalDamage((prev) => +(prev + attack).toFixed(0));
+      setTotalDamage((prev) => +(prev + critDamageAttack).toFixed(0));
 
       setFinalBossHp((prev) => {
-        const newHp = Math.max(prev - attack, 0);
+        const newHp = Math.max(prev - critDamageAttack, 0);
 
         // Победа пользователя над боссом
         if (newHp <= 0) {
@@ -55,10 +67,6 @@ export const useHitMonster = () => {
 
       return;
     }
-
-    // Проверка крита
-    const isCrit = Math.random() < attackCrit;
-    const critDamageAttack = isCrit ? Math.round(attack * critDamage) : attack;
 
     const newHealthMonster = monsterHealth - critDamageAttack;
     setMonsterHealth(newHealthMonster <= 0 ? 0 : newHealthMonster);
@@ -91,11 +99,6 @@ export const useHitMonster = () => {
         return nextLevel;
       });
     }
-
-    setLastDamage((prev) => [...prev, critDamageAttack]);
-    // Через 1с убирать дамаг
-    setTimeout(() => setLastDamage((prev) => prev.slice(1)), 1000);
-
     setAnimation(isCrit ? "crit-hit" : "hit");
     setAnimationDamage(isCrit ? "crit-damage" : "damage");
   };
