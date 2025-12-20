@@ -19,6 +19,12 @@ const Info = () => {
           прокачаться как можно лучше и&nbsp;одолеть финального босса
           за&nbsp;минимальное время.
         </h2>
+        <p className="info__text-paragraph">Чтобы сразиться с финальным боссом, тебе нужно прокачать свои навыки до определенного уровня.</p>
+        <ul className="info__text-list">
+          <li className="info__text-item">Уровень атаки: 110 уровень</li>
+          <li className="info__text-item">Уровень шанса крита: 25 уровень</li>
+          <li className="info__text-item">Уровень множителя крита: 25 уровень</li>
+        </ul>
       </div>
       <button className="info__btn" onClick={() => {
         handleBtn();

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useFinalBoss } from "./FinalBossContext";
-import { FINAL_BOSS_REGEN, FINAL_BOSS_TIMER } from "../Config/Config";
+import { FINAL_BOSS_HP, FINAL_BOSS_REGEN, FINAL_BOSS_TIMER } from "../Config/Config";
 
 const FinalBossRegen = () => {
   const { setFinalBossHp, finalBossRegenEnable } = useFinalBoss();
@@ -9,7 +9,7 @@ const FinalBossRegen = () => {
     if(!finalBossRegenEnable) return;
 
     const timer = setInterval(() => {
-      setFinalBossHp((prev) => Math.min(prev + FINAL_BOSS_REGEN, 700000));
+      setFinalBossHp((prev) => Math.min(prev + FINAL_BOSS_REGEN, FINAL_BOSS_HP));
     }, FINAL_BOSS_TIMER); 
 
     return () => clearInterval(timer);
