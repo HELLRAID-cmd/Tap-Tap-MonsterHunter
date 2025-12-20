@@ -40,9 +40,10 @@ const FinalBoss = ({ health }: MonsterProps) => {
     <div className="final-boss">
       <span>{formatTime(timerValue)}</span>
       <h1 className="final-boss__title">Финальный босс</h1>
+      
       {/* Цифры урона */}
       {lastDamage?.map((dmg, index) => (
-        <p className={`monster-damage ${animationDamage}`} key={index}>
+        <p className={`final-boss__damage ${animationDamage}`} key={index}>
           -{dmg.toFixed(2)}хп
         </p>
       ))}
