@@ -52,14 +52,46 @@
     }
   }
 
-  &__btn {
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 0 20px 0;
+
+    @include vp-767 {
+      flex-direction: column;
+    }
+  }
+
+  &__btn,
+  &__btn-demo {
     display: block;
-    margin: 0 auto;
     background-color: var(--c-green);
     font-size: 28px;
 
     &:hover {
       background-color: var(--c-green-black);
+    }
+  }
+
+  &__btn-demo {
+    background-color: var(--c-blue);
+
+    &:hover,
+    &:focus-visible {
+      background-color: var(--c-blue-hover);
+    }
+  }
+
+  &__btn-info {
+    display: block;
+    color: var(--c-blue);
+    padding: 0;
+    margin: 0 auto;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--c-blue-hover);
     }
   }
 }
