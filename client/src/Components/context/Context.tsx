@@ -4,6 +4,8 @@ import {
   COINS,
   CRIT_BONUS_MONEY,
   CRIT_DAMAGE_BONUS_MONEY,
+  DEMO__INFO,
+  DEMO_GAME,
   MONSTER_LEVEL,
   STATUS_CLICK,
   TOTAL_COINS,
@@ -26,6 +28,8 @@ type GameContextType = {
   timerValue: number;
   startGame: boolean;
   isFinalBoss: boolean;
+  isDemo: boolean;
+  isDemoInfo: boolean;
   setCoins: React.Dispatch<React.SetStateAction<number>>;
   setNotEnoughCoins: React.Dispatch<React.SetStateAction<boolean>>;
   setTotalDamage: React.Dispatch<React.SetStateAction<number>>;
@@ -35,6 +39,8 @@ type GameContextType = {
   setLevelMonster: React.Dispatch<React.SetStateAction<number>>;
   setStartGame: React.Dispatch<React.SetStateAction<boolean>>;
   setIsFinalBoss: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsDemo: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsDemoInfo: React.Dispatch<React.SetStateAction<boolean>>;
   startTimer: () => void;
   stopTimer: () => void;
   addCoins: () => void;
@@ -53,6 +59,8 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
   const [levelMonster, setLevelMonster] = useState(MONSTER_LEVEL);
   const [startGame, setStartGame] = useState(false);
   const [isFinalBoss, setIsFinalBoss] = useState(false);
+  const [isDemo, setIsDemo] = useState(DEMO_GAME);
+  const [isDemoInfo, setIsDemoInfo] = useState(DEMO__INFO);
 
   const [timerValue, setTimerValue] = useState(0);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -150,6 +158,10 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
         isFinalBoss,
         setIsFinalBoss,
         restartGame,
+        isDemo,
+        setIsDemo,
+        isDemoInfo,
+        setIsDemoInfo
       }}
     >
       {children}
