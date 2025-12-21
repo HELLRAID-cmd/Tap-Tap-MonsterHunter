@@ -47,3 +47,7 @@ export const FINAL_BOSS_TIMER = 7000;
 export const FINAL_BOSS_DEAD = false;
 export const FINAL_BOSS_SHOW_STATUS = false;
 export const FINAL_BOSS_REGEN_ENABLE = true;
+
+// DEMO
+export const DEMO_GAME = false;
+export const DEMO__INFO = false;
