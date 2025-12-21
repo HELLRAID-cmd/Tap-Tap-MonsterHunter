@@ -4,7 +4,6 @@ import "./Monster.scss";
 import { useMonsterActions } from "./useMonsterActions ";
 import HealthBarMonster from "./components/HealthBarMonster";
 import HitMonsterBtn from "./components/HitMonster/HitMonsterBtn";
-import BtnAdmin from "../Admin/BtnAdmin";
 import { useGame } from "../context/Context";
 import FinalBossBtn from "../FinalBoss/FinalBossBtn";
 import { useAttackDamage } from "../context/AttackContext";
@@ -13,7 +12,7 @@ import { useCritDamage } from "../context/CritDamageContext";
 import formatTime from "../../utils/formatTime";
 
 export const Monster = ({ health }: MonsterProps) => {
-  const { levelMonster, timerValue } = useGame();
+  const { levelMonster, timerValue, isDemo } = useGame();
 
   const { level } = useAttackDamage();
   const { critLevel } = useCrit();
@@ -41,6 +40,9 @@ export const Monster = ({ health }: MonsterProps) => {
 
   return (
     <div className="monster">
+      {isDemo && (
+        <p className="monster-demo">DEMO-MODE</p>
+      )}
       <span>{formatTime(timerValue)}</span>
       <p className="monster-lvl">Уровень: {levelMonster}</p>
       <div className="monster-wrapper">
@@ -74,12 +76,14 @@ export const Monster = ({ health }: MonsterProps) => {
         />
       </div>
 
+      {isDemo && (
+        <FinalBossBtn />
+      )}
+
       {level >= 110 && critLevel >= 25 && critLevelDamage >= 25 && (
         <FinalBossBtn />
       )}
 
-      {/* Админ кнопки */}
-      <BtnAdmin setMonsterHealth={setMonsterHealth} />
     </div>
   );
 };
