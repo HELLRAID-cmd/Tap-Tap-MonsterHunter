@@ -14,6 +14,8 @@ const FinalBoss = ({ health }: MonsterProps) => {
   // Рандомный цвет
   const { getRandomColor } = useMonsterActions();
 
+  const {setFinalBossHp} = useFinalBoss();
+
   const { timerValue, isDemo } = useGame();
 
   const { finalBossWinner } = useFinalBoss();
@@ -35,6 +37,11 @@ const FinalBoss = ({ health }: MonsterProps) => {
 
   // Анимация цифр урона
   const [animationDamage, setAnimationDamage] = useState<string>("");
+
+  // оставить 10хп
+  const btn10hp = () => {
+    setFinalBossHp(10);
+  };
 
   return (
     <>
@@ -76,6 +83,7 @@ const FinalBoss = ({ health }: MonsterProps) => {
               setMaxHealth={setMaxHealth}
               setColor={setColor}
             />
+            <button className='final-boss__btn-demo' onClick={btn10hp}>10хп</button>
           </>
         )}
 
