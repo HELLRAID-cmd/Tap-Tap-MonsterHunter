@@ -87,6 +87,10 @@
       box-shadow: 0 0 10px 1px var(--c-red);
       transform: scale(1.02);
     }
+
+    &-demo {
+      background-color: var(--c-black);
+    }
   }
 
   // Status
