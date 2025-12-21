@@ -1,4 +1,4 @@
-import { MONSTER_HEALTH, MONSTER_MULTIPLIER_HEALTH } from "../../../Config/Config";
+import getMonsterHealth from "../../../../utils/getMonsterHealth";
 import { useAttackDamage } from "../../../context/AttackContext";
 import { useGame } from "../../../context/Context";
 import { useCrit } from "../../../context/CritContext";
@@ -14,7 +14,7 @@ export const useHitMonster = () => {
   const { attack } = useAttackDamage();
   const { attackCrit } = useCrit();
   const { critDamage } = useCritDamage();
-  const { isFinalBoss } = useGame();
+  const { isFinalBoss, stopTimer } = useGame();
   const { setFinalBossHp, setFinalBossWinner, setFinalBossRegenEnable } =
     useFinalBoss();
 
@@ -27,20 +27,36 @@ export const useHitMonster = () => {
     setColor,
     setMaxHealth,
   }: HitMonsterType & HandleChangeColorType) => {
+    // Проверка крита
+    const isCrit = Math.random() < attackCrit;
+    const critDamageAttack = isCrit ? Math.round(attack * critDamage) : attack;
+
+    // Показываем урон
+    setLastDamage((prev) => [...prev, critDamageAttack]);
+
+    // Через 1с убирать урон
+    setTimeout(() => setLastDamage((prev) => prev.slice(1)), 1000);
+
     // Удар по финальному боссу
     if (isFinalBoss) {
       // Общие нажатия по боссу
       setStatusClick((prev) => prev + 1);
 
+      setAnimationDamage(isCrit ? "crit-damage" : "damage");
+
       // Общий дамаг по боссу
-      setTotalDamage((prev) => +(prev + attack).toFixed(0));
+      setTotalDamage((prev) => +(prev + critDamageAttack).toFixed(0));
 
       setFinalBossHp((prev) => {
-        const newHp = Math.max(prev - attack, 0);
+        const newHp = Math.max(prev - critDamageAttack, 0);
 
-        if (newHp <= 699990) {
+        // Победа пользователя над боссом
+        if (newHp <= 0) {
           // Победное окно
           setFinalBossWinner(true);
+          
+          // Остановка таймера
+          stopTimer();
 
           // Отсюда отключается реген хп
           setFinalBossRegenEnable(false);
@@ -51,10 +67,6 @@ export const useHitMonster = () => {
 
       return;
     }
-
-    // Проверка крита
-    const isCrit = Math.random() < attackCrit;
-    const critDamageAttack = isCrit ? Math.round(attack * critDamage) : attack;
 
     const newHealthMonster = monsterHealth - critDamageAttack;
     setMonsterHealth(newHealthMonster <= 0 ? 0 : newHealthMonster);
@@ -67,22 +79,12 @@ export const useHitMonster = () => {
 
     // Проверка на то что монстр погиб, добовляет монеты
     if (newHealthMonster <= 0) {
-      const baseHealth = MONSTER_HEALTH;
       setLevelMonster((prev) => {
-        // Мультиплаеер здоровья
-        let multiplier = MONSTER_MULTIPLIER_HEALTH;
-
         // Следующий уровень
         const nextLevel = prev + 1;
 
-        // Корректировка мультиплайера
-        if (nextLevel > 50) multiplier = 1.04;
-        if (nextLevel > 100) multiplier = 1.02;
-
         // Вычисление здоровья следующего монстра
-        const nextHealth = Math.floor(
-          baseHealth * Math.pow(multiplier, nextLevel - 1)
-        );
+        const nextHealth = getMonsterHealth(nextLevel);
 
         setTimeout(() => {
           handleRestart({
@@ -97,11 +99,6 @@ export const useHitMonster = () => {
         return nextLevel;
       });
     }
-
-    setLastDamage((prev) => [...prev, critDamageAttack]);
-    // Через 1с убирать дамаг
-    setTimeout(() => setLastDamage((prev) => prev.slice(1)), 1000);
-
     setAnimation(isCrit ? "crit-hit" : "hit");
     setAnimationDamage(isCrit ? "crit-damage" : "damage");
   };

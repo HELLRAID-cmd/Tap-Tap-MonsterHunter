@@ -3,6 +3,7 @@ import { useCoinsFooter } from "../context/CoinsContext";
 import { useGame } from "../context/Context";
 import { useCrit } from "../context/CritContext";
 import { useCritDamage } from "../context/CritDamageContext";
+import formatTime from "../../utils/formatTime";
 import { useFinalBoss } from "./FinalBossContext";
 
 export const FinalBossStatus = () => {
@@ -10,7 +11,7 @@ export const FinalBossStatus = () => {
   const {attackCrit, restartCrit} = useCrit();
   const {critDamage, restartCritDamage} = useCritDamage();
   const {coinsMultiplier, restartCoins} = useCoinsFooter();
-  const {totalDamage, totalCoins, totalCoinsSpent, statusClick, restartGame} = useGame();
+  const {totalDamage, totalCoins, totalCoinsSpent, statusClick, restartGame, timerValue} = useGame();
   const {restartFinalBoss} = useFinalBoss();
 
   const handleRestart = () => {
@@ -57,6 +58,10 @@ export const FinalBossStatus = () => {
         <li className="final-boss__item">
           <p className="final-boss__item-name">Потрачено монет: </p>
           <span className="final-boss__item-info">{(totalCoinsSpent).toFixed(0)}</span>
+        </li>
+        <li className="final-boss__item">
+          <p className="final-boss__item-name">Время: </p>
+          <span className="final-boss__item-info">{formatTime(timerValue)}</span>
         </li>
         <li className="final-boss__item">
           <p className="final-boss__item-name">Всего ударов: </p>

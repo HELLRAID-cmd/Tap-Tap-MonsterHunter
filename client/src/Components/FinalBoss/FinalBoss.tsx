@@ -7,10 +7,14 @@ import FinalBossHealthBar from "./FinalBossHealthBar";
 import FinalBossHpRegen from "./FinalBossHpRegen";
 import FinalBossWinner from "./FinalBossWinner";
 import { useFinalBoss } from "./FinalBossContext";
+import { useGame } from "../context/Context";
+import formatTime from "../../utils/formatTime";
 
 const FinalBoss = ({ health }: MonsterProps) => {
   // Рандомный цвет
   const { getRandomColor } = useMonsterActions();
+
+  const { timerValue } = useGame();
 
   const { finalBossWinner } = useFinalBoss();
 
@@ -27,17 +31,19 @@ const FinalBoss = ({ health }: MonsterProps) => {
   const [color, setColor] = useState<string>(getRandomColor);
 
   // Анимация удара крита
-  const [_animation, setAnimation] = useState<string>("");
+  const [animation, setAnimation] = useState<string>("");
 
   // Анимация цифр урона
   const [animationDamage, setAnimationDamage] = useState<string>("");
 
   return (
     <div className="final-boss">
+      <span>{formatTime(timerValue)}</span>
       <h1 className="final-boss__title">Финальный босс</h1>
+      
       {/* Цифры урона */}
       {lastDamage?.map((dmg, index) => (
-        <p className={`monster-damage ${animationDamage}`} key={index}>
+        <p className={`final-boss__damage ${animationDamage}`} key={index}>
           -{dmg.toFixed(2)}хп
         </p>
       ))}
@@ -76,6 +82,10 @@ const FinalBoss = ({ health }: MonsterProps) => {
           <FinalBossWinner />
         </>
       )}
+
+      <div style={{ display: "none" }}>
+        {maxHealth} {animation}
+      </div>
     </div>
   );
 };
