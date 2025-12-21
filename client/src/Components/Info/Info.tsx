@@ -5,7 +5,7 @@ import InfoDemo from "./InfoDemo";
 import { useEffect, useRef } from "react";
 
 const Info = () => {
-  const { setStartGame, startGame, setIsDemo, setIsDemoInfo, isDemoInfo } =
+  const { setStartGame, startGame, setIsDemo, setIsDemoInfo, isDemoInfo, setCoins } =
     useGame();
   const demoRef = useRef<HTMLDivElement | null>(null);
   const demoBtnRef = useRef<HTMLButtonElement | null>(null);
@@ -15,8 +15,9 @@ const Info = () => {
     setStartGame(true);
   };
 
-  const handleDemo = () => {
+  const handleStartDemo = () => {
     setIsDemo(true);
+    setCoins(100000);
     setStartGame(true);
   };
 
@@ -75,7 +76,7 @@ const Info = () => {
           >
             Начать
           </button>
-          <button className="info__btn-demo" onClick={handleDemo}>
+          <button className="info__btn-demo" onClick={handleStartDemo}>
             Начать демо режим
           </button>
         </div>
