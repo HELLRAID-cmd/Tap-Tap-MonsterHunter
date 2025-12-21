@@ -12,7 +12,7 @@ import { useCritDamage } from "../context/CritDamageContext";
 import formatTime from "../../utils/formatTime";
 
 export const Monster = ({ health }: MonsterProps) => {
-  const { levelMonster, timerValue } = useGame();
+  const { levelMonster, timerValue, isDemo } = useGame();
 
   const { level } = useAttackDamage();
   const { critLevel } = useCrit();
@@ -40,6 +40,9 @@ export const Monster = ({ health }: MonsterProps) => {
 
   return (
     <div className="monster">
+      {isDemo && (
+        <p className="monster-demo">DEMO-MODE</p>
+      )}
       <span>{formatTime(timerValue)}</span>
       <p className="monster-lvl">Уровень: {levelMonster}</p>
       <div className="monster-wrapper">
@@ -72,6 +75,10 @@ export const Monster = ({ health }: MonsterProps) => {
           setColor={setColor}
         />
       </div>
+
+      {isDemo && (
+        <FinalBossBtn />
+      )}
 
       {level >= 110 && critLevel >= 25 && critLevelDamage >= 25 && (
         <FinalBossBtn />
