@@ -50,4 +50,6 @@ export const FINAL_BOSS_REGEN_ENABLE = true;
 
 // DEMO
 export const DEMO_GAME = false;
-export const DEMO__INFO = false;
+export const DEMO_INFO = false;
+export const DEMO_FINAL_BOSS_HP = 10;
+export const DEMO_FINAL_BOSS_REGEN = 2;
