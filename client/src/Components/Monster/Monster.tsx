@@ -78,8 +78,6 @@ export const Monster = ({ health }: MonsterProps) => {
         <FinalBossBtn />
       )}
 
-      {/* Админ кнопки */}
-      <BtnAdmin setMonsterHealth={setMonsterHealth} />
     </div>
   );
 };
