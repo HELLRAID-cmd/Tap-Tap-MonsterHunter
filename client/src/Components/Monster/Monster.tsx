@@ -41,7 +41,7 @@ export const Monster = ({ health }: MonsterProps) => {
   return (
     <div className="monster">
       {isDemo && (
-        <p className="monster-demo">DEMO-MODE</p>
+        <p className="demo">DEMO-MODE</p>
       )}
       <span>{formatTime(timerValue)}</span>
       <p className="monster-lvl">Уровень: {levelMonster}</p>
