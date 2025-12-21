@@ -4,7 +4,6 @@ import "./Monster.scss";
 import { useMonsterActions } from "./useMonsterActions";
 import HealthBarMonster from "./components/HealthBarMonster";
 import HitMonsterBtn from "./components/HitMonster/HitMonsterBtn";
-import BtnAdmin from "../Admin/BtnAdmin";
 import { useGame } from "../context/Context";
 import FinalBossBtn from "../FinalBoss/FinalBossBtn";
 import { useAttackDamage } from "../context/AttackContext";
