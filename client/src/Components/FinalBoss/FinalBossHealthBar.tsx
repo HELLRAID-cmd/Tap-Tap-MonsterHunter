@@ -2,18 +2,21 @@ import { useEffect } from "react";
 import { useGame } from "../context/Context";
 import { useFinalBoss } from "./FinalBossContext";
 import {
+  DEMO_FINAL_BOSS_HP,
+  DEMO_FINAL_BOSS_REGEN,
   FINAL_BOSS_HP,
   FINAL_BOSS_REGEN,
   FINAL_BOSS_TIMER,
 } from "../Config/Config";
 
 const HealthBarMonster = () => {
-  const { isFinalBoss } = useGame();
+  const { isFinalBoss, isDemo } = useGame();
   const { setFinalBossHp, finalBossHp, finalBossRegenEnable } = useFinalBoss();
 
   useEffect(() => {
     if (!isFinalBoss) return;
-    if(!finalBossRegenEnable) return;
+    if (!finalBossRegenEnable) return;
+    if (!isDemo) return;
 
     let alreadyRan = false;
 
@@ -21,14 +24,19 @@ const HealthBarMonster = () => {
       if (alreadyRan) return;
       alreadyRan = true;
 
-      setFinalBossHp((prev) =>
-        Math.min(prev + FINAL_BOSS_REGEN, FINAL_BOSS_HP)
-      );
-
+      if (isDemo) {
+        setFinalBossHp((prev) =>
+          Math.min(prev + DEMO_FINAL_BOSS_REGEN, DEMO_FINAL_BOSS_HP)
+        );
+      } else {
+        setFinalBossHp((prev) =>
+          Math.min(prev + FINAL_BOSS_REGEN, FINAL_BOSS_HP)
+        );
+      }
     }, FINAL_BOSS_TIMER);
 
     return () => clearInterval(interval);
-  }, [isFinalBoss, setFinalBossHp, finalBossRegenEnable]);
+  }, [isFinalBoss, setFinalBossHp, finalBossRegenEnable, isDemo]);
 
   return (
     <div className="health-bar">

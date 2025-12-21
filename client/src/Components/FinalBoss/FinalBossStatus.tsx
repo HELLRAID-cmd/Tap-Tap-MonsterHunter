@@ -11,7 +11,7 @@ export const FinalBossStatus = () => {
   const {attackCrit, restartCrit} = useCrit();
   const {critDamage, restartCritDamage} = useCritDamage();
   const {coinsMultiplier, restartCoins} = useCoinsFooter();
-  const {totalDamage, totalCoins, totalCoinsSpent, statusClick, restartGame, timerValue} = useGame();
+  const {totalDamage, totalCoins, totalCoinsSpent, statusClick, restartGame, timerValue, isDemo} = useGame();
   const {restartFinalBoss} = useFinalBoss();
 
   const handleRestart = () => {
@@ -24,6 +24,8 @@ export const FinalBossStatus = () => {
   }
   
   return (
+    <>
+    {isDemo && <p className="demo">DEMO-MODE</p>}
     <div className="final-boss__status">
       <h1 className="final-boss__status-title">Общая статистика</h1>
       <ul className="final-boss__list">
@@ -70,6 +72,7 @@ export const FinalBossStatus = () => {
       </ul>
       <button className="final-boss__status-restart" onClick={handleRestart}>Начать с начала</button>
     </div>
+    </>
   );
 };
 

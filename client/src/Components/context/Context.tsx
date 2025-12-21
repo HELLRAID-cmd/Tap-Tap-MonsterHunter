@@ -4,7 +4,7 @@ import {
   COINS,
   CRIT_BONUS_MONEY,
   CRIT_DAMAGE_BONUS_MONEY,
-  DEMO__INFO,
+  DEMO_INFO,
   DEMO_GAME,
   MONSTER_LEVEL,
   STATUS_CLICK,
@@ -60,7 +60,7 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
   const [startGame, setStartGame] = useState(false);
   const [isFinalBoss, setIsFinalBoss] = useState(false);
   const [isDemo, setIsDemo] = useState(DEMO_GAME);
-  const [isDemoInfo, setIsDemoInfo] = useState(DEMO__INFO);
+  const [isDemoInfo, setIsDemoInfo] = useState(DEMO_INFO);
 
   const [timerValue, setTimerValue] = useState(0);
   const intervalRef = useRef<number | null>(null);

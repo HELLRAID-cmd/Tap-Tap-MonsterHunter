@@ -14,7 +14,9 @@ const FinalBoss = ({ health }: MonsterProps) => {
   // Рандомный цвет
   const { getRandomColor } = useMonsterActions();
 
-  const { timerValue } = useGame();
+  const {setFinalBossHp} = useFinalBoss();
+
+  const { timerValue, isDemo } = useGame();
 
   const { finalBossWinner } = useFinalBoss();
 
@@ -36,57 +38,66 @@ const FinalBoss = ({ health }: MonsterProps) => {
   // Анимация цифр урона
   const [animationDamage, setAnimationDamage] = useState<string>("");
 
+  // оставить 10хп
+  const btn10hp = () => {
+    setFinalBossHp(10);
+  };
+
   return (
-    <div className="final-boss">
-      <span>{formatTime(timerValue)}</span>
-      <h1 className="final-boss__title">Финальный босс</h1>
-      
-      {/* Цифры урона */}
-      {lastDamage?.map((dmg, index) => (
-        <p className={`final-boss__damage ${animationDamage}`} key={index}>
-          -{dmg.toFixed(2)}хп
-        </p>
-      ))}
+    <>
+      {isDemo && <p className="demo">DEMO-MODE</p>}
+      <div className="final-boss">
+        <span>{formatTime(timerValue)}</span>
+        <h1 className="final-boss__title">Финальный босс</h1>
 
-      {/* Хп регена */}
-      <FinalBossHpRegen />
+        {/* Цифры урона */}
+        {lastDamage?.map((dmg, index) => (
+          <p className={`final-boss__damage ${animationDamage}`} key={index}>
+            -{dmg.toFixed(2)}хп
+          </p>
+        ))}
 
-      {/* Реген здоровья */}
-      <FinalBossRegen />
+        {/* Хп регена */}
+        <FinalBossHpRegen />
 
-      {/* Здоровье моба */}
-      <FinalBossHealthBar />
+        {/* Реген здоровья */}
+        <FinalBossRegen />
 
-      <div
-        className="monster-enemy final-boss__enemy"
-        style={{ backgroundColor: color }}
-      ></div>
+        {/* Здоровье моба */}
+        <FinalBossHealthBar />
 
-      {!finalBossWinner && (
-        <>
-          {/* Ударить моба */}
-          <HitMonsterBtn
-            monsterHealth={monsterHealth}
-            setAnimationDamage={setAnimationDamage}
-            setMonsterHealth={setMonsterHealth}
-            setAnimation={setAnimation}
-            setLastDamage={setLastDamage}
-            setMaxHealth={setMaxHealth}
-            setColor={setColor}
-          />
-        </>
-      )}
+        <div
+          className="monster-enemy final-boss__enemy"
+          style={{ backgroundColor: color }}
+        ></div>
 
-      {finalBossWinner && (
-        <>
-          <FinalBossWinner />
-        </>
-      )}
+        {!finalBossWinner && (
+          <>
+            {/* Ударить моба */}
+            <HitMonsterBtn
+              monsterHealth={monsterHealth}
+              setAnimationDamage={setAnimationDamage}
+              setMonsterHealth={setMonsterHealth}
+              setAnimation={setAnimation}
+              setLastDamage={setLastDamage}
+              setMaxHealth={setMaxHealth}
+              setColor={setColor}
+            />
+            <button className='final-boss__btn-demo' onClick={btn10hp}>10хп</button>
+          </>
+        )}
 
-      <div style={{ display: "none" }}>
-        {maxHealth} {animation}
+        {finalBossWinner && (
+          <>
+            <FinalBossWinner />
+          </>
+        )}
+
+        <div style={{ display: "none" }}>
+          {maxHealth} {animation}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

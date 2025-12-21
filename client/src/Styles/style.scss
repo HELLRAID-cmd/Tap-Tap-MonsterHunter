@@ -27,5 +27,14 @@ button {
   color: white;
   border-radius: 10px;
   cursor: pointer;
-  transition: all .2s linear;
+  transition: all 0.2s linear;
+}
+
+.demo {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: var(--c-blue);
+  font-size: 32px;
+  font-weight: 600;
 }
