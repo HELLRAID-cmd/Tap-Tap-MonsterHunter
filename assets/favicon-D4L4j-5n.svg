@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 64 64"
+     width="64"
+     height="64">
+
+  <defs>
+    <!-- Горизонтальный серебряный градиент (свет + тень) -->
+    <linearGradient id="blade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#fdfdfd"/>
+      <stop offset="40%" stop-color="#e6e6e6"/>
+      <stop offset="60%" stop-color="#bdbdbd"/>
+      <stop offset="100%" stop-color="#8f8f8f"/>
+    </linearGradient>
+
+    <!-- Рукоять -->
+    <linearGradient id="handle" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4a2c1a"/>
+      <stop offset="100%" stop-color="#2b160c"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Левый меч -->
+  <g transform="rotate(-45 32 32)">
+    <!-- Клинок с острым кончиком -->
+    <path
+      d="M32 4 L35 10 V34 H29 V10 Z"
+      fill="url(#blade)"
+    />
+    <!-- Гарда -->
+    <rect x="24" y="34" width="16" height="3" rx="1" fill="#c9a24d"/>
+    <!-- Рукоять -->
+    <rect x="30" y="37" width="4" height="12" rx="1" fill="url(#handle)"/>
+    <!-- Навершие -->
+    <circle cx="32" cy="51" r="2" fill="#c9a24d"/>
+  </g>
+
+  <!-- Правый меч -->
+  <g transform="rotate(45 32 32)">
+    <!-- Клинок с острым кончиком -->
+    <path
+      d="M32 4 L35 10 V34 H29 V10 Z"
+      fill="url(#blade)"
+    />
+    <!-- Гарда -->
+    <rect x="24" y="34" width="16" height="3" rx="1" fill="#c9a24d"/>
+    <!-- Рукоять -->
+    <rect x="30" y="37" width="4" height="12" rx="1" fill="url(#handle)"/>
+    <!-- Навершие -->
+    <circle cx="32" cy="51" r="2" fill="#c9a24d"/>
+  </g>
+
+</svg>
