@@ -5,35 +5,40 @@ import { useCritDamage } from "../context/CritDamageContext";
 import "./statusPlayer.scss";
 
 const StatusPlayer = () => {
-  const {attack} = useAttackDamage();
-  const {attackCrit} = useCrit();
-  const {critDamage} = useCritDamage();
-  const {coinsMultiplier} = useCoinsFooter();
+  const { attack } = useAttackDamage();
+  const { attackCrit } = useCrit();
+  const { critDamage } = useCritDamage();
+  const { coinsMultiplier } = useCoinsFooter();
 
   return (
     <div className="status">
-      <ul className="status__list">
-        <li className="status__item">
-          <p className="status__item-name">Атака: </p>
-          <span className="status__item-info">{attack}</span>
-        </li>
-        <li className="status__item">
-          <p className="status__item-name">Шанс крит: </p>
-          <span className="status__item-info">{(attackCrit * 100).toFixed(0)}%</span>
-        </li>
-        <li className="status__item">
-          <p className="status__item-name">Множитель крита: </p>
-          <span className="status__item-info">{(critDamage).toFixed(1)}x</span>
-        </li>
-        <li className="status__item">
-          <p className="status__item-name">Множитель монет: </p>
-          <span className="status__item-info">{(coinsMultiplier).toFixed(1)}x</span>
-        </li>
-        {/* <li className="status__item">
+      <div className="container">
+        <ul className="status__list">
+          <li className="status__item">
+            <p className="status__item-name">Атака: </p>
+            <span className="status__item-info">{attack}</span>
+          </li>
+          <li className="status__item">
+            <p className="status__item-name">Шанс крит: </p>
+            <span className="status__item-info">
+              {(attackCrit * 100).toFixed(0)}%
+            </span>
+          </li>
+          <li className="status__item">
+            <p className="status__item-name">Множитель крита: </p>
+            <span className="status__item-info">{critDamage.toFixed(1)}x</span>
+          </li>
+          <li className="status__item">
+            <p className="status__item-name">Множитель монет: </p>
+            <span className="status__item-info">
+              {coinsMultiplier.toFixed(1)}x
+            </span>
+          </li>
+          {/* <li className="status__item">
           <p className="status__item-name">Нанесено урона: </p>
           <span className="status__item-info">{totalDamage}</span>
         </li> */}
-        {/* <li className="status__item">
+          {/* <li className="status__item">
           <p className="status__item-name">Накоплено монет: </p>
           <span className="status__item-info">{totalCoins}</span>
         </li>
@@ -45,9 +50,10 @@ const StatusPlayer = () => {
           <p className="status__item-name">Всего ударов: </p>
           <span className="status__item-info">{statusClick}</span>
         </li> */}
-      </ul>
+        </ul>
+      </div>
     </div>
-  )
-}
+  );
+};
 
 export default StatusPlayer;
