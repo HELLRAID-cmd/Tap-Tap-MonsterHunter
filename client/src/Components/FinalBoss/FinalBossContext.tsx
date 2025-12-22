@@ -1,0 +1,64 @@
+import { createContext, useContext, useState } from "react";
+import { FINAL_BOSS_DEAD, FINAL_BOSS_HP, FINAL_BOSS_REGEN, FINAL_BOSS_REGEN_ENABLE, FINAL_BOSS_SHOW_STATUS } from "../Config/Config";
+
+type FinalBossType = {
+  finalBossHp: number;
+  finalBossRegen: number;
+  finalBossWinner: boolean;
+  finalBossShowStatus: boolean;
+  finalBossRegenEnable: boolean;
+  setFinalBossHp: React.Dispatch<React.SetStateAction<number>>;
+  setFinalBossRegen: React.Dispatch<React.SetStateAction<number>>;
+  setFinalBossWinner: React.Dispatch<React.SetStateAction<boolean>>;
+  setFinalBossShowStatus: React.Dispatch<React.SetStateAction<boolean>>;
+  setFinalBossRegenEnable: React.Dispatch<React.SetStateAction<boolean>>;
+  restartFinalBoss: () => void;
+};
+
+const FinalBossContext = createContext<FinalBossType | null>(null);
+
+export const FinalBossProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
+  const [finalBossHp, setFinalBossHp] = useState(FINAL_BOSS_HP);
+  const [finalBossRegen, setFinalBossRegen] = useState(FINAL_BOSS_REGEN);
+  const [finalBossWinner, setFinalBossWinner] = useState(FINAL_BOSS_DEAD);
+  const [finalBossShowStatus, setFinalBossShowStatus] = useState(FINAL_BOSS_SHOW_STATUS);
+  const [finalBossRegenEnable, setFinalBossRegenEnable] = useState(FINAL_BOSS_REGEN_ENABLE);
+
+  // Рестарт финального босса
+  const restartFinalBoss = () => {
+    setFinalBossHp(FINAL_BOSS_HP);
+    setFinalBossWinner(FINAL_BOSS_DEAD);
+    setFinalBossShowStatus(FINAL_BOSS_SHOW_STATUS);
+    setFinalBossRegenEnable(FINAL_BOSS_REGEN_ENABLE);
+  };
+
+  return (
+    <FinalBossContext.Provider
+      value={{
+        finalBossHp,
+        finalBossRegen,
+        finalBossWinner,
+        finalBossShowStatus,
+        finalBossRegenEnable,
+        setFinalBossHp,
+        setFinalBossRegen,
+        setFinalBossWinner,
+        setFinalBossShowStatus,
+        setFinalBossRegenEnable,
+        restartFinalBoss,
+      }}
+    >
+      {children}
+    </FinalBossContext.Provider>
+  );
+};
+
+export const useFinalBoss = () => {
+  const context = useContext(FinalBossContext);
+  if (!context) throw new Error("useGame must be used inside GameProvider");
+  return context;
+};

@@ -1,76 +1,142 @@
-import { createContext, useContext, useState } from "react";
-import { CRIT_CHANCE, MAX_COINS } from "../Config/Config";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
+import {
+  ATTACK_BONUS_MONEY,
+  COINS,
+  CRIT_BONUS_MONEY,
+  CRIT_DAMAGE_BONUS_MONEY,
+  DEMO__INFO,
+  DEMO_GAME,
+  MONSTER_LEVEL,
+  STATUS_CLICK,
+  TOTAL_COINS,
+  TOTAL_COINS_SPENT,
+  TOTAL_DAMAGE,
+} from "../Config/Config";
+import { useCoinsFooter } from "./CoinsContext";
+import { useCritDamage } from "./CritDamageContext";
+import { useAttackDamage } from "./AttackContext";
+import { useCrit } from "./CritContext";
 
 type GameContextType = {
   coins: number;
-  attack: number;
-  attackCrit: number;
-  level: number;
-  price: number;
-  critLevel: number;
-  critPrice: number;
   notEnoughCoins: boolean;
   totalDamage: number;
   totalCoins: number;
   totalCoinsSpent: number;
   statusClick: number;
   levelMonster: number;
+  timerValue: number;
+  startGame: boolean;
+  isFinalBoss: boolean;
+  isDemo: boolean;
+  isDemoInfo: boolean;
   setCoins: React.Dispatch<React.SetStateAction<number>>;
-  setAttack: React.Dispatch<React.SetStateAction<number>>;
-  setAttackCrit: React.Dispatch<React.SetStateAction<number>>;
-  setLevel: React.Dispatch<React.SetStateAction<number>>;
-  setPrice: React.Dispatch<React.SetStateAction<number>>;
-  setCritLevel: React.Dispatch<React.SetStateAction<number>>;
-  setCritPrice: React.Dispatch<React.SetStateAction<number>>;
   setNotEnoughCoins: React.Dispatch<React.SetStateAction<boolean>>;
   setTotalDamage: React.Dispatch<React.SetStateAction<number>>;
   setTotalCoins: React.Dispatch<React.SetStateAction<number>>;
   setTotalCoinsSpent: React.Dispatch<React.SetStateAction<number>>;
   setStatusClick: React.Dispatch<React.SetStateAction<number>>;
   setLevelMonster: React.Dispatch<React.SetStateAction<number>>;
+  setStartGame: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsFinalBoss: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsDemo: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsDemoInfo: React.Dispatch<React.SetStateAction<boolean>>;
+  startTimer: () => void;
+  stopTimer: () => void;
   addCoins: () => void;
+  restartGame: () => void;
 };
 
 const GameContext = createContext<GameContextType | null>(null);
 
 export const GameProvider = ({ children }: { children: React.ReactNode }) => {
-  const [coins, setCoins] = useState(0);
-  const [attack, setAttack] = useState(1);
-  const [level, setLevel] = useState(1);
-  const [price, setPrice] = useState(1);
-  const [critLevel, setCritLevel] = useState(1);
-  const [critPrice, setCritPrice] = useState(30);
-  const [attackCrit, setAttackCrit] = useState(CRIT_CHANCE);
+  const [coins, setCoins] = useState(COINS);
   const [notEnoughCoins, setNotEnoughCoins] = useState(false);
-  const [totalDamage, setTotalDamage] = useState(0);
-  const [totalCoins, setTotalCoins] = useState(0);
-  const [totalCoinsSpent, setTotalCoinsSpent] = useState(0);
-  const [statusClick, setStatusClick] = useState(0);
-  const [levelMonster, setLevelMonster] = useState(1);
+  const [totalDamage, setTotalDamage] = useState(TOTAL_DAMAGE);
+  const [totalCoins, setTotalCoins] = useState(TOTAL_COINS);
+  const [totalCoinsSpent, setTotalCoinsSpent] = useState(TOTAL_COINS_SPENT);
+  const [statusClick, setStatusClick] = useState(STATUS_CLICK);
+  const [levelMonster, setLevelMonster] = useState(MONSTER_LEVEL);
+  const [startGame, setStartGame] = useState(false);
+  const [isFinalBoss, setIsFinalBoss] = useState(false);
+  const [isDemo, setIsDemo] = useState(DEMO_GAME);
+  const [isDemoInfo, setIsDemoInfo] = useState(DEMO__INFO);
 
+  const [timerValue, setTimerValue] = useState(0);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  const { coinsFooter } = useCoinsFooter();
+  const { critLevelDamage } = useCritDamage();
+  const { attack } = useAttackDamage();
+  const { critLevel } = useCrit();
+
+  // Добавление монет
   const addCoins = () => {
-    const randomNumber = Math.floor(Math.random() * MAX_COINS) + 1;
-    setCoins((prev) => prev + randomNumber);
-    setTotalCoins((prev) => prev + randomNumber);
+    const baseRandom = Math.floor(Math.random() * coinsFooter) + 1;
+
+    // Бонусные монеты от множителя крита, от уровня
+    const bonusCoinsCritDamage = Math.max(0, critLevelDamage - 1) * CRIT_DAMAGE_BONUS_MONEY;
+
+    // Бонусные монеты от крита, от уровня
+    const bonusCoinsCrit = Math.max(0, critLevel - 1) * CRIT_BONUS_MONEY;
+
+    // Бонусные монеты от урона, от урона на 10 уровне
+    const bonusCoinsAttack = Math.max(0, attack - 10) * ATTACK_BONUS_MONEY;
+
+    // Общая награда
+    const totalReward =
+      baseRandom + bonusCoinsAttack + bonusCoinsCritDamage + bonusCoinsCrit;
+
+    setCoins((prev) => prev + totalReward);
+    setTotalCoins((prev) => prev + totalReward);
   };
+
+  // Рестарт игры
+  const restartGame = () => {
+    setStartGame(false);
+    setIsFinalBoss(false);
+    setTotalDamage(TOTAL_DAMAGE);
+    setTotalCoins(TOTAL_COINS);
+    setTotalCoinsSpent(TOTAL_COINS_SPENT);
+    setStatusClick(STATUS_CLICK);
+    setLevelMonster(MONSTER_LEVEL);
+    setCoins(COINS);
+  };
+
+  // Запуск таймера
+  const startTimer = () => {
+    if (intervalRef.current) return;
+
+    intervalRef.current = setInterval(() => {
+      setTimerValue((prev) => prev + 1);
+    }, 1000);
+  };
+
+  // Остановка таймера
+  const stopTimer = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  };
+
+  useEffect(() => {
+    if (!startGame) {
+      stopTimer();
+      setTimerValue(0);
+      return;
+    }
+
+    startTimer();
+
+    return () => stopTimer();
+  }, [startGame]);
 
   return (
     <GameContext.Provider
       value={{
         coins,
-        critLevel,
-        setCritLevel,
-        critPrice,
-        setCritPrice,
-        level,
-        setLevel,
-        price,
-        setPrice,
         setCoins,
-        attack,
-        setAttack,
-        attackCrit,
-        setAttackCrit,
         addCoins,
         notEnoughCoins,
         setNotEnoughCoins,
@@ -84,6 +150,18 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
         setStatusClick,
         levelMonster,
         setLevelMonster,
+        startTimer,
+        stopTimer,
+        timerValue,
+        startGame,
+        setStartGame,
+        isFinalBoss,
+        setIsFinalBoss,
+        restartGame,
+        isDemo,
+        setIsDemo,
+        isDemoInfo,
+        setIsDemoInfo
       }}
     >
       {children}

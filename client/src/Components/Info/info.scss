@@ -1,0 +1,97 @@
+@use "../../Styles/variables" as *;
+@use "../../Styles/mixins" as *;
+
+.info {
+  position: absolute;
+  background-color: var(--c-white);
+  box-shadow: 0 0 15px 1px var(--c-black);
+  border-radius: 20px;
+  padding: 20px;
+  color: var(--c-black);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  &.hidden {
+    display: none;
+  }
+
+  &__text {
+    display: grid;
+    gap: 10px;
+    text-align: center;
+    margin: 0 0 20px 0;
+
+    &-title {
+      font-size: 32px;
+
+      @include vp-767 {
+        font-size: 28px;
+      }
+    }
+
+    &-subtitle {
+      font-size: 30px;
+      line-height: 34px;
+
+      @include vp-767 {
+        font-size: 22px;
+        line-height: 24px;
+      }
+    }
+
+    &-paragraph {
+      font-size: 18px;
+      line-height: 22px;
+      margin: 0 0 20px 0;
+
+      @include vp-767 {
+        font-size: 16px;
+        line-height: 20px;
+      }
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 0 20px 0;
+
+    @include vp-767 {
+      flex-direction: column;
+    }
+  }
+
+  &__btn,
+  &__btn-demo {
+    display: block;
+    background-color: var(--c-green);
+    font-size: 28px;
+
+    &:hover {
+      background-color: var(--c-green-black);
+    }
+  }
+
+  &__btn-demo {
+    background-color: var(--c-blue);
+
+    &:hover,
+    &:focus-visible {
+      background-color: var(--c-blue-hover);
+    }
+  }
+
+  &__btn-info {
+    display: block;
+    color: var(--c-blue);
+    padding: 0;
+    margin: 0 auto;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--c-blue-hover);
+    }
+  }
+}

@@ -1,7 +1,9 @@
 import Coins from "../Coins/Coins";
 import "./footer.scss";
-import FooterAttack from "./FooterAttack";
-import FooterCrit from "./FooterCrit";
+import FooterAttack from "./components/FooterAttack";
+import FooterCrit from "./components/FooterCrit";
+import FooterCritDamage from "./components/FooterCritDamage";
+import FooterCoins from "./components/FooterCoins";
 
 const Footer = () => {
   return (
@@ -14,16 +16,16 @@ const Footer = () => {
           </div>
           <ul className="footer__skill-list">
             <li className="footer__skill-item">
-              <FooterAttack/>
+              <FooterAttack />
             </li>
             <li className="footer__skill-item">
-              <FooterCrit/>
+              <FooterCrit />
             </li>
             <li className="footer__skill-item">
-              <button className="footer__skill-btn none">Урон крита</button>
+              <FooterCritDamage />
             </li>
             <li className="footer__skill-item">
-              <button className="footer__skill-btn money">Монеты</button>
+              <FooterCoins />
             </li>
           </ul>
         </div>

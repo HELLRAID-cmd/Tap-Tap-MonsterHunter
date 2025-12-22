@@ -1,21 +1,31 @@
-@use "../../Styles/variables";
+@use "../../Styles/variables" as *;
+@use "../../Styles/mixins" as *;
 
 .status {
-  position: absolute;
-  top: 30%;
-  right: 200px;
-  transform: translateY(-50%);
+  display: flex;
+  justify-content: center;
+  margin: 0 0 100px 0;
 
   &__list {
-    border: 1px solid var(--c-black);
-    border-radius: 10px;
-    overflow: hidden;
+    display: flex;
+    justify-content: center;
+
+    @include vp-767 {
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid var(--c-black);
+    }
   }
 
   &__item {
     display: flex;
     gap: 5px;
     padding: 10px;
+    border: 1px solid var(--c-black);
+
+    @include vp-767 {
+      border: none;
+    }
     
     &:not(:last-child) {
       border-bottom: 1px solid var(--c-black);

@@ -1,16 +1,23 @@
 import { useState } from "react";
 import type { MonsterProps } from "./MonsterProps";
-import { useMonsterActions } from "./useMonsterActions ";
 import "./Monster.scss";
-import HealthBar from "./components/HealthBar";
+import { useMonsterActions } from "./useMonsterActions ";
+import HealthBarMonster from "./components/HealthBarMonster";
 import HitMonsterBtn from "./components/HitMonster/HitMonsterBtn";
-import BtnAdmin from "../Admin/BtnAdmin";
 import { useGame } from "../context/Context";
+import FinalBossBtn from "../FinalBoss/FinalBossBtn";
+import { useAttackDamage } from "../context/AttackContext";
+import { useCrit } from "../context/CritContext";
+import { useCritDamage } from "../context/CritDamageContext";
+import formatTime from "../../utils/formatTime";
 
 export const Monster = ({ health }: MonsterProps) => {
+  const { levelMonster, timerValue, isDemo } = useGame();
 
-  const {levelMonster} = useGame();
-  
+  const { level } = useAttackDamage();
+  const { critLevel } = useCrit();
+  const { critLevelDamage } = useCritDamage();
+
   // Рандомный цвет
   const { getRandomColor } = useMonsterActions();
   // Максимальное здоровье
@@ -33,40 +40,50 @@ export const Monster = ({ health }: MonsterProps) => {
 
   return (
     <div className="monster">
-      <p className="monster-lvl">Уровень: {levelMonster}</p>
-      <div className="monster-wrapper">
-        {/* Цифры урона */}
-        {lastDamage?.map((dmg, index) => (
-          <p className={`monster-damage ${animationDamage}`} key={index}>
-            -{dmg.toFixed(2)}хп
-          </p>
-        ))}
+      <div className="container">
+        {isDemo && <p className="demo">DEMO-MODE</p>}
+        <span className="monster-timer">{formatTime(timerValue)}</span>
+        <p className="monster-lvl">Уровень: {levelMonster}</p>
+        <div className="monster-wrapper">
+          {/* Цифры урона */}
+          {lastDamage?.map((dmg, index) => (
+            <p className={`monster-damage ${animationDamage}`} key={index}>
+              -{dmg.toFixed(2)}хп
+            </p>
+          ))}
 
-        {/* Здоровье моба */}
-        <HealthBar monsterHealth={monsterHealth} maxHealth={maxHealth} />
+          {/* Здоровье моба */}
+          <HealthBarMonster
+            monsterHealth={monsterHealth}
+            maxHealth={maxHealth}
+          />
 
-        {/* Монстр */}
-        <div
-          className={`monster-enemy ${
-            monsterHealth === 0 ? "monster-enemy-dead" : ""
-          } ${animation}`}
-          style={{ backgroundColor: color }}
-        ></div>
+          {/* Монстр */}
+          <div
+            className={`monster-enemy ${
+              monsterHealth === 0 ? "monster-enemy-dead" : ""
+            } ${animation}`}
+            style={{ backgroundColor: color }}
+          ></div>
 
-        {/* Ударить моба */}
-        <HitMonsterBtn
-          monsterHealth={monsterHealth}
-          setAnimationDamage={setAnimationDamage}
-          setMonsterHealth={setMonsterHealth}
-          setAnimation={setAnimation}
-          setLastDamage={setLastDamage}
-          setMaxHealth={setMaxHealth}
-          setColor={setColor}
-        />
+          {/* Ударить моба */}
+          <HitMonsterBtn
+            monsterHealth={monsterHealth}
+            setAnimationDamage={setAnimationDamage}
+            setMonsterHealth={setMonsterHealth}
+            setAnimation={setAnimation}
+            setLastDamage={setLastDamage}
+            setMaxHealth={setMaxHealth}
+            setColor={setColor}
+          />
+        </div>
 
+        {isDemo && <FinalBossBtn />}
+
+        {level >= 110 && critLevel >= 25 && critLevelDamage >= 25 && (
+          <FinalBossBtn />
+        )}
       </div>
-        {/* Админ кнопки */}
-        <BtnAdmin setMonsterHealth={setMonsterHealth} />
     </div>
   );
 };
