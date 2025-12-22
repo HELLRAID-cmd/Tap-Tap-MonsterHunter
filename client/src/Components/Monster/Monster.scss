@@ -18,6 +18,15 @@
     font-weight: 600;
   }
 
+  &-timer {
+    display: block;
+  }
+
+  &-timer,
+  &-lvl {
+    text-align: center;
+  }
+
   &-wrapper {
     display: flex;
     flex-direction: column;
