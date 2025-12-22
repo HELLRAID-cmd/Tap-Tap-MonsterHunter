@@ -41,48 +41,50 @@ export const Monster = ({ health }: MonsterProps) => {
   return (
     <div className="monster">
       <div className="container">
-        {isDemo && <p className="demo">DEMO-MODE</p>}
-        <span className="monster-timer">{formatTime(timerValue)}</span>
-        <p className="monster-lvl">Уровень: {levelMonster}</p>
-        <div className="monster-wrapper">
-          {/* Цифры урона */}
-          {lastDamage?.map((dmg, index) => (
-            <p className={`monster-damage ${animationDamage}`} key={index}>
-              -{dmg.toFixed(2)}хп
-            </p>
-          ))}
+        <div className="monster-inner">
+          {isDemo && <p className="demo">DEMO-MODE</p>}
+          <span className="monster-timer">{formatTime(timerValue)}</span>
+          <p className="monster-lvl">Уровень: {levelMonster}</p>
+          <div className="monster-wrapper">
+            {/* Цифры урона */}
+            {lastDamage?.map((dmg, index) => (
+              <p className={`monster-damage ${animationDamage}`} key={index}>
+                -{dmg.toFixed(2)}хп
+              </p>
+            ))}
 
-          {/* Здоровье моба */}
-          <HealthBarMonster
-            monsterHealth={monsterHealth}
-            maxHealth={maxHealth}
-          />
+            {/* Здоровье моба */}
+            <HealthBarMonster
+              monsterHealth={monsterHealth}
+              maxHealth={maxHealth}
+            />
 
-          {/* Монстр */}
-          <div
-            className={`monster-enemy ${
-              monsterHealth === 0 ? "monster-enemy-dead" : ""
-            } ${animation}`}
-            style={{ backgroundColor: color }}
-          ></div>
+            {/* Монстр */}
+            <div
+              className={`monster-enemy ${
+                monsterHealth === 0 ? "monster-enemy-dead" : ""
+              } ${animation}`}
+              style={{ backgroundColor: color }}
+            ></div>
 
-          {/* Ударить моба */}
-          <HitMonsterBtn
-            monsterHealth={monsterHealth}
-            setAnimationDamage={setAnimationDamage}
-            setMonsterHealth={setMonsterHealth}
-            setAnimation={setAnimation}
-            setLastDamage={setLastDamage}
-            setMaxHealth={setMaxHealth}
-            setColor={setColor}
-          />
+            {/* Ударить моба */}
+            <HitMonsterBtn
+              monsterHealth={monsterHealth}
+              setAnimationDamage={setAnimationDamage}
+              setMonsterHealth={setMonsterHealth}
+              setAnimation={setAnimation}
+              setLastDamage={setLastDamage}
+              setMaxHealth={setMaxHealth}
+              setColor={setColor}
+            />
+          </div>
+
+          {isDemo && <FinalBossBtn />}
+
+          {level >= 110 && critLevel >= 25 && critLevelDamage >= 25 && (
+            <FinalBossBtn />
+          )}
         </div>
-
-        {isDemo && <FinalBossBtn />}
-
-        {level >= 110 && critLevel >= 25 && critLevelDamage >= 25 && (
-          <FinalBossBtn />
-        )}
       </div>
     </div>
   );
