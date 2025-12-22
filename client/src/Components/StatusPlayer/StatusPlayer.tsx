@@ -34,22 +34,6 @@ const StatusPlayer = () => {
               {coinsMultiplier.toFixed(1)}x
             </span>
           </li>
-          {/* <li className="status__item">
-          <p className="status__item-name">Нанесено урона: </p>
-          <span className="status__item-info">{totalDamage}</span>
-        </li> */}
-          {/* <li className="status__item">
-          <p className="status__item-name">Накоплено монет: </p>
-          <span className="status__item-info">{totalCoins}</span>
-        </li>
-        <li className="status__item">
-          <p className="status__item-name">Потрачено монет: </p>
-          <span className="status__item-info">{(totalCoinsSpent).toFixed(0)}</span>
-        </li>
-        <li className="status__item">
-          <p className="status__item-name">Всего ударов: </p>
-          <span className="status__item-info">{statusClick}</span>
-        </li> */}
         </ul>
       </div>
     </div>
